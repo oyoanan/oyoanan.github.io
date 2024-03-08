@@ -16,12 +16,12 @@
   <meta name="author" content="An">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.A+B和C题目给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。 输入：输入第1行给出正整数T(&lt;&#x3D;10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。 输出：对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用例的编号（从1开始）">
+    <meta name="description" content="1.A+B和C 题目 给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。 **输入：**输入第1行给出正整数T(&lt;&#x3D;10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。 **输出：**对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PAT01：A+B和C">
 <meta property="og:url" content="http://example.com/2024/03/02/PAT01/index.html">
 <meta property="og:site_name" content="An&#96;s Blog">
-<meta property="og:description" content="1.A+B和C题目给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。 输入：输入第1行给出正整数T(&lt;&#x3D;10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。 输出：对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用例的编号（从1开始）">
+<meta property="og:description" content="1.A+B和C 题目 给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。 **输入：**输入第1行给出正整数T(&lt;&#x3D;10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。 **输出：**对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
 <meta property="article:published_time" content="2024-03-02T10:48:36.000Z">
@@ -286,16 +286,22 @@
             
               <div class="markdown-body">
                 
-                <h1 id="1-A-B和C"><a href="#1-A-B和C" class="headerlink" title="1.A+B和C"></a>1.A+B和C</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。</p>
-<p><strong>输入：</strong>输入第1行给出正整数T(&lt;=10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。</p>
-<p><strong>输出：</strong>对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用例的编号（从1开始）。</p>
+                <h1>1.A+B和C</h1>
+<h2 id="题目">题目</h2>
+<p>给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。</p>
+<p>**输入：**输入第1行给出正整数T(&lt;=10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。</p>
+<p>**输出：**对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用例的编号（从1开始）。</p>
 <p><strong>输入例子：</strong></p>
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">4</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">3</span> <span class="hljs-number">4</span><br><span class="hljs-symbol">2147483647 </span><span class="hljs-number">0</span> <span class="hljs-number">2147483646</span><br><span class="hljs-symbol">0 </span>-<span class="hljs-number">2147483648</span> -<span class="hljs-number">2147483647</span><br></code></pre></td></tr></table></figure>
 <p><strong>输出例子：</strong></p>
 <figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cal"><span class="hljs-keyword">Case</span> <span class="hljs-string">#1</span>: <span class="hljs-literal">false</span><br><span class="hljs-keyword">Case</span> <span class="hljs-string">#2</span>: <span class="hljs-literal">true</span><br><span class="hljs-keyword">Case</span> <span class="hljs-string">#3</span>: <span class="hljs-literal">true</span><br><span class="hljs-keyword">Case</span> <span class="hljs-string">#4</span>: <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="（1）我的解法"><a href="#（1）我的解法" class="headerlink" title="（1）我的解法"></a>（1）我的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><br>index = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> sys.stdin:<br>    index +=<span class="hljs-number">1</span><br>    a = line.split()<br>    a = [<span class="hljs-built_in">int</span>(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a]<br>    <span class="hljs-keyword">if</span> index == <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">pass</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Case #<span class="hljs-subst">&#123;index-<span class="hljs-number">1</span>&#125;</span>: <span class="hljs-subst">&#123;<span class="hljs-built_in">str</span>(a[<span class="hljs-number">0</span>]+a[<span class="hljs-number">1</span>]&gt;a[<span class="hljs-number">2</span>]).lower()&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
-<h3 id="（2）其他解法"><a href="#（2）其他解法" class="headerlink" title="（2）其他解法"></a>（2）其他解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">n = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>    a,b,c = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>,<span class="hljs-built_in">input</span>().split())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Case #&#x27;</span>+<span class="hljs-built_in">str</span>((i+<span class="hljs-number">1</span>))+<span class="hljs-string">&#x27;: true&#x27;</span> <span class="hljs-keyword">if</span> a+b&gt;c <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;Case #&#x27;</span>+<span class="hljs-built_in">str</span>((i+<span class="hljs-number">1</span>))+<span class="hljs-string">&#x27;: false&#x27;</span>)<br></code></pre></td></tr></table></figure>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
+<h2 id="题解">题解</h2>
+<h3 id="（1）我的解法">（1）我的解法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><br>index = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> sys.stdin:<br>    index +=<span class="hljs-number">1</span><br>    a = line.split()<br>    a = [<span class="hljs-built_in">int</span>(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a]<br>    <span class="hljs-keyword">if</span> index == <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">pass</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Case #<span class="hljs-subst">&#123;index-<span class="hljs-number">1</span>&#125;</span>: <span class="hljs-subst">&#123;<span class="hljs-built_in">str</span>(a[<span class="hljs-number">0</span>]+a[<span class="hljs-number">1</span>]&gt;a[<span class="hljs-number">2</span>]).lower()&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="（2）其他解法">（2）其他解法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">n = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>    a,b,c = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>,<span class="hljs-built_in">input</span>().split())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Case #&#x27;</span>+<span class="hljs-built_in">str</span>((i+<span class="hljs-number">1</span>))+<span class="hljs-string">&#x27;: true&#x27;</span> <span class="hljs-keyword">if</span> a+b&gt;c <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;Case #&#x27;</span>+<span class="hljs-built_in">str</span>((i+<span class="hljs-number">1</span>))+<span class="hljs-string">&#x27;: false&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="知识点">知识点</h2>
+<ul>
 <li><code>sys.stdin</code></li>
 </ul>
 <blockquote>
@@ -308,13 +314,12 @@
 <p>在命令行环境中，通常可以通过<code>Ctrl+D</code>（在Unix/Linux/macOS系统中）或<code>Ctrl+Z</code>然后回车（在Windows系统中）来发送EOF信号。此外，<code>sys.stdin</code>也常被用于从文件中读取输入，通过命令行重定向操作，例如<code>python script.py &lt; inputfile.txt</code>，这时<code>inputfile.txt</code>的内容会被作为标准输入传递给脚本。</p>
 </blockquote>
 <ul>
-<li><p><strong>三元运算符</strong></p>
+<li><strong>三元运算符</strong></li>
+</ul>
 <blockquote>
-<p><code>print(&quot;Case #&quot;+str(i+1)+&quot;: true&quot; if b+c&gt;d else &quot;Case #&quot;+str(i+1)+&quot;: false&quot;)</code>: </p>
+<p><code>print(&quot;Case #&quot;+str(i+1)+&quot;: true&quot; if b+c&gt;d else &quot;Case #&quot;+str(i+1)+&quot;: false&quot;)</code>:</p>
 <p>使用条件表达式（三元操作符）简化逻辑判断，而且字符串不能直接拼接整数，需要先对整数进行<code>str()</code></p>
 </blockquote>
-</li>
-</ul>
 
                 
               </div>
