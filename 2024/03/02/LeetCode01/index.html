@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021502005.jpeg">
 <meta property="article:published_time" content="2024-03-02T06:53:55.000Z">
-<meta property="article:modified_time" content="2024-03-08T11:26:31.183Z">
+<meta property="article:modified_time" content="2024-03-08T11:46:12.793Z">
 <meta property="article:author" content="An">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="题库">
@@ -315,7 +315,7 @@
 <li>
 <p><strong>时间与空间复杂度</strong></p>
 <blockquote>
-<p>1、使用暴力枚举，时间复杂度为O(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>)，因为需要使用两层循环来检查数组中每对不同的元素，看它们的和是否等于 <code>target</code>；空间复杂度为O(1)，因为除了输入和输出之外，只需要有限的额外空间。</p>
+<p>1、使用暴力枚举，时间复杂度为O($$n^2$$)，因为需要使用两层循环来检查数组中每对不同的元素，看它们的和是否等于 <code>target</code>；空间复杂度为O(1)，因为除了输入和输出之外，只需要有限的额外空间。</p>
 <p>2、使用哈希表，时间复杂度为O(n)，因为只需要遍历数组一次，对于每个元素，可以在 O(1) 的时间内通过哈希表检查 <code>target - num</code> 是否存在；空间复杂度为O(n)，因为最坏的情况下，可能需要将数组中的所有元素都存储在哈希表中。</p>
 </blockquote>
 </li>
