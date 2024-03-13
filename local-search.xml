@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>LeetCode04：移动零</title>
+    <link href="/2024/03/13/LeetCode04/"/>
+    <url>/2024/03/13/LeetCode04/</url>
+    
+    <content type="html"><![CDATA[<h1 id="4-移动零"><a href="#4-移动零" class="headerlink" title="4.移动零"></a>4.移动零</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p><p><strong>请注意</strong> ，必须在不复制数组的情况下原地对数组进行操作。</p><p><strong>示例 1:</strong></p><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">输入: nums = <span class="hljs-string">[0,1,0,3,12]</span><br>输出: <span class="hljs-string">[1,3,12,0,0]</span><br></code></pre></td></tr></table></figure><p><strong>示例 2:</strong></p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入: nums = <span class="hljs-comment">[0]</span><br>输出: <span class="hljs-comment">[0]</span><br></code></pre></td></tr></table></figure><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="（1）我的解法"><a href="#（1）我的解法" class="headerlink" title="（1）我的解法"></a>（1）我的解法</h3><p>通过循环数组的<code>remove</code>操作依次将0移除，移除次数为填0次数，最后在数组末尾填充相应次数的0。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">moveZeroes</span>(<span class="hljs-params">self, nums</span>):<br>        count = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-number">0</span> <span class="hljs-keyword">in</span> nums:<br>            nums.remove(<span class="hljs-number">0</span>)<br>            count += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>            nums.append(<span class="hljs-number">0</span>)                <br>        <span class="hljs-keyword">return</span> nums<br></code></pre></td></tr></table></figure><h3 id="（2）官方题解"><a href="#（2）官方题解" class="headerlink" title="（2）官方题解"></a>（2）官方题解</h3><h4 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h4><p>左右指针都在索引起始处，先判断右指针位置的元素是否为0，如果为0，右指针继续走一步；如果不为0，将左右指针的元素对换，左指针继续往前一步。右指针继续走一步，继续处理，直到右指针走到最末。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">moveZeroes</span>(<span class="hljs-params">self, nums</span>):<br>        n = <span class="hljs-built_in">len</span>(nums)<br>        left = right = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> right &lt; n:<br>            <span class="hljs-keyword">if</span> nums[right] != <span class="hljs-number">0</span>:<br>                nums[left], nums[right] = nums[right], nums[left]<br>                left += <span class="hljs-number">1</span><br>            right += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> nums<br></code></pre></td></tr></table></figure><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p><strong>双指针法的时间与空间复杂度</strong></p><blockquote><p>时间复杂度：O(n)，其中 n 为序列长度。每个位置至多被遍历两次。</p><p>空间复杂度：O(1)。只需要常数的空间存放若干变量。</p></blockquote><p><strong>双指针元素兑换</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">nums[left], nums[right] = nums[right], nums[left]<br></code></pre></td></tr></table></figure><p><strong>数组操作</strong></p><blockquote><ol><li>创建数组：使用方括号 <code>[]</code> 来创建数组，例如 <code>my_list = [1, 2, 3, 4, 5]</code>。</li><li>访问元素：通过索引来访问数组中的元素，索引从 0 开始，例如 <code>my_list[0]</code> 返回数组的第一个元素。</li><li>切片操作：可以使用切片来获取数组中的子数组，例如 <code>my_list[1:3]</code> 返回索引 1 到 2 的子数组。</li><li>添加元素：使用 <code>append()</code> 方法向数组末尾添加新元素，例如 <code>my_list.append(6)</code>。</li><li>插入元素：使用 <code>insert()</code> 方法在指定位置插入元素，例如 <code>my_list.insert(2, 7)</code> 在索引 2 处插入元素 7。</li><li>删除元素：使用 <code>remove()</code> 方法删除指定元素，例如 <code>my_list.remove(3)</code> 删除元素 3。</li><li>弹出元素：使用 <code>pop()</code> 方法弹出指定索引的元素，例如 <code>my_list.pop(1)</code> 弹出索引 1 处的元素。</li><li>查找元素：使用 <code>index()</code> 方法查找指定元素的索引，例如 <code>my_list.index(4)</code> 返回元素 4 的索引。</li><li>数组长度：使用 <code>len()</code> 函数获取数组的长度，例如 <code>len(my_list)</code> 返回数组的长度。</li><li>排序数组：使用 <code>sort()</code> 方法对数组进行排序，例如 <code>my_list.sort()</code> 对数组进行升序排序。</li></ol></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>LeetCode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>题库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>PAT03：数素数</title>
     <link href="/2024/03/13/PAT03/"/>
     <url>/2024/03/13/PAT03/</url>
