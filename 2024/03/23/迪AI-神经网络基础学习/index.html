@@ -1,0 +1,996 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202402281732273.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="An">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="迪AI-神经网络基础学习一、神经网络机器学习流程：  数据获取 — 特征工程（核心）— 建立模型 — 评估与应用  特征工程的作用：  数据特征决定了模型的上限  预处理和特征提取是最核心的  算法和参数选择决定了如何逼近这个上限   特征如何提取？  传统特征提取方法：  深度学习 比较麻烦，这就是为什么需要深度学习： 相当于黑盒子，通过学习提取一系列最合适的特征：  深度学习的应用：无人驾驶（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迪AI-神经网络基础学习">
+<meta property="og:url" content="http://example.com/2024/03/23/%E8%BF%AAAI-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="An&#96;s Blog">
+<meta property="og:description" content="迪AI-神经网络基础学习一、神经网络机器学习流程：  数据获取 — 特征工程（核心）— 建立模型 — 评估与应用  特征工程的作用：  数据特征决定了模型的上限  预处理和特征提取是最核心的  算法和参数选择决定了如何逼近这个上限   特征如何提取？  传统特征提取方法：  深度学习 比较麻烦，这就是为什么需要深度学习： 相当于黑盒子，通过学习提取一系列最合适的特征：  深度学习的应用：无人驾驶（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231948085.jpeg">
+<meta property="article:published_time" content="2024-03-23T11:46:58.000Z">
+<meta property="article:modified_time" content="2024-03-23T11:50:02.755Z">
+<meta property="article:author" content="An">
+<meta property="article:tag" content="神经网络">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="RNN">
+<meta property="article:tag" content="LSTM">
+<meta property="article:tag" content="Word2Vec">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231948085.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>迪AI-神经网络基础学习 - An`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>An</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="迪AI-神经网络基础学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-23 19:46" pubdate>
+          2024年3月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">迪AI-神经网络基础学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="迪AI-神经网络基础学习"><a href="#迪AI-神经网络基础学习" class="headerlink" title="迪AI-神经网络基础学习"></a>迪AI-神经网络基础学习</h1><h2 id="一、神经网络"><a href="#一、神经网络" class="headerlink" title="一、神经网络"></a>一、神经网络</h2><p><strong>机器学习流程：</strong></p>
+<blockquote>
+<p>数据获取 — 特征工程（核心）— 建立模型 — 评估与应用</p>
+</blockquote>
+<p><strong>特征工程的作用：</strong></p>
+<ul>
+<li><p>数据特征决定了模型的上限</p>
+</li>
+<li><p>预处理和特征提取是最核心的</p>
+</li>
+<li><p>算法和参数选择决定了如何逼近这个上限</p>
+</li>
+</ul>
+<p><strong>特征如何提取？</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947883.png" srcset="/img/loading.gif" lazyload alt="image-20240321195233298"></p>
+<p><strong>传统特征提取方法：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947563.png" srcset="/img/loading.gif" lazyload alt="image-20240321195318340"></p>
+<p><strong>深度学习</strong></p>
+<p>比较麻烦，这就是为什么需要深度学习：</p>
+<p>相当于黑盒子，通过学习提取一系列最合适的特征：</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947518.png" srcset="/img/loading.gif" lazyload alt="image-20240321195433086"></p>
+<p>深度学习的应用：无人驾驶（目标检测和识别）、人脸识别、医学应用、视频换脸、图像修复</p>
+<p><strong>数据集IMAGENET：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947941.png" srcset="/img/loading.gif" lazyload alt="image-20240321202043785"></p>
+<p>数据规模越大，深度学习算法效果越好：</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947619.png" srcset="/img/loading.gif" lazyload alt="image-20240321202214294"></p>
+<p><strong>计算机视觉-图像分类任务</strong></p>
+<p>3颜色通道RGB</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947592.png" srcset="/img/loading.gif" lazyload alt="image-20240321202335768"></p>
+<p><strong>面临的挑战：</strong></p>
+<p>照射角度、形状改变、部分遮蔽、背景混入</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947165.png" srcset="/img/loading.gif" lazyload alt="image-20240321202448792"></p>
+<p><strong>机器学习常规套路</strong></p>
+<ul>
+<li>收集数据、给定标签</li>
+<li>训练一个分类器</li>
+<li>测试、评估</li>
+</ul>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947271.png" srcset="/img/loading.gif" lazyload alt="image-20240321202638832"></p>
+<p><strong>K近邻</strong></p>
+<p>问圆圈属于什么类别？看周围的类别谁多分类成谁</p>
+<p>K等于几就是画几个在圈里：</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947253.png" srcset="/img/loading.gif" lazyload alt="image-20240321203518694"></p>
+<p>计算流程：</p>
+<ul>
+<li>计算已知类别数据集中的点与当前点距离</li>
+<li>按照距离依次排序</li>
+<li>选取与当前点距离最小的K个点</li>
+<li>确定前K个点所在类别的出现频率</li>
+<li>返回前K个点出现频率最高的类别作为当前点预测分类</li>
+</ul>
+<p>K近邻分析：</p>
+<ul>
+<li><p>KNN算法简单有效，是一种lazy-learning算法</p>
+</li>
+<li><p>分类器不需要使用训练集进行训练，训练时间复杂度为0</p>
+</li>
+<li><p>KNN分类的计算复杂度和训练集中的文档数目成正比，也就是说，如果训练集中的文档总数为n，那么KNN的分类时间复杂度为O(n)</p>
+</li>
+<li><p>K值的选择，距离度量和分类决策规则是该算法的三个基本要素</p>
+</li>
+</ul>
+<p><strong>CIFAR-10 数据库简介：</strong></p>
+<p>数据小，32x32x3</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947518.png" srcset="/img/loading.gif" lazyload alt="image-20240321205957826"></p>
+<p><strong>距离计算：</strong></p>
+<p>和训练集中的5w张图像，分别逐像素相减，取绝对值，然后求和</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947881.png" srcset="/img/loading.gif" lazyload alt="image-20240321210509541"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947138.png" srcset="/img/loading.gif" lazyload alt="image-20240321210703137"></p>
+<p>问题：没有区分主体和背景</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947053.png" srcset="/img/loading.gif" lazyload alt="image-20240321211446688"></p>
+<p><strong>交叉验证：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947044.png" srcset="/img/loading.gif" lazyload alt="image-20240321210809493"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947909.png" srcset="/img/loading.gif" lazyload alt="image-20240321210904342"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947574.png" srcset="/img/loading.gif" lazyload alt="image-20240321211248857"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947664.png" srcset="/img/loading.gif" lazyload alt="image-20240321210924072"></p>
+<p><strong>神经网络基础</strong></p>
+<p>线性函数，从输入到输出的映射</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947195.png" srcset="/img/loading.gif" lazyload alt="image-20240321212441827"></p>
+<p><strong>数学表示：</strong></p>
+<p>计算属于每个类别对应的得分，每种动物有自己的权重W，因此W要有10个</p>
+<p>3072由32x32x3得到，每个类别在每个像素点的权重参数</p>
+<p>b是微调，是偏置参数，对于10个类别得到的分数都要进行微调</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947825.png" srcset="/img/loading.gif" lazyload alt="image-20240321213137771"></p>
+<p><strong>计算方法：</strong></p>
+<p>权重参数越大，表明相应的像素越重要</p>
+<p> <img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947272.png" srcset="/img/loading.gif" lazyload alt="image-20240321213340108"></p>
+<p><strong>W如何得到的？</strong></p>
+<p>X数据是不会变的，因此神经网络是寻找合适的W</p>
+<p>W初始是随机的，根据某些优化方法，不断改进W</p>
+<p><strong>决策边界</strong></p>
+<p>W是控制着决策边界的，b只是做微调</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947201.png" srcset="/img/loading.gif" lazyload alt="image-20240321213812143"></p>
+<p><strong>损失函数</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947308.png" srcset="/img/loading.gif" lazyload alt="image-20240321213939143"></p>
+<p>损失函数为0的时候 等于没有损失</p>
+<p>用错误类别的分数减去正确类别的分数</p>
+<p>+1的作用 相当于容忍程度 错误类别的分数和正确类别的差距至少要大于1分</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403212140249.png" srcset="/img/loading.gif" lazyload alt="image-20240321214028180"></p>
+<p>不是 模型A和模型B关注的不一样 </p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947599.png" srcset="/img/loading.gif" lazyload alt="image-20240322000626595"></p>
+<p><strong>正则化：</strong></p>
+<p>惩罚项，由权重参数带来的损失</p>
+<p>λ为惩罚系数，λ越大表示不希望过拟合，正则化惩罚更大，如果小点就是意思意思一下</p>
+<p>因为神经网络的缺点就是过于强大，过拟合的风险很大</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947768.png" srcset="/img/loading.gif" lazyload alt="image-20240322000825710"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947775.png" srcset="/img/loading.gif" lazyload alt="image-20240322004702274"></p>
+<p><strong>Softmax分类器</strong></p>
+<p>随意输入一个数x都可以压缩到0-1之间，恰好把分数转化成了概率值</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947957.png" srcset="/img/loading.gif" lazyload alt="image-20240322004755210"></p>
+<p>将分数x做exp操作，放大差异，转化为概率值就是做归一化：</p>
+<p>就是把自己的分数除以所有分数的和</p>
+<p>归一化之后，用对数函数求损失，希望正确类别的概率离1越近越好 而损失值就越小</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947911.png" srcset="/img/loading.gif" lazyload alt="image-20240322005341917"></p>
+<p>回归任务 – 得分值</p>
+<p>分类任务 – 概率值</p>
+<p><strong>前向传播</strong></p>
+<p>由x和w怎么得到一个损失</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947178.png" srcset="/img/loading.gif" lazyload alt="image-20240322005555783"></p>
+<p><strong>反向传播</strong></p>
+<p>根据loss调整w</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947500.png" srcset="/img/loading.gif" lazyload alt="image-20240322005627191"></p>
+<p>在前向传播中，得分函数往往是多次变换组合，多个W一起去做 ，每一步关注的不一样</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947494.png" srcset="/img/loading.gif" lazyload alt="image-20240322151332773"></p>
+<p><strong>梯度下降：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947437.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947589.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947866.png" srcset="/img/loading.gif" lazyload alt="image-20240322152145853"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947172.png" srcset="/img/loading.gif" lazyload alt="image-20240322152213537"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947491.png" srcset="/img/loading.gif" lazyload alt="image-20240322152302055"></p>
+<p>希望损失函数的值越低越好 分别求偏导（相当于对结果做了多少贡献）</p>
+<p>先是f对z求偏导 就知道z对结果的影响</p>
+<p>而x经过了2步，先让f对q做偏导 再乘以q对x求的偏导 — 链式求导</p>
+<p>y同理 逐层计算</p>
+<p>反向传播中就是逐层计算</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947540.png" srcset="/img/loading.gif" lazyload alt="image-20240322152647722"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947883.png" srcset="/img/loading.gif" lazyload alt="image-20240322152714770"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947449.png" srcset="/img/loading.gif" lazyload alt="image-20240322152758276"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947836.png" srcset="/img/loading.gif" lazyload alt="image-20240322152806729"></p>
+<p>可以</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947997.png" srcset="/img/loading.gif" lazyload alt="image-20240322155459089"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947129.png" srcset="/img/loading.gif" lazyload alt="image-20240322155603832"></p>
+<p><strong>整体架构：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947135.png" srcset="/img/loading.gif" lazyload alt="image-20240322162532669"></p>
+<ul>
+<li><p>层次结构：一层一层办事，在前者的基础上做事</p>
+</li>
+<li><p>神经元： 输入数据的特征数 有多少圈代表有多少输入特征</p>
+</li>
+<li><p>全连接：每个圆圈都连在一起</p>
+</li>
+<li><p>中间层：人类不好理解 计算机可以 </p>
+</li>
+<li><p>权重：线条就是权重 把3个特征转换到4个特征 权重参数 [3,4]</p>
+</li>
+</ul>
+<p>W1 	W2	W3</p>
+<ul>
+<li>非线性：在每一步矩阵计算后的激活函数</li>
+</ul>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947662.png" srcset="/img/loading.gif" lazyload alt="image-20240322162850601"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947633.png" srcset="/img/loading.gif" lazyload alt="image-20240322163512866"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947789.png" srcset="/img/loading.gif" lazyload alt="image-20240322163522369"></p>
+<p>神经元个数对结果的影响：理论上越多越好，但是出现过拟合</p>
+<p>增加一个神经元、实际上是增加了一组参数</p>
+<p><strong>正则化的作用：</strong></p>
+<p>惩罚力度越小，越符合训练的结果。加大惩罚力度，要平滑的多</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947776.png" srcset="/img/loading.gif" lazyload alt="image-20240322213718026"></p>
+<p><strong>参数个数对结果的影响：</strong></p>
+<p>神经元个数就是希望转化的特征数量，常见的是64 128 256…</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947434.png" srcset="/img/loading.gif" lazyload alt="image-20240322213939919"></p>
+<p><strong>激活函数：</strong></p>
+<p>就是非线性变换</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947664.png" srcset="/img/loading.gif" lazyload alt="image-20240322214049262"></p>
+<p>sigmoid极端处会出现梯度消失 如果梯度为0 会导致后续的梯度也为0 因为是乘法操作</p>
+<p>Relu更实用 没有梯度消失现象</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947022.png" srcset="/img/loading.gif" lazyload alt="image-20240322220832806"></p>
+<p><strong>数据预处理：</strong></p>
+<p>数据要做预处理 例如中心化（减去均值）、归一化（除以标准差）</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947442.png" srcset="/img/loading.gif" lazyload alt="image-20240323105624533"></p>
+<p><strong>参数初始化：</strong></p>
+<p>权重参数矩阵给随机的值 随机策略 生成随机参数</p>
+<p>0.01 初始化结果就都比较小</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947493.png" srcset="/img/loading.gif" lazyload alt="image-20240323105606217"></p>
+<p>防止过拟合，还可以使用<strong>DROP-OUT:</strong></p>
+<p>完整的神经网络 全连接 B图就是在训练中 每一层随机杀死神经元 每次训练都是随机选择一部分</p>
+<p>每次训练 架构都简单些 </p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947134.png" srcset="/img/loading.gif" lazyload alt="image-20240323111955383"></p>
+<p><strong>神经网络：</strong></p>
+<p>就是找权重参数 什么权重参数最适合网络</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947149.png" srcset="/img/loading.gif" lazyload alt="image-20240323112247340"></p>
+<p>​                                              </p>
+<h2 id="二、卷积神经网络CNN"><a href="#二、卷积神经网络CNN" class="headerlink" title="二、卷积神经网络CNN"></a>二、卷积神经网络CNN</h2><p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947169.png" srcset="/img/loading.gif" lazyload alt="image-20240323113605752"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947509.png" srcset="/img/loading.gif" lazyload alt="image-20240323113709657"></p>
+<p><strong>检索：</strong>判断图片是什么 再寻找相似度高的图片出来</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947827.png" srcset="/img/loading.gif" lazyload alt="image-20240323113717080"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947057.png" srcset="/img/loading.gif" lazyload alt="image-20240323113814780"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947516.png" srcset="/img/loading.gif" lazyload alt="image-20240323113827821"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947008.png" srcset="/img/loading.gif" lazyload alt="image-20240323113840520"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947334.png" srcset="/img/loading.gif" lazyload alt="image-20240323113922498"></p>
+<p><strong>卷积与传统神经网络nn的区别</strong>：</p>
+<p>输入数据不是一列向量 是三维的 长方体</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947538.png" srcset="/img/loading.gif" lazyload alt="image-20240323113955554"></p>
+<p><strong>卷积：</strong>提取特征 </p>
+<p><strong>池化：</strong>压缩特征</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947724.png" srcset="/img/loading.gif" lazyload alt="image-20240323114107526"></p>
+<p><strong>卷积做了什么？</strong></p>
+<ul>
+<li><p>把一张图像分成很多份，比如猫的眼睛 鼻子 嘴 不同的地方进行处理</p>
+</li>
+<li><p>每一块不止一个像素点 例如3x3的区域 对当前区域使用权重参数得到特征值</p>
+</li>
+<li><p>不同区域得到的特征不一样 选择一种计算方法 计算每个区域的特征值</p>
+</li>
+<li><p>找最好的权重参数 最适合的权重参数</p>
+</li>
+</ul>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947738.png" srcset="/img/loading.gif" lazyload alt="image-20240323120136530"></p>
+<p><strong>图像颜色通道：</strong></p>
+<p>做计算的时候，每个颜色通道都要分别计算 – RGB</p>
+<p>最后要进行加法操作 把3个通道的结果加起来</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947062.png" srcset="/img/loading.gif" lazyload alt="image-20240323120351228"></p>
+<p><strong>Filter的通道数</strong>必须和输入数据的通道数相同 </p>
+<p><strong>核：</strong>就是选择多大的区域对应于一个特征值</p>
+<p>做的是内积计算 各元素相乘 每个通道做内积最后加起来得到一个特征值 记得加上b偏置</p>
+<p>最终是得到一个特征图</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947371.png" srcset="/img/loading.gif" lazyload alt="image-20240323120847575"></p>
+<p>核可以是多个 f1-f6 得到丰富的特征 <strong>结果的通道数就是特征图的个数</strong></p>
+<p>同一个卷积层 核的大小必须是相同的</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947385.png" srcset="/img/loading.gif" lazyload alt="image-20240323123639001"></p>
+<p>卷积得到的特征图再做卷积</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947481.png" srcset="/img/loading.gif" lazyload alt="image-20240323124033635"></p>
+<p>6个卷积核 卷积核的通道数一定和输入数据的通道数相同</p>
+<p>10个卷积核 </p>
+<p>…</p>
+<p>经过多次卷积提取有用的特征</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947480.png" srcset="/img/loading.gif" lazyload alt="image-20240323131330271"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947915.png" srcset="/img/loading.gif" lazyload alt="image-20240323131749989"></p>
+<p><strong>不同步长</strong>得到的特征图大小不一样</p>
+<p>步长比较小的时候 细粒度越高  特征图更丰富</p>
+<p>图像任务的时候步长一般为1  效率比较低</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947933.png" srcset="/img/loading.gif" lazyload alt="image-20240323131800029"></p>
+<p><strong>卷积核尺寸</strong>是选择区域的大小 卷积核越小 细粒度越高 </p>
+<p>因为卷积的时候 边界点没有中间点利用的次数多  因此通过填充 让边界信息利用充分</p>
+<p>用0填充 不会对结果产生负面影响</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947052.png" srcset="/img/loading.gif" lazyload alt="image-20240323132346943"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947004.png" srcset="/img/loading.gif" lazyload alt="image-20240323132522253"></p>
+<p><strong>卷积核个数</strong> 对应的是得到的特征图的个数</p>
+<p><strong>计算：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947670.png" srcset="/img/loading.gif" lazyload alt="image-20240323132728711"></p>
+<p>H1 原始输入 FH 是核的高度 P是padding 填充0的圈数</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947643.png" srcset="/img/loading.gif" lazyload alt="image-20240323132708946"></p>
+<p><strong>例子：</strong></p>
+<p>特征图大小可能不变</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947983.png" srcset="/img/loading.gif" lazyload alt="image-20240323143545183"></p>
+<p><strong>卷积参数共享：</strong></p>
+<p>每个卷积区域 用相同的核</p>
+<p>每一个卷积核有一个对应的偏置参数</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947013.png" srcset="/img/loading.gif" lazyload alt="image-20240323144202538"></p>
+<p><strong>池化：</strong></p>
+<p>压缩作用 进行筛选 通道数不变 宽高可以改变</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947226.png" srcset="/img/loading.gif" lazyload alt="image-20240323144555454"></p>
+<p><strong>最大池化：（常用）</strong></p>
+<p>每个区域选择最大值</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947322.png" srcset="/img/loading.gif" lazyload alt="image-20240323144656961"></p>
+<p><strong>平均池化：</strong></p>
+<p>每个区域求平均值</p>
+<p><strong>卷积神经网络：</strong></p>
+<p>卷积层+激活函数是一个必须的组合</p>
+<p>两次卷积、一个池化…</p>
+<p><strong>如何将特征图长方体进行分类任务？</strong>还得是全连接层。</p>
+<p>拉成特征向量，输入到全连接层，得到分类结果</p>
+<p><strong>通常是带参数计算的 叫做一层（卷积层、全连接层）</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947695.png" srcset="/img/loading.gif" lazyload alt="image-20240323144807170"></p>
+<p><strong>特征图变化：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947687.png" srcset="/img/loading.gif" lazyload alt="image-20240323145055610"></p>
+<p><strong>经典网络：</strong></p>
+<ul>
+<li><strong>ALEXNET</strong></li>
+</ul>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947899.png" srcset="/img/loading.gif" lazyload alt="image-20240323145543624"></p>
+<p>pool之后 会损失信息 用特征图个数弥补损失 翻倍了</p>
+<ul>
+<li><strong>VGG</strong></li>
+</ul>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947914.png" srcset="/img/loading.gif" lazyload alt="image-20240323145620441"></p>
+<p>用更深的网络层数去做 效果不一定更好</p>
+<ul>
+<li><strong>RESNET</strong></li>
+</ul>
+<p>利用同等映射 如果表现不好 如果B不好 把B的权重参数全部置为0 A和C直接连接</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947893.png" srcset="/img/loading.gif" lazyload alt="image-20240323145823746"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947401.png" srcset="/img/loading.gif" lazyload alt="image-20240323150116911"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947446.png" srcset="/img/loading.gif" lazyload alt="image-20240323150137949"></p>
+<p><strong>任务是分类还是回归 取决于损失函数和最后的连接</strong></p>
+<p>把resnet当做特征提取 是一种通用的网络结构</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947597.png" srcset="/img/loading.gif" lazyload alt="image-20240323150220415"></p>
+<p><strong>感受野：</strong></p>
+<p>无论中间多少层 最后感受到的是原始输入的野</p>
+<p>最后的值是前面多少个值得到的</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947022.png" srcset="/img/loading.gif" lazyload alt="image-20240323150342629"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947604.png" srcset="/img/loading.gif" lazyload alt="image-20240323162233484"></p>
+<p>为什么：</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947589.png" srcset="/img/loading.gif" lazyload alt="image-20240323162548862"></p>
+<h2 id="三、递归神经网络RNN"><a href="#三、递归神经网络RNN" class="headerlink" title="三、递归神经网络RNN"></a>三、递归神经网络RNN</h2><p>预测结果的时候 可以把中间和前面的结果考虑进来</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947095.png" srcset="/img/loading.gif" lazyload alt="image-20240323164311174">CNN 主要用于计算机视觉</p>
+<p>RNN 主要用于自然语言处理</p>
+<p>不同时刻，人为区分的，h0 h1 h2..代表中间结果</p>
+<p>ht表示综合之前所有特征 一般只选最后结果</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947122.png" srcset="/img/loading.gif" lazyload alt="image-20240323165912756"></p>
+<h2 id="四、LSTM网络"><a href="#四、LSTM网络" class="headerlink" title="四、LSTM网络"></a>四、LSTM网络</h2><p>RNN网络记忆好 把之前所有结果记忆下来</p>
+<p>LSTM可以健忘一些 </p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947305.png" srcset="/img/loading.gif" lazyload alt="image-20240323170019110"></p>
+<p>C决定保留和遗忘</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947270.png" srcset="/img/loading.gif" lazyload alt="image-20240323170034459"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947326.png" srcset="/img/loading.gif" lazyload alt="image-20240323170042587"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947857.png" srcset="/img/loading.gif" lazyload alt="image-20240323170059371"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947862.png" srcset="/img/loading.gif" lazyload alt="image-20240323170108477"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947616.png" srcset="/img/loading.gif" lazyload alt="image-20240323170153092"></p>
+<p>LSTM是在RNN基础上改进的，加上了C控制参数，控制当前模型复杂度</p>
+<p>可以进行信息的过滤</p>
+<p><strong>架构：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947963.png" srcset="/img/loading.gif" lazyload alt="image-20240323170310004"></p>
+<h2 id="五、自然语言处理-词向量模型-Word2Vec"><a href="#五、自然语言处理-词向量模型-Word2Vec" class="headerlink" title="五、自然语言处理-词向量模型-Word2Vec"></a>五、自然语言处理-词向量模型-Word2Vec</h2><p>文本向量化后计算机才认识</p>
+<p>基本的出发点：构建词向量</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947113.png" srcset="/img/loading.gif" lazyload alt="image-20240323174458965"></p>
+<p>通常，数据的维度越高，能提供的信息也就越多，从而计算结果的可靠性就更值得信赖（50-300维）</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947153.png" srcset="/img/loading.gif" lazyload alt="image-20240323174546034"></p>
+<p>50维 很难解释 只有计算机认识</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947433.png" srcset="/img/loading.gif" lazyload alt="image-20240323174807095"></p>
+<p><strong>热度图：</strong></p>
+<p>相近的词位置是相似的</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947503.png" srcset="/img/loading.gif" lazyload alt="image-20240323174842511"></p>
+<p>如何训练词向量？— 词要如何写成一个向量</p>
+<p>预测下一个词</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947689.png" srcset="/img/loading.gif" lazyload alt="image-20240323175120105"></p>
+<p>和神经网络的多分类挺像的 预测下一个词哪个词的概率更高</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947672.png" srcset="/img/loading.gif" lazyload alt="image-20240323175448074"></p>
+<p>先把词在词库中匹配向量 随机初始向量组 然后迭代更新输入变量使损失更小 能够更精准预测下一个词</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947042.png" srcset="/img/loading.gif" lazyload alt="image-20240323175750416"></p>
+<p><strong>训练数据：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947079.png" srcset="/img/loading.gif" lazyload alt="image-20240323180029606"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947106.png" srcset="/img/loading.gif" lazyload alt="image-20240323180151241"></p>
+<p>平移 指定滑动窗口 扫描 得到输入输出</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947168.png" srcset="/img/loading.gif" lazyload alt="image-20240323180210049"></p>
+<p><strong>不同模型对比：</strong></p>
+<ul>
+<li><strong>CBOW</strong></li>
+</ul>
+<p>输入是上下文，输出中间的词</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947182.png" srcset="/img/loading.gif" lazyload alt="image-20240323180806133"></p>
+<p>t是输出：</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947585.png" srcset="/img/loading.gif" lazyload alt="image-20240323180826507"></p>
+<ul>
+<li><strong>Skipgram</strong></li>
+</ul>
+<p>输入是中间的词 输出是上下文的预测</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947708.png" srcset="/img/loading.gif" lazyload alt="image-20240323180856994"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947660.png" srcset="/img/loading.gif" lazyload alt="image-20240323180939569"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947736.png" srcset="/img/loading.gif" lazyload alt="image-20240323181000582"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947748.png" srcset="/img/loading.gif" lazyload alt="image-20240323181025369"></p>
+<p>不仅要更新权重 还要更新数据</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947046.png" srcset="/img/loading.gif" lazyload alt="image-20240323183800079"></p>
+<p>庞大的语言库 最终希望得到的正确分类概率越高越好 </p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947096.png" srcset="/img/loading.gif" lazyload alt="image-20240323181132200"></p>
+<p>把原来的输出也放到输入</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947169.png" srcset="/img/loading.gif" lazyload alt="image-20240323183908065"></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947285.png" srcset="/img/loading.gif" lazyload alt="image-20240323184013420"></p>
+<p>自己添加标签 target为0的 负样本 人为创造的 推荐5个</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947380.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947593.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>词向量训练过程：</strong></p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947604.png" srcset="/img/loading.gif" lazyload alt="image-20240323184307862"></p>
+<p>找对应的矩阵：</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947735.png" srcset="/img/loading.gif" lazyload alt="image-20240323184444998"></p>
+<p>in out都要进行更新的</p>
+<p>最终得到词向量模型</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403231947819.png" srcset="/img/loading.gif" lazyload alt="image-20240323184506669"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI%E5%AD%A6%E4%B9%A0/" class="category-chain-item">AI学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="print-no-link">#神经网络</a>
+      
+        <a href="/tags/CNN/" class="print-no-link">#CNN</a>
+      
+        <a href="/tags/RNN/" class="print-no-link">#RNN</a>
+      
+        <a href="/tags/LSTM/" class="print-no-link">#LSTM</a>
+      
+        <a href="/tags/Word2Vec/" class="print-no-link">#Word2Vec</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/13/LeetCode04/" title="LeetCode04：移动零">
+                        <span class="hidden-mobile">LeetCode04：移动零</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://oyoanan.github.io/" target="_blank" rel="nofollow noopener"><span>AN</span></a> <i class="iconfont icon-love"></i> <a href="https://d4n-sec.github.io/#/" target="_blank" rel="nofollow noopener"><span>DM</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
