@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>LeetCode05：盛最多水的容器</title>
+    <link href="/2024/03/29/LeetCode05/"/>
+    <url>/2024/03/29/LeetCode05/</url>
+    
+    <content type="html"><![CDATA[<h1 id="5-盛最多水的容器"><a href="#5-盛最多水的容器" class="headerlink" title="5. 盛最多水的容器"></a>5. 盛最多水的容器</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个长度为 <code>n</code> 的整数数组 <code>height</code> 。有 <code>n</code> 条垂线，第 <code>i</code> 条线的两个端点是 <code>(i, 0)</code> 和 <code>(i, height[i])</code> 。</p><p>找出其中的两条线，使得它们与 <code>x</code> 轴共同构成的容器可以容纳最多的水。</p><p>返回容器可以储存的最大水量。</p><p><strong>说明：</strong>你不能倾斜容器。</p><p><strong>示例 1：</strong></p><p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403292020343.jpeg" alt="img"></p><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：[<span class="hljs-number">1,8,6,2</span>,<span class="hljs-number">5,4,8,3</span>,<span class="hljs-number">7</span>]<br>输出：<span class="hljs-number">49</span> <br>解释：图中垂直线代表输入数组 [<span class="hljs-number">1,8,6,2</span>,<span class="hljs-number">5,4,8,3</span>,<span class="hljs-number">7</span>]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 <span class="hljs-number">49</span>。<br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">输入：height = [<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br>输出：<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="（一）双指针"><a href="#（一）双指针" class="headerlink" title="（一）双指针"></a>（一）双指针</h3><p>这道题的关键是需要理解装的水容量取决于：1、木板之间的距离、2、短木板的高度。</p><p>如图，Left指针和Right指针分别指向起点和终端：</p><p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403292020323.png" alt="image-20240329190613762"></p><p>为什么是移动短板：</p><p>因为随着底部距离的减小，如果移动长板，新板高度大于&#x2F;小于&#x2F;等于短板，而容量取决于底部距离 * 短板高度，最终容量只会相等或更小。</p><p>移动短板，直至两个指针相遇，每次计算水的容量，最后取最大容量。</p><p><strong>时间复杂度：</strong>O(n)，双指针总计最多遍历整个数组一次。</p><p><strong>空间复杂度：</strong>O(1)</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">maxArea</span>(<span class="hljs-params">self, height</span>):<br>        length = <span class="hljs-built_in">len</span>(height)<br>        area = <span class="hljs-number">0</span><br>        i = <span class="hljs-number">0</span><br>        j = length - <span class="hljs-number">1</span><br>        <span class="hljs-keyword">while</span> i &lt; j:<br>            x = j - i<br>            y = <span class="hljs-built_in">min</span>(height[i],height[j])<br>            area = <span class="hljs-built_in">max</span>(area,x * y)<br>            <span class="hljs-keyword">if</span> height[i] &lt;= height[j]:<br>                 i += <span class="hljs-number">1</span><br>            <span class="hljs-keyword">else</span>:<br>                j -= <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> area<br></code></pre></td></tr></table></figure><h3 id="（二）暴力破解"><a href="#（二）暴力破解" class="headerlink" title="（二）暴力破解"></a>（二）暴力破解</h3><p>双层for循环遍历。</p><p>缺点：非常耗时</p><p><strong>时间复杂度：</strong>O($n^2$)    <code>n</code>是数组的长度</p><p><strong>空间复杂度：</strong>O(1)</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">maxArea</span>(<span class="hljs-params">self, height</span>):<br>        length = <span class="hljs-built_in">len</span>(height)<br>        max_area = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(length):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i+<span class="hljs-number">1</span>,length):<br>                x = j - i<br>                y = <span class="hljs-built_in">min</span>(height[i],height[j])<br>                area = x * y<br>                max_area = <span class="hljs-built_in">max</span>(max_area,area)<br>        <span class="hljs-keyword">return</span> max_area<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>LeetCode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>题库</tag>
+      
+      <tag>双指针</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>PAT04：福尔摩斯的约会</title>
     <link href="/2024/03/27/PAT04/"/>
     <url>/2024/03/27/PAT04/</url>
