@@ -16,28 +16,28 @@
   <meta name="author" content="An">
   <meta name="keywords" content="">
   
-    <meta name="description" content="5.德才论题目题目描述1234宋代史学家司马光在《资治通鉴》中有一段著名的“德才论”：“是故才德全尽谓之圣人，才德兼亡谓之愚人，德胜才谓之君子，才胜德谓之 小人。凡取人之术，苟不得圣人，君子而与之，与其得小人，不若得愚人。”  现给出一批考生的德才分数，请根据司马光的理论给出录取排名。  输入描述:123456输入第1行给出3个正整数，分别为：N（&lt;&#x3D;105），即考生总数；L（&gt;&#x3D;60">
+    <meta name="description" content="4.移动零题目给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。 请注意 ，必须在不复制数组的情况下原地对数组进行操作。 示例 1: 12输入: nums &#x3D; [0,1,0,3,12]输出: [1,3,12,0,0]  示例 2: 12输入: nums &#x3D; [0]输出: [0]  题解（1）我的解法通过循环数组的remove操作依次将0移除，移除次数为填">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PAT05：德才论">
-<meta property="og:url" content="http://example.com/2024/04/17/PAT05/index.html">
+<meta property="og:title" content="LeetCode04：移动零">
+<meta property="og:url" content="http://example.com/2024/03/13/LeetCode04/index.html">
 <meta property="og:site_name" content="An&#96;s Blog">
-<meta property="og:description" content="5.德才论题目题目描述1234宋代史学家司马光在《资治通鉴》中有一段著名的“德才论”：“是故才德全尽谓之圣人，才德兼亡谓之愚人，德胜才谓之君子，才胜德谓之 小人。凡取人之术，苟不得圣人，君子而与之，与其得小人，不若得愚人。”  现给出一批考生的德才分数，请根据司马光的理论给出录取排名。  输入描述:123456输入第1行给出3个正整数，分别为：N（&lt;&#x3D;105），即考生总数；L（&gt;&#x3D;60">
+<meta property="og:description" content="4.移动零题目给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。 请注意 ，必须在不复制数组的情况下原地对数组进行操作。 示例 1: 12输入: nums &#x3D; [0,1,0,3,12]输出: [1,3,12,0,0]  示例 2: 12输入: nums &#x3D; [0]输出: [0]  题解（1）我的解法通过循环数组的remove操作依次将0移除，移除次数为填">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
-<meta property="article:published_time" content="2024-04-17T07:22:10.000Z">
-<meta property="article:modified_time" content="2024-04-17T07:24:16.028Z">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021502005.jpeg">
+<meta property="article:published_time" content="2024-03-13T15:15:06.000Z">
+<meta property="article:modified_time" content="2024-03-29T12:23:10.081Z">
 <meta property="article:author" content="An">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="题库">
-<meta property="article:tag" content="排序">
+<meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021502005.jpeg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>PAT05：德才论 - An`s Blog</title>
+  <title>LeetCode04：移动零 - An`s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="PAT05：德才论"></span>
+            <span id="subtitle" data-typed-text="LeetCode04：移动零"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-17 15:22" pubdate>
-          2024年4月17日 下午
+        <time datetime="2024-03-13 23:15" pubdate>
+          2024年3月13日 晚上
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          937 字
+          655 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          8 分钟
+          6 分钟
         
       </span>
     
@@ -282,35 +282,48 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">PAT05：德才论</h1>
+            <h1 id="seo-header">LeetCode04：移动零</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="5-德才论"><a href="#5-德才论" class="headerlink" title="5.德才论"></a>5.德才论</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><strong>题目描述</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs">宋代史学家司马光在《资治通鉴》中有一段著名的“德才论”：“是故才德全尽谓之圣人，才德兼亡谓之愚人，德胜才谓之君子，才胜德谓之<br> 小人。凡取人之术，苟不得圣人，君子而与之，与其得小人，不若得愚人。”<br> <br> 现给出一批考生的德才分数，请根据司马光的理论给出录取排名。<br></code></pre></td></tr></table></figure>
+                <h1 id="4-移动零"><a href="#4-移动零" class="headerlink" title="4.移动零"></a>4.移动零</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<p><strong>请注意</strong> ，必须在不复制数组的情况下原地对数组进行操作。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">输入: nums = <span class="hljs-string">[0,1,0,3,12]</span><br>输出: <span class="hljs-string">[1,3,12,0,0]</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs excel">输入第<span class="hljs-number">1</span>行给出<span class="hljs-number">3</span>个正整数，分别为：<span class="hljs-built_in">N</span>（&lt;=<span class="hljs-number">105</span>），即考生总数；L（&gt;=<span class="hljs-number">60</span>），为录取最低分数线，即德分和才分均不低于L的考生才有资格<br>被考虑录取；H（&lt;<span class="hljs-number">100</span>），为优先录取线——德分和才分均不低于此线的被定义为“才德全尽”，此类考生按德才总分从高到低排序；才分不到<br>但德分到线的一类考生属于“德胜才”，也按总分排序，但排在第一类考生之后；德才分均低于H，但是德分不低于才分的考生属于“才德兼<br>亡”但尚有“德胜才”者，按总分排序，但排在第二类考生之后；其他达到最低线L的考生也按总分排序，但排在第三类考生之后。<br><br>随后<span class="hljs-built_in">N</span>行，每行给出一位考生的信息，包括：准考证号、德分、才分，其中准考证号为<span class="hljs-number">8</span>位整数，德才分为区间[<span class="hljs-number">0</span>, <span class="hljs-number">100</span>]内的整数。数字间以空格分隔。<br></code></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入: nums = <span class="hljs-comment">[0]</span><br>输出: <span class="hljs-comment">[0]</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">输出第1行首先给出达到最低分数线的考生人数M，随后M行，每行按照输入格式输出一位考生的信息，考生按输入中说明的规则从高到低排序。当某类考生中有多人<br>总分相同时，按其德分降序排列；若德分也并列，则按准考证号的升序输出。<br></code></pre></td></tr></table></figure>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="（1）我的解法"><a href="#（1）我的解法" class="headerlink" title="（1）我的解法"></a>（1）我的解法</h3><p>通过循环数组的<code>remove</code>操作依次将0移除，移除次数为填0次数，最后在数组末尾填充相应次数的0。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">moveZeroes</span>(<span class="hljs-params">self, nums</span>):<br>        count = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-number">0</span> <span class="hljs-keyword">in</span> nums:<br>            nums.remove(<span class="hljs-number">0</span>)<br>            count += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>            nums.append(<span class="hljs-number">0</span>)                <br>        <span class="hljs-keyword">return</span> nums<br></code></pre></td></tr></table></figure>
 
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p><strong>分类</strong></p>
-<p>首先，参加排序的考生需要高于最低分数线，在此基础上分为四类：</p>
-<p>1、德、才均高于优先录取线</p>
-<p>2、德高于优先录取线</p>
-<p>3、德、才均低于优先录取线，但德 &gt; 才</p>
-<p>4、德、才均低于优先录取线，但德 &lt; 才</p>
-<p><strong>排序</strong></p>
-<p>将所有满足条件的考生分类完成，逐类排序。排序规则是：按总分排序，总分相同时，按其德分降序排列；若德分也并列，则按准考证号的升序输出。</p>
-<p><strong>输出</strong></p>
-<p>按照输出格式，进行打印。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><br><span class="hljs-comment"># 保存输入数据</span><br>inputs = []<br><span class="hljs-comment"># 保存输出数据</span><br>out1 = []<br>out2 = []<br>out3 = []<br>out4 = []<br><br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> sys.stdin:<br>    inputs.append([<span class="hljs-built_in">int</span>(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> line.split()])<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(inputs) == inputs[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">break</span><br><br><span class="hljs-comment"># 最低分数线</span><br>low_score = inputs[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]<br><span class="hljs-comment"># 优先录取线</span><br>high_score = inputs[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>]<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-built_in">len</span>(inputs)):<br>    total = inputs[i][<span class="hljs-number">1</span>] + inputs[i][<span class="hljs-number">2</span>]<br>    <span class="hljs-keyword">if</span> inputs[i][<span class="hljs-number">1</span>] &gt;= high_score <span class="hljs-keyword">and</span> inputs[i][<span class="hljs-number">2</span>] &gt;= high_score:<br>        out1.append(inputs[i])<br>    <span class="hljs-keyword">elif</span> inputs[i][<span class="hljs-number">1</span>] &gt;= high_score <span class="hljs-keyword">and</span> low_score &lt;= inputs[i][<span class="hljs-number">2</span>] &lt; high_score:<br>        out2.append(inputs[i])<br>    <span class="hljs-keyword">elif</span> inputs[i][<span class="hljs-number">1</span>] &gt;= low_score <span class="hljs-keyword">and</span> inputs[i][<span class="hljs-number">2</span>] &gt;= low_score <span class="hljs-keyword">and</span> inputs[i][<span class="hljs-number">1</span>] &gt;= inputs[i][<span class="hljs-number">2</span>]:<br>        out3.append(inputs[i])<br>    <span class="hljs-keyword">elif</span> inputs[i][<span class="hljs-number">1</span>] &gt;= low_score <span class="hljs-keyword">and</span> inputs[i][<span class="hljs-number">2</span>] &gt;= low_score:<br>        out4.append(inputs[i])<br><br>out = [out1,out2,out3,out4]<br>res = []<br><span class="hljs-keyword">for</span> i,lst <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(out):<br>    lst = <span class="hljs-built_in">sorted</span>(lst,key=<span class="hljs-keyword">lambda</span> x:(x[<span class="hljs-number">1</span>]+x[<span class="hljs-number">2</span>],x[<span class="hljs-number">1</span>],-x[<span class="hljs-number">0</span>]),reverse=<span class="hljs-literal">True</span>)<br>    res += lst<br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(res))<br><span class="hljs-keyword">for</span> lst <span class="hljs-keyword">in</span> res:<br>    <span class="hljs-built_in">print</span>(*lst,sep=<span class="hljs-string">&#x27; &#x27;</span>)<br><br></code></pre></td></tr></table></figure>
+<h3 id="（2）官方题解"><a href="#（2）官方题解" class="headerlink" title="（2）官方题解"></a>（2）官方题解</h3><h4 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h4><p>左右指针都在索引起始处，先判断右指针位置的元素是否为0，如果为0，右指针继续走一步；如果不为0，将左右指针的元素对换，左指针继续往前一步。右指针继续走一步，继续处理，直到右指针走到最末。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">moveZeroes</span>(<span class="hljs-params">self, nums</span>):<br>        n = <span class="hljs-built_in">len</span>(nums)<br>        left = right = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> right &lt; n:<br>            <span class="hljs-keyword">if</span> nums[right] != <span class="hljs-number">0</span>:<br>                nums[left], nums[right] = nums[right], nums[left]<br>                left += <span class="hljs-number">1</span><br>            right += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> nums<br></code></pre></td></tr></table></figure>
 
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p><strong>多条排序规则</strong></p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p><strong>双指针法的时间与空间复杂度</strong></p>
 <blockquote>
-<p><code>sorted()</code> 函数在排序时，会针对列表 <code>lst</code> 中的每个元素 <code>x</code> 调用 <code>key</code> 参数指定的函数（此处为 <code>lambda x: (x[1] + x[2], x[1], -x[0])</code>），得到相应的排序键。<code>key</code> 参数的作用是定义一个映射规则，将待排序的元素转化为一个用于排序的值（排序键）。<code>sorted()</code> 函数根据这些排序键进行排序，从而实现对原始元素列表的定制化排序。</p>
+<p>时间复杂度：O(n)，其中 n 为序列长度。每个位置至多被遍历两次。</p>
+<p>空间复杂度：O(1)。只需要常数的空间存放若干变量。</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">lst = <span class="hljs-built_in">sorted</span>(lst,key=<span class="hljs-keyword">lambda</span> x:(x[<span class="hljs-number">1</span>]+x[<span class="hljs-number">2</span>],x[<span class="hljs-number">1</span>],-x[<span class="hljs-number">0</span>]),reverse=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<p><strong>双指针元素兑换</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">nums[left], nums[right] = nums[right], nums[left]<br></code></pre></td></tr></table></figure>
 
+<p><strong>数组操作</strong></p>
+<blockquote>
+<ol>
+<li>创建数组：使用方括号 <code>[]</code> 来创建数组，例如 <code>my_list = [1, 2, 3, 4, 5]</code>。</li>
+<li>访问元素：通过索引来访问数组中的元素，索引从 0 开始，例如 <code>my_list[0]</code> 返回数组的第一个元素。</li>
+<li>切片操作：可以使用切片来获取数组中的子数组，例如 <code>my_list[1:3]</code> 返回索引 1 到 2 的子数组。</li>
+<li>添加元素：使用 <code>append()</code> 方法向数组末尾添加新元素，例如 <code>my_list.append(6)</code>。</li>
+<li>插入元素：使用 <code>insert()</code> 方法在指定位置插入元素，例如 <code>my_list.insert(2, 7)</code> 在索引 2 处插入元素 7。</li>
+<li>删除元素：使用 <code>remove()</code> 方法删除指定元素，例如 <code>my_list.remove(3)</code> 删除元素 3。</li>
+<li>弹出元素：使用 <code>pop()</code> 方法弹出指定索引的元素，例如 <code>my_list.pop(1)</code> 弹出索引 1 处的元素。</li>
+<li>查找元素：使用 <code>index()</code> 方法查找指定元素的索引，例如 <code>my_list.index(4)</code> 返回元素 4 的索引。</li>
+<li>数组长度：使用 <code>len()</code> 函数获取数组的长度，例如 <code>len(my_list)</code> 返回数组的长度。</li>
+<li>排序数组：使用 <code>sort()</code> 方法对数组进行排序，例如 <code>my_list.sort()</code> 对数组进行升序排序。</li>
+</ol>
+</blockquote>
 
                 
               </div>
@@ -329,7 +342,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/PAT/" class="category-chain-item">PAT</a>
+  <a href="/categories/LeetCode/" class="category-chain-item">LeetCode</a>
   
   
 
@@ -348,7 +361,7 @@
       
         <a href="/tags/%E9%A2%98%E5%BA%93/" class="print-no-link">#题库</a>
       
-        <a href="/tags/%E6%8E%92%E5%BA%8F/" class="print-no-link">#排序</a>
+        <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" class="print-no-link">#双指针</a>
       
     </div>
   
@@ -362,9 +375,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/16/LeetCode06/" title="LeetCode06：三数之和">
+                      <a href="/2024/03/23/%E8%BF%AAAI-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="迪AI-神经网络基础学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode06：三数之和</span>
+                        <span class="hidden-mobile">迪AI-神经网络基础学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -372,8 +385,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/29/LeetCode05/" title="LeetCode05：盛最多水的容器">
-                        <span class="hidden-mobile">LeetCode05：盛最多水的容器</span>
+                      <a href="/2024/03/13/PAT03/" title="PAT03：数素数">
+                        <span class="hidden-mobile">PAT03：数素数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

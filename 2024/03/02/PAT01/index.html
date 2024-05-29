@@ -16,20 +16,19 @@
   <meta name="author" content="An">
   <meta name="keywords" content="">
   
-    <meta name="description" content="5.德才论题目题目描述1234宋代史学家司马光在《资治通鉴》中有一段著名的“德才论”：“是故才德全尽谓之圣人，才德兼亡谓之愚人，德胜才谓之君子，才胜德谓之 小人。凡取人之术，苟不得圣人，君子而与之，与其得小人，不若得愚人。”  现给出一批考生的德才分数，请根据司马光的理论给出录取排名。  输入描述:123456输入第1行给出3个正整数，分别为：N（&lt;&#x3D;105），即考生总数；L（&gt;&#x3D;60">
+    <meta name="description" content="1.A+B和C题目给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。 输入：输入第1行给出正整数T(&lt;&#x3D;10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。 输出：对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用例的编号（">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PAT05：德才论">
-<meta property="og:url" content="http://example.com/2024/04/17/PAT05/index.html">
+<meta property="og:title" content="PAT01：A+B和C">
+<meta property="og:url" content="http://example.com/2024/03/02/PAT01/index.html">
 <meta property="og:site_name" content="An&#96;s Blog">
-<meta property="og:description" content="5.德才论题目题目描述1234宋代史学家司马光在《资治通鉴》中有一段著名的“德才论”：“是故才德全尽谓之圣人，才德兼亡谓之愚人，德胜才谓之君子，才胜德谓之 小人。凡取人之术，苟不得圣人，君子而与之，与其得小人，不若得愚人。”  现给出一批考生的德才分数，请根据司马光的理论给出录取排名。  输入描述:123456输入第1行给出3个正整数，分别为：N（&lt;&#x3D;105），即考生总数；L（&gt;&#x3D;60">
+<meta property="og:description" content="1.A+B和C题目给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。 输入：输入第1行给出正整数T(&lt;&#x3D;10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。 输出：对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用例的编号（">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
-<meta property="article:published_time" content="2024-04-17T07:22:10.000Z">
-<meta property="article:modified_time" content="2024-04-17T07:24:16.028Z">
+<meta property="article:published_time" content="2024-03-02T10:48:36.000Z">
+<meta property="article:modified_time" content="2024-03-06T01:41:24.140Z">
 <meta property="article:author" content="An">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="题库">
-<meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
   
@@ -37,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>PAT05：德才论 - An`s Blog</title>
+  <title>PAT01：A+B和C - An`s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="PAT05：德才论"></span>
+            <span id="subtitle" data-typed-text="PAT01：A+B和C"></span>
           
         </div>
 
@@ -214,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-17 15:22" pubdate>
-          2024年4月17日 下午
+        <time datetime="2024-03-02 18:48" pubdate>
+          2024年3月2日 晚上
         </time>
       </span>
     
@@ -226,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          937 字
+          687 字
         
       </span>
     
@@ -237,7 +236,7 @@
         
         
         
-          8 分钟
+          6 分钟
         
       </span>
     
@@ -282,35 +281,43 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">PAT05：德才论</h1>
+            <h1 id="seo-header">PAT01：A+B和C</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="5-德才论"><a href="#5-德才论" class="headerlink" title="5.德才论"></a>5.德才论</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><strong>题目描述</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs">宋代史学家司马光在《资治通鉴》中有一段著名的“德才论”：“是故才德全尽谓之圣人，才德兼亡谓之愚人，德胜才谓之君子，才胜德谓之<br> 小人。凡取人之术，苟不得圣人，君子而与之，与其得小人，不若得愚人。”<br> <br> 现给出一批考生的德才分数，请根据司马光的理论给出录取排名。<br></code></pre></td></tr></table></figure>
+                <h1 id="1-A-B和C"><a href="#1-A-B和C" class="headerlink" title="1.A+B和C"></a>1.A+B和C</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定区间[-231, 231]内的3个整数A、B和C，请判断A+B是否大于C。</p>
+<p><strong>输入：</strong>输入第1行给出正整数T(&lt;&#x3D;10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。</p>
+<p><strong>输出：</strong>对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用例的编号（从1开始）。</p>
+<p><strong>输入例子：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">4</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">3</span> <span class="hljs-number">4</span><br><span class="hljs-symbol">2147483647 </span><span class="hljs-number">0</span> <span class="hljs-number">2147483646</span><br><span class="hljs-symbol">0 </span>-<span class="hljs-number">2147483648</span> -<span class="hljs-number">2147483647</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs excel">输入第<span class="hljs-number">1</span>行给出<span class="hljs-number">3</span>个正整数，分别为：<span class="hljs-built_in">N</span>（&lt;=<span class="hljs-number">105</span>），即考生总数；L（&gt;=<span class="hljs-number">60</span>），为录取最低分数线，即德分和才分均不低于L的考生才有资格<br>被考虑录取；H（&lt;<span class="hljs-number">100</span>），为优先录取线——德分和才分均不低于此线的被定义为“才德全尽”，此类考生按德才总分从高到低排序；才分不到<br>但德分到线的一类考生属于“德胜才”，也按总分排序，但排在第一类考生之后；德才分均低于H，但是德分不低于才分的考生属于“才德兼<br>亡”但尚有“德胜才”者，按总分排序，但排在第二类考生之后；其他达到最低线L的考生也按总分排序，但排在第三类考生之后。<br><br>随后<span class="hljs-built_in">N</span>行，每行给出一位考生的信息，包括：准考证号、德分、才分，其中准考证号为<span class="hljs-number">8</span>位整数，德才分为区间[<span class="hljs-number">0</span>, <span class="hljs-number">100</span>]内的整数。数字间以空格分隔。<br></code></pre></td></tr></table></figure>
+<p><strong>输出例子：</strong></p>
+<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cal"><span class="hljs-keyword">Case</span> <span class="hljs-string">#1</span>: <span class="hljs-literal">false</span><br><span class="hljs-keyword">Case</span> <span class="hljs-string">#2</span>: <span class="hljs-literal">true</span><br><span class="hljs-keyword">Case</span> <span class="hljs-string">#3</span>: <span class="hljs-literal">true</span><br><span class="hljs-keyword">Case</span> <span class="hljs-string">#4</span>: <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">输出第1行首先给出达到最低分数线的考生人数M，随后M行，每行按照输入格式输出一位考生的信息，考生按输入中说明的规则从高到低排序。当某类考生中有多人<br>总分相同时，按其德分降序排列；若德分也并列，则按准考证号的升序输出。<br></code></pre></td></tr></table></figure>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="（1）我的解法"><a href="#（1）我的解法" class="headerlink" title="（1）我的解法"></a>（1）我的解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><br>index = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> sys.stdin:<br>    index +=<span class="hljs-number">1</span><br>    a = line.split()<br>    a = [<span class="hljs-built_in">int</span>(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a]<br>    <span class="hljs-keyword">if</span> index == <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">pass</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Case #<span class="hljs-subst">&#123;index-<span class="hljs-number">1</span>&#125;</span>: <span class="hljs-subst">&#123;<span class="hljs-built_in">str</span>(a[<span class="hljs-number">0</span>]+a[<span class="hljs-number">1</span>]&gt;a[<span class="hljs-number">2</span>]).lower()&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p><strong>分类</strong></p>
-<p>首先，参加排序的考生需要高于最低分数线，在此基础上分为四类：</p>
-<p>1、德、才均高于优先录取线</p>
-<p>2、德高于优先录取线</p>
-<p>3、德、才均低于优先录取线，但德 &gt; 才</p>
-<p>4、德、才均低于优先录取线，但德 &lt; 才</p>
-<p><strong>排序</strong></p>
-<p>将所有满足条件的考生分类完成，逐类排序。排序规则是：按总分排序，总分相同时，按其德分降序排列；若德分也并列，则按准考证号的升序输出。</p>
-<p><strong>输出</strong></p>
-<p>按照输出格式，进行打印。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><br><span class="hljs-comment"># 保存输入数据</span><br>inputs = []<br><span class="hljs-comment"># 保存输出数据</span><br>out1 = []<br>out2 = []<br>out3 = []<br>out4 = []<br><br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> sys.stdin:<br>    inputs.append([<span class="hljs-built_in">int</span>(item) <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> line.split()])<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(inputs) == inputs[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">break</span><br><br><span class="hljs-comment"># 最低分数线</span><br>low_score = inputs[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]<br><span class="hljs-comment"># 优先录取线</span><br>high_score = inputs[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>]<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-built_in">len</span>(inputs)):<br>    total = inputs[i][<span class="hljs-number">1</span>] + inputs[i][<span class="hljs-number">2</span>]<br>    <span class="hljs-keyword">if</span> inputs[i][<span class="hljs-number">1</span>] &gt;= high_score <span class="hljs-keyword">and</span> inputs[i][<span class="hljs-number">2</span>] &gt;= high_score:<br>        out1.append(inputs[i])<br>    <span class="hljs-keyword">elif</span> inputs[i][<span class="hljs-number">1</span>] &gt;= high_score <span class="hljs-keyword">and</span> low_score &lt;= inputs[i][<span class="hljs-number">2</span>] &lt; high_score:<br>        out2.append(inputs[i])<br>    <span class="hljs-keyword">elif</span> inputs[i][<span class="hljs-number">1</span>] &gt;= low_score <span class="hljs-keyword">and</span> inputs[i][<span class="hljs-number">2</span>] &gt;= low_score <span class="hljs-keyword">and</span> inputs[i][<span class="hljs-number">1</span>] &gt;= inputs[i][<span class="hljs-number">2</span>]:<br>        out3.append(inputs[i])<br>    <span class="hljs-keyword">elif</span> inputs[i][<span class="hljs-number">1</span>] &gt;= low_score <span class="hljs-keyword">and</span> inputs[i][<span class="hljs-number">2</span>] &gt;= low_score:<br>        out4.append(inputs[i])<br><br>out = [out1,out2,out3,out4]<br>res = []<br><span class="hljs-keyword">for</span> i,lst <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(out):<br>    lst = <span class="hljs-built_in">sorted</span>(lst,key=<span class="hljs-keyword">lambda</span> x:(x[<span class="hljs-number">1</span>]+x[<span class="hljs-number">2</span>],x[<span class="hljs-number">1</span>],-x[<span class="hljs-number">0</span>]),reverse=<span class="hljs-literal">True</span>)<br>    res += lst<br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(res))<br><span class="hljs-keyword">for</span> lst <span class="hljs-keyword">in</span> res:<br>    <span class="hljs-built_in">print</span>(*lst,sep=<span class="hljs-string">&#x27; &#x27;</span>)<br><br></code></pre></td></tr></table></figure>
+<h3 id="（2）其他解法"><a href="#（2）其他解法" class="headerlink" title="（2）其他解法"></a>（2）其他解法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">n = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>    a,b,c = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>,<span class="hljs-built_in">input</span>().split())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Case #&#x27;</span>+<span class="hljs-built_in">str</span>((i+<span class="hljs-number">1</span>))+<span class="hljs-string">&#x27;: true&#x27;</span> <span class="hljs-keyword">if</span> a+b&gt;c <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;Case #&#x27;</span>+<span class="hljs-built_in">str</span>((i+<span class="hljs-number">1</span>))+<span class="hljs-string">&#x27;: false&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p><strong>多条排序规则</strong></p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
+<li><code>sys.stdin</code></li>
+</ul>
 <blockquote>
-<p><code>sorted()</code> 函数在排序时，会针对列表 <code>lst</code> 中的每个元素 <code>x</code> 调用 <code>key</code> 参数指定的函数（此处为 <code>lambda x: (x[1] + x[2], x[1], -x[0])</code>），得到相应的排序键。<code>key</code> 参数的作用是定义一个映射规则，将待排序的元素转化为一个用于排序的值（排序键）。<code>sorted()</code> 函数根据这些排序键进行排序，从而实现对原始元素列表的定制化排序。</p>
+<p><code>sys.stdin</code>是Python中<code>sys</code>模块的一个属性，代表了标准输入流。在计算机程序中，标准输入流是一个用于接收输入数据的通道，通常情况下它是与键盘输入关联的，但也可以通过重定向或管道从文件或其他程序接收输入。</p>
+<p>在Python程序中，使用<code>sys.stdin</code>可以读取来自命令行（或任何被重定向为标准输入源的数据）的输入。<code>sys.stdin</code>本质上是一个文件对象，因此可以对它使用文件操作的方法，如<code>read()</code>, <code>readline()</code>和<code>readlines()</code>等，来读取输入的数据。</p>
+<p>1、<code>sys.stdin.read()</code>: 读取并返回所有剩余的输入数据，直到遇到EOF（文件结束符）。</p>
+<p>2、<code>sys.stdin.readline()</code>: 每次调用读取一行输入，包括行尾的换行符，如果已经到达EOF，则返回一个空字符串。</p>
+<p>3、<code>sys.stdin.readlines()</code>: 读取所有剩余的输入行，并将它们作为字符串列表返回。</p>
+<p><code>for line in sys.stdin:</code>循环会逐行读取标准输入直到EOF。这种方式特别适合处理不确定数量的输入行。</p>
+<p>在命令行环境中，通常可以通过<code>Ctrl+D</code>（在Unix&#x2F;Linux&#x2F;macOS系统中）或<code>Ctrl+Z</code>然后回车（在Windows系统中）来发送EOF信号。此外，<code>sys.stdin</code>也常被用于从文件中读取输入，通过命令行重定向操作，例如<code>python script.py &lt; inputfile.txt</code>，这时<code>inputfile.txt</code>的内容会被作为标准输入传递给脚本。</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">lst = <span class="hljs-built_in">sorted</span>(lst,key=<span class="hljs-keyword">lambda</span> x:(x[<span class="hljs-number">1</span>]+x[<span class="hljs-number">2</span>],x[<span class="hljs-number">1</span>],-x[<span class="hljs-number">0</span>]),reverse=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
-
+<ul>
+<li><strong>三元运算符</strong></li>
+</ul>
+<blockquote>
+<p><code>print(&quot;Case #&quot;+str(i+1)+&quot;: true&quot; if b+c&gt;d else &quot;Case #&quot;+str(i+1)+&quot;: false&quot;)</code>: </p>
+<p>使用条件表达式（三元操作符）简化逻辑判断，而且字符串不能直接拼接整数，需要先对整数进行<code>str()</code></p>
+</blockquote>
 
                 
               </div>
@@ -348,8 +355,6 @@
       
         <a href="/tags/%E9%A2%98%E5%BA%93/" class="print-no-link">#题库</a>
       
-        <a href="/tags/%E6%8E%92%E5%BA%8F/" class="print-no-link">#排序</a>
-      
     </div>
   
 </div>
@@ -362,9 +367,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/16/LeetCode06/" title="LeetCode06：三数之和">
+                      <a href="/2024/03/06/LeetCode02/" title="LeetCode02：字母异位词分组">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode06：三数之和</span>
+                        <span class="hidden-mobile">LeetCode02：字母异位词分组</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -372,8 +377,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/29/LeetCode05/" title="LeetCode05：盛最多水的容器">
-                        <span class="hidden-mobile">LeetCode05：盛最多水的容器</span>
+                      <a href="/2024/03/02/LeetCode01/" title="LeetCode01：两数之和">
+                        <span class="hidden-mobile">LeetCode01：两数之和</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
