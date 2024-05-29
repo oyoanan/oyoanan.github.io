@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>PAT06.md</title>
+    <link href="/2024/05/29/PAT06/"/>
+    <url>/2024/05/29/PAT06/</url>
+    
+    <content type="html"><![CDATA[<h1 id="6-部分A-B"><a href="#6-部分A-B" class="headerlink" title="6.部分A+B"></a>6.部分A+B</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><strong>题目描述</strong></h3><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dns">正整数<span class="hljs-keyword">A</span>的“DA（为<span class="hljs-number">1</span>位整数）部分”定义为由<span class="hljs-keyword">A</span>中所有DA组成的新整数PA。例如：给定<span class="hljs-keyword">A</span> = <span class="hljs-number">3862767</span>，DA = <span class="hljs-number">6</span>，则<span class="hljs-keyword">A</span>的“<span class="hljs-number">6</span>部分”PA是<span class="hljs-number">66</span>，因为<span class="hljs-keyword">A</span>中有<span class="hljs-number">2</span>个<span class="hljs-number">6</span>。<br> <br> 现给定<span class="hljs-keyword">A</span>、DA、B、DB，请编写程序计算PA + PB。<br></code></pre></td></tr></table></figure><h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">输入在一行中依次给出<span class="hljs-selector-tag">A</span>、DA、<span class="hljs-selector-tag">B</span>、DB，中间以空格分隔，其中<span class="hljs-number">0</span> &lt; <span class="hljs-selector-tag">A</span>, <span class="hljs-selector-tag">B</span> &lt; <span class="hljs-number">1010</span>。<br></code></pre></td></tr></table></figure><h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">在一行中输出PA + PB的值。<br></code></pre></td></tr></table></figure><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>这道题比较简单。需要掌握的是如何在一个整数中统计某个数字的计数。</p><p>方法：转换为字符串，使用字符串的count方法。</p><p>另外，n个相同的数字转换为整数使用range方法作为10的次方求和。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> sys.stdin:<br>    a,da,b,db = line.strip().split(<span class="hljs-string">&#x27; &#x27;</span>)<br>    num1 = <span class="hljs-built_in">str</span>(a).count(da)<br>    num2 = <span class="hljs-built_in">str</span>(b).count(db)<br>    p1 = <span class="hljs-built_in">sum</span>([<span class="hljs-built_in">int</span>(da) * <span class="hljs-number">10</span> ** i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num1)])<br>    p2 = <span class="hljs-built_in">sum</span>([<span class="hljs-built_in">int</span>(db) * <span class="hljs-number">10</span> ** i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num2)])<br>    res = p1+p2<br>    <span class="hljs-built_in">print</span>(res)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>PAT</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>题库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LeetCode06：三数之和</title>
     <link href="/2024/05/16/LeetCode06/"/>
     <url>/2024/05/16/LeetCode06/</url>
