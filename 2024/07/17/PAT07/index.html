@@ -16,30 +16,27 @@
   <meta name="author" content="An">
   <meta name="keywords" content="">
   
-    <meta name="description" content="7.接雨水题目给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。  题解（1）动态规划法动态规划（Dynamic Programming, DP）是一种算法设计技巧，它将一个复杂的问题分解为更小的子问题，并存储这些子问题的解，以避免重复计算。这种方法特别适用于具有以下两个特性的问题：  重叠子问题：问题可以分解为多个子问题，这些子问题会重复出现多次。">
+    <meta name="description" content="7.A除以B题目1本题要求计算A&#x2F;B，其中A是不超过1000位的正整数，B是1位正整数。你需要输出商数Q和余数R，使得A &#x3D; B * Q + R成立。  输入描述:1输入在1行中依次给出A和B，中间以1空格分隔。  输出描述:1在1行中依次输出Q和R，中间以1空格分隔。  输入例子:1123456789050987654321 7  输出例子:117636684150141093474 3  题解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode07：接雨水">
-<meta property="og:url" content="http://example.com/2024/06/15/LeetCode07/index.html">
+<meta property="og:title" content="PAT07：A除以B">
+<meta property="og:url" content="http://example.com/2024/07/17/PAT07/index.html">
 <meta property="og:site_name" content="An&#96;s Blog">
-<meta property="og:description" content="7.接雨水题目给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。  题解（1）动态规划法动态规划（Dynamic Programming, DP）是一种算法设计技巧，它将一个复杂的问题分解为更小的子问题，并存储这些子问题的解，以避免重复计算。这种方法特别适用于具有以下两个特性的问题：  重叠子问题：问题可以分解为多个子问题，这些子问题会重复出现多次。">
+<meta property="og:description" content="7.A除以B题目1本题要求计算A&#x2F;B，其中A是不超过1000位的正整数，B是1位正整数。你需要输出商数Q和余数R，使得A &#x3D; B * Q + R成立。  输入描述:1输入在1行中依次给出A和B，中间以1空格分隔。  输出描述:1在1行中依次输出Q和R，中间以1空格分隔。  输入例子:1123456789050987654321 7  输出例子:117636684150141093474 3  题解">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021502005.jpeg">
-<meta property="article:published_time" content="2024-06-15T11:23:30.000Z">
-<meta property="article:modified_time" content="2024-06-17T09:32:36.189Z">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
+<meta property="article:published_time" content="2024-07-17T11:47:58.000Z">
+<meta property="article:modified_time" content="2024-07-17T11:52:14.432Z">
 <meta property="article:author" content="An">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="题库">
-<meta property="article:tag" content="双指针">
-<meta property="article:tag" content="单调栈">
-<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021502005.jpeg">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>LeetCode07：接雨水 - An`s Blog</title>
+  <title>PAT07：A除以B - An`s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="LeetCode07：接雨水"></span>
+            <span id="subtitle" data-typed-text="PAT07：A除以B"></span>
           
         </div>
 
@@ -216,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-15 19:23" pubdate>
-          2024年6月15日 晚上
+        <time datetime="2024-07-17 19:47" pubdate>
+          2024年7月17日 晚上
         </time>
       </span>
     
@@ -228,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          958 字
+          149 字
         
       </span>
     
@@ -239,7 +236,7 @@
         
         
         
-          8 分钟
+          2 分钟
         
       </span>
     
@@ -284,55 +281,26 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">LeetCode07：接雨水</h1>
+            <h1 id="seo-header">PAT07：A除以B</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="7-接雨水"><a href="#7-接雨水" class="headerlink" title="7.接雨水"></a>7.接雨水</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202406171729580.png" srcset="/img/loading.gif" lazyload alt="image-20240615192506854"></p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="（1）动态规划法"><a href="#（1）动态规划法" class="headerlink" title="（1）动态规划法"></a>（1）动态规划法</h3><p>动态规划（Dynamic Programming, DP）是一种算法设计技巧，它将一个复杂的问题分解为更小的子问题，并存储这些子问题的解，以避免重复计算。这种方法特别适用于具有以下两个特性的问题：</p>
-<ol>
-<li><strong>重叠子问题</strong>：问题可以分解为多个子问题，这些子问题会重复出现多次。</li>
-<li><strong>最优子结构</strong>：问题的最优解包含其子问题的最优解。</li>
-</ol>
-<p><strong>思路</strong></p>
-<ol>
-<li>对于下标<code>i</code>，雨水能达到的最大高度是<code>i</code>两边的最大高度的最小值。</li>
-<li>对于下标<code>i</code>，雨水量是能达到的最大高度减去<code>i</code>处的柱子高度<code>height[i]</code></li>
-</ol>
-<ul>
-<li>如何计算两边的最大高度呢？</li>
-</ul>
-<p>朴素的做法是：对于每一个位置，分别向左和向右扫描，记录左右两边的最大高度。</p>
-<p>时间复杂度：O($n^2$)</p>
-<p><strong>动态规划法：</strong>如果已知每个位置两边的最大高度，就可以在O(n)的时间得出结果。</p>
-<p>时间复杂度：O(n)</p>
-<ul>
-<li>如何计算每个位置两边的最大高度呢</li>
-</ul>
-<p>创建2个长度为n的数组<code>leftMax</code>和<code>rightMax</code>。<code>leftMax[i]</code>表示下标<code>i</code>及其左边位置的最大高度，<code>rightMax[i]</code>表示下标<code>i</code>及其右边位置的最大高度。</p>
-<p>显然，两端的元素已经确定。<code>leftMax[0] = height[0]</code>，<code>rightMax[n-1]=height[n-1]</code></p>
-<p>其他元素的计算方式：正向遍历数组height得到<code>leftMax</code>，反向遍历数组height得到<code>rightMax</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">trap</span>(<span class="hljs-params">self, height</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> height:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        <br>        n = <span class="hljs-built_in">len</span>(height)<br>        <br>        leftMax = [height[<span class="hljs-number">0</span>]] + [<span class="hljs-number">0</span>] * (n-<span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,n):<br>            leftMax[i] = <span class="hljs-built_in">max</span>(leftMax[i-<span class="hljs-number">1</span>],height[i])<br>            <br>        rightMax = [<span class="hljs-number">0</span>] * (n-<span class="hljs-number">1</span>) + [height[n-<span class="hljs-number">1</span>]]<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n-<span class="hljs-number">2</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>            rightMax[i] = <span class="hljs-built_in">max</span>(rightMax[i+<span class="hljs-number">1</span>],height[i])<br>        <br>        ans = <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">min</span>(leftMax[i],rightMax[i])-height[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n))<br>        <span class="hljs-keyword">return</span> ans<br><br></code></pre></td></tr></table></figure>
+                <h1 id="7-A除以B"><a href="#7-A除以B" class="headerlink" title="7.A除以B"></a>7.A除以B</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dns">本题要求计算<span class="hljs-keyword">A</span>/B，其中<span class="hljs-keyword">A</span>是不超过<span class="hljs-number">1000</span>位的正整数，B是<span class="hljs-number">1</span>位正整数。你需要输出商数Q和余数R，使得<span class="hljs-keyword">A</span> = B * Q + R成立。<br></code></pre></td></tr></table></figure>
 
-<h2 id="（2）单调栈"><a href="#（2）单调栈" class="headerlink" title="（2）单调栈"></a>（2）单调栈</h2><p>维护一个单调栈，单调栈存储的是下标，满足从栈底到栈顶的下标对应的数组 <code>height</code>中的元素递减。</p>
-<p>从左到右遍历<code>height</code>数组，遍历到下标<code>i</code>的时候，如果栈内至少有2个元素，栈顶为<code>top</code>，<code>top</code>下面是<code>left</code>，则一定有<code>height[top]&lt;=height[left]</code>。如果<code>height[i] &gt; height[top]</code>，则可以接到雨水。</p>
-<p>雨水的宽度：<code>i - left -1</code></p>
-<p>雨水的高度：<code>min(height[left],height[i]) - height[top]</code></p>
-<p><strong>循环条件</strong></p>
-<p>为了得到<code>left</code>，需要将<code>top</code>出栈，对<code>top</code>计算能接到的雨水量后，<code>left</code>就变成了新的<code>top</code>，如此重复操作，直到栈为空或者栈顶对应的元素大于或等于<code>height[i]</code>。完成对<code>top</code>和<code>i</code>的计算后，将<code>i</code>入栈，继续遍历。</p>
-<p>时间复杂度：O(n)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">trap</span>(<span class="hljs-params">self, height</span>):<br>        ans = <span class="hljs-number">0</span><br>        stack = <span class="hljs-built_in">list</span>()<br>        n = <span class="hljs-built_in">len</span>(height)<br>        <br>        <span class="hljs-keyword">for</span> i, h <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(height):<br>            <span class="hljs-keyword">while</span> stack <span class="hljs-keyword">and</span> h &gt; height[stack[-<span class="hljs-number">1</span>]]:<br>                top = stack.pop()<br>                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> stack:<br>                    <span class="hljs-keyword">break</span><br>                left = stack[-<span class="hljs-number">1</span>]<br>                currWidth = i - left - <span class="hljs-number">1</span><br>                currHeight = <span class="hljs-built_in">min</span>(height[left], height[i]) - height[top]<br>                ans += currWidth * currHeight<br>            stack.append(i)<br>        <br>        <span class="hljs-keyword">return</span> ans<br></code></pre></td></tr></table></figure>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">输入在<span class="hljs-number">1</span>行中依次给出<span class="hljs-selector-tag">A</span>和<span class="hljs-selector-tag">B</span>，中间以<span class="hljs-number">1</span>空格分隔。<br></code></pre></td></tr></table></figure>
 
-<h3 id="（3）-双指针"><a href="#（3）-双指针" class="headerlink" title="（3） 双指针"></a>（3） 双指针</h3><p>在动态规划中，需要维护两个数组<code>leftMax</code>和<code>rightMax</code>，因此空间复杂度是O(n)。使用双指针和双变量可以代替两个数组，使得空间复杂度是O(1)。</p>
-<p><strong>初始值：</strong>指针<code>left=0</code>，指针<code>right=len(height)-1</code>,两个变量<code>leftMax=0,rightMax=0</code></p>
-<p>下标<code>i</code>能接的雨水量由<code>leftMax[i]</code>和<code>rightMax[i]</code>的最小值决定。</p>
-<p>指针<code>left</code>只能右移，指针<code>right</code>只能左移，移动指针过程中需要维护两个变量<code>leftMax</code>和<code>rightMax</code>的值。</p>
-<p><strong>当两个指针没有相遇时：</strong><code>（while left &lt; right）</code></p>
-<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202406171729670.png" srcset="/img/loading.gif" lazyload alt="image-20240617172305647"></p>
-<p><strong>时间复杂度：</strong>O(n)，其中 n是数组的长度，两个指针的移动总次数不超过 n。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">trap</span>(<span class="hljs-params">self, height</span>):<br>        ans = <span class="hljs-number">0</span><br>        left, right = <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(height) - <span class="hljs-number">1</span><br>        leftMax = rightMax = <span class="hljs-number">0</span><br><br>        <span class="hljs-keyword">while</span> left &lt; right:<br>            leftMax = <span class="hljs-built_in">max</span>(leftMax, height[left])<br>            rightMax = <span class="hljs-built_in">max</span>(rightMax, height[right])<br>            <span class="hljs-keyword">if</span> height[left] &lt; height[right]:<br>                ans += leftMax - height[left]<br>                left += <span class="hljs-number">1</span><br>            <span class="hljs-keyword">else</span>:<br>                ans += rightMax - height[right]<br>                right -= <span class="hljs-number">1</span><br>        <br>        <span class="hljs-keyword">return</span> ans<br></code></pre></td></tr></table></figure>
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">在<span class="hljs-number">1</span>行中依次输出<span class="hljs-selector-tag">Q</span>和R，中间以<span class="hljs-number">1</span>空格分隔。<br></code></pre></td></tr></table></figure>
+
+<h3 id="输入例子"><a href="#输入例子" class="headerlink" title="输入例子:"></a><strong>输入例子:</strong></h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">123456789050987654321 </span><span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="输出例子"><a href="#输出例子" class="headerlink" title="输出例子:"></a><strong>输出例子:</strong></h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">17636684150141093474 </span><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>太简单了。。</p>
+<p>求商—-&gt; <code>//</code></p>
+<p>求余—-&gt;<code>%</code></p>
+<p>输出以空格分割—-&gt; <code>print(a,b)</code></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">import sys<br><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">line</span> <span class="hljs-keyword">in</span> sys.<span class="hljs-keyword">stdin</span>:<br>    <span class="hljs-keyword">a</span>,b = <span class="hljs-built_in">line</span>.strip().<span class="hljs-built_in">split</span>(<span class="hljs-string">&#x27; &#x27;</span>)<br>    <span class="hljs-keyword">a</span>,b = int(<span class="hljs-keyword">a</span>),int(b)<br>    q = <span class="hljs-comment">a//b</span><br>    r = <span class="hljs-keyword">a</span> % b <br>    print(q,r)<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -352,7 +320,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/LeetCode/" class="category-chain-item">LeetCode</a>
+  <a href="/categories/PAT/" class="category-chain-item">PAT</a>
   
   
 
@@ -371,12 +339,6 @@
       
         <a href="/tags/%E9%A2%98%E5%BA%93/" class="print-no-link">#题库</a>
       
-        <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" class="print-no-link">#双指针</a>
-      
-        <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" class="print-no-link">#单调栈</a>
-      
-        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="print-no-link">#动态规划</a>
-      
     </div>
   
 </div>
@@ -389,9 +351,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/17/PAT07/" title="PAT07：A除以B">
+                      <a href="/2024/07/17/LeetCode08/" title="LeetCode08：无重复字符的最长子串">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">PAT07：A除以B</span>
+                        <span class="hidden-mobile">LeetCode08：无重复字符的最长子串</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -399,8 +361,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/29/PAT06/" title="PAT06：部分A+B">
-                        <span class="hidden-mobile">PAT06：部分A+B</span>
+                      <a href="/2024/06/15/LeetCode07/" title="LeetCode07：接雨水">
+                        <span class="hidden-mobile">LeetCode07：接雨水</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

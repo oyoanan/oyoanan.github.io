@@ -4,6 +4,66 @@
   
   
   <entry>
+    <title>LeetCode08：无重复字符的最长子串</title>
+    <link href="/2024/07/17/LeetCode08/"/>
+    <url>/2024/07/17/LeetCode08/</url>
+    
+    <content type="html"><![CDATA[<h1 id="8-无重复字符的最长子串"><a href="#8-无重复字符的最长子串" class="headerlink" title="8.无重复字符的最长子串"></a>8.无重复字符的最长子串</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长 子串</strong> 的长度。</p><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h3><p>首先考虑特殊情况，如果字符串为空，结果为0</p><p>初始化一个字典lettersIndex ，用于存储字符和相应的索引；</p><p>初始化最长不重复子串的长度max_length ，0</p><p>初始化子串的起始索引start ，0</p><p><strong>遍历字符串，获取每一个字符和其索引。</strong></p><ul><li><p>检查当前字符，如果在字典中，并且字典中该字符的索引不小于start ，代表已经重复，更新start （该字符在字典中的索引加1，也就是起始索引加1），更新字典中该字符的索引为当前索引。</p></li><li><p>遍历每一个字符，需要计算当前子串的长度，<code>i - start + 1</code></p></li><li><p>更新全局最大长度。<code>max_length = max(max_length, current_length)</code></p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">lengthOfLongestSubstring</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">int</span>:<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> s:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br><br>        lettersIndex = &#123;&#125;<br>        max_length = <span class="hljs-number">0</span><br>        start = <span class="hljs-number">0</span><br><br>        <span class="hljs-keyword">for</span> i, char <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(s):<br>            <span class="hljs-keyword">if</span> char <span class="hljs-keyword">in</span> lettersIndex <span class="hljs-keyword">and</span> lettersIndex[char] &gt;= start:<br>                start = lettersIndex[char] + <span class="hljs-number">1</span><br><br>            lettersIndex[char] = i<br>            current_length = i - start + <span class="hljs-number">1</span><br>            max_length = <span class="hljs-built_in">max</span>(max_length, current_length)<br><br>        <span class="hljs-keyword">return</span> max_length<br></code></pre></td></tr></table></figure><h3 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h3><p>这种方法的<strong>核心思想</strong>是使用两个指针（左指针和右指针）来维护一个动态的窗口，窗口内的字符都是不重复的。通过不断移动这两个指针，可以找到最长的不重复子串。</p><ol><li><strong>初始化变量</strong>:<ul><li><code>occ = set()</code> 初始化一个集合，用于记录当前子串中出现的字符。</li><li><code>n = len(s)</code> 获取字符串 <code>s</code> 的长度。</li><li><code>rk, ans = -1, 0</code> 初始化右指针 <code>rk</code> 为 -1（表示在字符串左侧），初始化最长子串长度 <code>ans</code> 为 0。</li></ul></li><li><strong>遍历字符串</strong>:<ul><li><code>for i in range(n):</code> 遍历字符串 <code>s</code> 的每一个字符。</li></ul></li><li><strong>左指针移动</strong>:<ul><li><code>if i != 0:</code> 当不是第一个字符时，将左指针左侧的字符从集合中移除，从而缩小子串的范围。</li></ul></li><li><strong>右指针移动</strong>:<ul><li><code>while rk + 1 &lt; n and s[rk + 1] not in occ:</code> 只要右指针右侧的字符不在当前集合中，就不断移动右指针，并将字符加入集合。</li></ul></li><li><strong>更新最长子串长度</strong>:<ul><li><code>ans = max(ans, rk - i + 1)</code> 更新最长不重复子串的长度。这里 <code>rk - i + 1</code> 表示从左指针 <code>i</code> 到右指针 <code>rk</code> 的子串长度。</li></ul></li><li><strong>返回结果</strong>:<ul><li><code>return ans</code> 返回最长不重复子串的长度。</li></ul></li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">lengthOfLongestSubstring</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">int</span>:<br>        <span class="hljs-comment"># 哈希集合，记录每个字符是否出现过</span><br>        occ = <span class="hljs-built_in">set</span>()<br>        n = <span class="hljs-built_in">len</span>(s)<br>        <span class="hljs-comment"># 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动</span><br>        rk, ans = -<span class="hljs-number">1</span>, <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>            <span class="hljs-keyword">if</span> i != <span class="hljs-number">0</span>:<br>                <span class="hljs-comment"># 左指针向右移动一格，移除一个字符</span><br>                occ.remove(s[i - <span class="hljs-number">1</span>])<br>            <span class="hljs-keyword">while</span> rk + <span class="hljs-number">1</span> &lt; n <span class="hljs-keyword">and</span> s[rk + <span class="hljs-number">1</span>] <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> occ:<br>                <span class="hljs-comment"># 不断地移动右指针</span><br>                occ.add(s[rk + <span class="hljs-number">1</span>])<br>                rk += <span class="hljs-number">1</span><br>            <span class="hljs-comment"># 第 i 到 rk 个字符是一个极长的无重复字符子串</span><br>            ans = <span class="hljs-built_in">max</span>(ans, rk - i + <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> ans<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>LeetCode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>题库</tag>
+      
+      <tag>哈希表</tag>
+      
+      <tag>双指针</tag>
+      
+      <tag>滑动窗口</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>PAT07：A除以B</title>
+    <link href="/2024/07/17/PAT07/"/>
+    <url>/2024/07/17/PAT07/</url>
+    
+    <content type="html"><![CDATA[<h1 id="7-A除以B"><a href="#7-A除以B" class="headerlink" title="7.A除以B"></a>7.A除以B</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dns">本题要求计算<span class="hljs-keyword">A</span>/B，其中<span class="hljs-keyword">A</span>是不超过<span class="hljs-number">1000</span>位的正整数，B是<span class="hljs-number">1</span>位正整数。你需要输出商数Q和余数R，使得<span class="hljs-keyword">A</span> = B * Q + R成立。<br></code></pre></td></tr></table></figure><h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">输入在<span class="hljs-number">1</span>行中依次给出<span class="hljs-selector-tag">A</span>和<span class="hljs-selector-tag">B</span>，中间以<span class="hljs-number">1</span>空格分隔。<br></code></pre></td></tr></table></figure><h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">在<span class="hljs-number">1</span>行中依次输出<span class="hljs-selector-tag">Q</span>和R，中间以<span class="hljs-number">1</span>空格分隔。<br></code></pre></td></tr></table></figure><h3 id="输入例子"><a href="#输入例子" class="headerlink" title="输入例子:"></a><strong>输入例子:</strong></h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">123456789050987654321 </span><span class="hljs-number">7</span><br></code></pre></td></tr></table></figure><h3 id="输出例子"><a href="#输出例子" class="headerlink" title="输出例子:"></a><strong>输出例子:</strong></h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">17636684150141093474 </span><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>太简单了。。</p><p>求商—-&gt; <code>//</code></p><p>求余—-&gt;<code>%</code></p><p>输出以空格分割—-&gt; <code>print(a,b)</code></p><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">import sys<br><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">line</span> <span class="hljs-keyword">in</span> sys.<span class="hljs-keyword">stdin</span>:<br>    <span class="hljs-keyword">a</span>,b = <span class="hljs-built_in">line</span>.strip().<span class="hljs-built_in">split</span>(<span class="hljs-string">&#x27; &#x27;</span>)<br>    <span class="hljs-keyword">a</span>,b = int(<span class="hljs-keyword">a</span>),int(b)<br>    q = <span class="hljs-comment">a//b</span><br>    r = <span class="hljs-keyword">a</span> % b <br>    print(q,r)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>PAT</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>题库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LeetCode07：接雨水</title>
     <link href="/2024/06/15/LeetCode07/"/>
     <url>/2024/06/15/LeetCode07/</url>
