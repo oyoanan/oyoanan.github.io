@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202402281732273.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="An">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="HTML知识点（一）1、src和href的区别 资源加载方式 src 加载资源并且把资源嵌入到页面中，加载资源的过程中页面可能会等待资源加载完成。（比如 script 标签在加载时会阻塞页面渲染）。 href 用于建立连接，加载外部资源（比如 css）后并不直接嵌入内容，或仅在用户交互后导航到该资源。  适用标签 src 常用于 &lt;img&gt;  、 &lt;script&gt;  、 &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML知识点（一）">
+<meta property="og:url" content="http://example.com/2025/02/04/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="An&#96;s Blog">
+<meta property="og:description" content="HTML知识点（一）1、src和href的区别 资源加载方式 src 加载资源并且把资源嵌入到页面中，加载资源的过程中页面可能会等待资源加载完成。（比如 script 标签在加载时会阻塞页面渲染）。 href 用于建立连接，加载外部资源（比如 css）后并不直接嵌入内容，或仅在用户交互后导航到该资源。  适用标签 src 常用于 &lt;img&gt;  、 &lt;script&gt;  、 &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502041423576.jpeg">
+<meta property="article:published_time" content="2025-02-04T06:22:38.000Z">
+<meta property="article:modified_time" content="2025-02-04T06:25:48.640Z">
+<meta property="article:author" content="An">
+<meta property="article:tag" content="src和href的区别">
+<meta property="article:tag" content="HTML语义化的理解">
+<meta property="article:tag" content="DOCTYPE的作用">
+<meta property="article:tag" content="常用的meta标签">
+<meta property="article:tag" content="HTML5有哪些更新">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502041423576.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>HTML知识点（一） - An`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>An</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HTML知识点（一）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-04 14:22" pubdate>
+          2025年2月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">HTML知识点（一）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="HTML知识点（一）"><a href="#HTML知识点（一）" class="headerlink" title="HTML知识点（一）"></a>HTML知识点（一）</h1><h2 id="1、src和href的区别"><a href="#1、src和href的区别" class="headerlink" title="1、src和href的区别"></a>1、src和href的区别</h2><ul>
+<li><p><strong>资源加载方式</strong></p>
+<p>src 加载资源并且把资源嵌入到页面中，加载资源的过程中页面可能会等待资源加载完成。（比如 script 标签在加载时会阻塞页面渲染）。</p>
+<p>href 用于建立连接，加载外部资源（比如 css）后并不直接嵌入内容，或仅在用户交互后导航到该资源。</p>
+</li>
+<li><p><strong>适用标签</strong></p>
+<p>src 常用于 &lt;img&gt;  、 &lt;script&gt;  、 &lt;frame&gt;  等需要直接加载并显示内容的标签。</p>
+<p>href 常用语 &lt;a&gt;  、 &lt;link&gt;  标签，分别用于建立超链接和加载外部样式&#x2F;其他资源。</p>
+</li>
+<li><p><strong>加载时机</strong></p>
+<p>src：浏览器在解析标签的时候，立即加载指定资源。</p>
+<p>href：对于&lt;a&gt; 标签，用户点击链接后才会加载资源。对于 &lt;link&gt; 标签（比如css），浏览器在解析&lt;head&gt;时加载，但不会阻塞页面渲染。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 加载外部CSS样式表 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../CSS/demo.css&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 图片 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../Images/cat.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 引入JS --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../JS/demo.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Frame --&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://oyoanan.github.io/&quot;</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;600&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;400&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br><br>     <span class="hljs-comment">&lt;!-- 超链接 --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://oyoanan.github.io/&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;_blank&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;noopener&quot;</span>&gt;</span>访问安安的博客<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>?</strong> 为什么script标签默认阻塞页面渲染？</p>
+<blockquote>
+<p> &lt;script&gt; 标签默认的行为：浏览器必须停下渲染页面，先处理脚本，再继续渲染。</p>
+<p> 因为脚本可能改变页面内容、可能依赖已渲染的内容。</p>
+</blockquote>
+<p><strong>？</strong>那如何让脚本不阻塞渲染？</p>
+<blockquote>
+<p>使用 async 属性（异步加载）— 下载完立即执行，但执行时机不确定，适合独立脚本（比如广告）。</p>
+<p>使用 defer 属性（延迟执行） — 页面渲染完成后执行，保证了先后顺序，适合依赖页面内容的脚本。</p>
+</blockquote>
+<h2 id="2、HTML语义化的理解"><a href="#2、HTML语义化的理解" class="headerlink" title="2、HTML语义化的理解"></a>2、HTML语义化的理解</h2><ul>
+<li><p><strong>提升可读性和可维护性</strong></p>
+<p>开发者使用具有明确含义的标签（比如 <code>&lt;header&gt;</code>、<code>&lt;nav&gt;</code>、<code>&lt;main&gt;</code>、<code>&lt;article&gt;</code>、<code>&lt;section&gt;</code>、<code>&lt;footer&gt;</code> 等）,代码的结构和目的更直观，其他开发者或者后续自己的维护时也能更快理解页面结构。</p>
+</li>
+<li><p><strong>搜索引擎优化 SEO</strong></p>
+<p>搜索引擎根据页面的语义信息更好理解内容的层次和重点，有助于提升页面在搜索结果中的排名。</p>
+</li>
+<li><p><strong>无障碍访问</strong></p>
+<p>使用语义化的标签可以帮助屏幕阅读器或者其他辅助技术正确的解释页面内容，帮助残障人士更好地使用网页。</p>
+</li>
+<li><p><strong>标准化开发</strong></p>
+<p>遵循HTML语义化标准，提高代码的可移植性，确保代码在不同的浏览器或者设备上都有较好的表现。</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>文章标题<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>文章作者<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>发表时间<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>文章主体<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>文章内容<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>版权所有<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>？</strong>常见的HTML语义化标签</p>
+<blockquote>
+<p>分为结构性标签、文本标签</p>
+<p>结构性标签：&lt;header&gt; 、&lt;nav&gt; 、&lt;aside&gt; 、&lt;section&gt; 、&lt;article&gt; 、&lt;footer&gt; 、&lt;main&gt; </p>
+<p>文本标签：&lt;h1-h6&gt; 、&lt;p&gt; 、&lt;blockqueto&gt; 、&lt;a&gt; 、&lt;q&gt; </p>
+</blockquote>
+<h2 id="3、DOCTYPE的作用"><a href="#3、DOCTYPE的作用" class="headerlink" title="3、DOCTYPE的作用"></a>3、DOCTYPE的作用</h2><p><code>&lt;!DOCTYPE&gt;</code> 声明，也称为文档类型声明。它的作用是告诉浏览器当前文档使用的是哪种HTML或XHTML规范，如何解析和渲染页面。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span> 触发标准模式 HTML5<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>告诉浏览器使用哪种渲染模式</strong></p>
+<p>标准模式：浏览器安装W3C标准来渲染。</p>
+<p>怪异模式：为了兼容老旧网页，用非标准的方式渲染页面，可能导致不同浏览器之间的显示效果差异。</p>
+</li>
+</ul>
+<p><strong>？</strong>如何启动怪异模式</p>
+<blockquote>
+<p>只要 DOCTYPE 的声明符合某个标准格式，就自动进入标准模式。反之，如果没有声明 DOCTYPE，或者使用了不完整或过时的  DOCTYPE 声明，进入怪异模式。</p>
+</blockquote>
+<p><strong>？</strong>差异具体表现在哪里</p>
+<blockquote>
+<p>CSS盒模型的计算方式：标准模式下的宽高只包含了内容 content 区域，不包含边框或者内边距、外边距。而怪异模式下的宽高为它们的总和。</p>
+<p>默认布局和对齐差异：怪异模式中，一些默认样式和行内元素的垂直对齐可能与标准模式下有所差别。例如，图片或内联块元素的基线对齐行为可能会不同。</p>
+</blockquote>
+<h2 id="4、常用的meta标签"><a href="#4、常用的meta标签" class="headerlink" title="4、常用的meta标签"></a>4、常用的meta标签</h2><p><code>meta</code> 是HTML中用于提供元数据的标签。不会直接显示在页面，但对于SEO、浏览器解析和移动设备优化等方面很重要。</p>
+<ul>
+<li><p><strong>字符集声明</strong></p>
+<p>字符编码定义了字符与二进制数据之间的映射关系。如果编码设置不正确，浏览器可能会显示乱码。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt; <br><span class="hljs-comment"># 支持几乎所有的语言字符（中文、英文、日文、韩文等），兼容ASCII码。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">charset</span>=<span class="hljs-string">&quot;ISO-8859-1&quot;</span>&gt; <br><span class="hljs-comment"># 支持西欧语言（如英语、法语、德语、西班牙语等），不支持中文、日文等非拉丁字符。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">charset</span>=<span class="hljs-string">&quot;GBK&quot;</span>&gt; &lt;meta <span class="hljs-attribute">charset</span>=<span class="hljs-string">&quot;GB2312&quot;</span>&gt;<br><span class="hljs-comment"># 支持简体中文和部分繁体中文，是 GB2312 的扩展，支持更多汉字。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">charset</span>=<span class="hljs-string">&quot;Big5&quot;</span>&gt;<br><span class="hljs-comment">#支持繁体中文，主要用于台湾、香港等地区。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">charset</span>=<span class="hljs-string">&quot;Shift_JIS&quot;</span>&gt;<br><span class="hljs-comment"># 支持日文，是日本常用的字符编码。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">charset</span>=<span class="hljs-string">&quot;EUC-KR&quot;</span>&gt;<br><span class="hljs-comment"># 支持韩文，是韩国常用的字符编码。</span><br></code></pre></td></tr></table></figure>
+
+<p> <strong>其他编码</strong></p>
+<p>ASCII：仅支持英文字符和基本符号，不适合多语言网页。</p>
+<p>UTF-16：支持 Unicode 字符，但文件体积较大，不推荐用于网页。</p>
+<p>UTF-32：支持 Unicode 字符，但文件体积更大，极少使用。</p>
+</li>
+<li><p><strong>视口设置</strong></p>
+<p>控制网页在不同设备上的显示和缩放行为。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 还可以设置minimum-scale、maximum-scale、user-scalable --&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>搜索引擎相关</strong></p>
+<p>允许&#x2F;禁止 — 搜索引擎索引此网页内容、跟踪网页中的链接并爬取它们的内容。</p>
+<p>noarchive： 禁止搜索引擎保存页面的缓存版本。</p>
+<p>nosnippet：禁止搜索引擎在搜索结果中显示页面内容的摘要。</p>
+<p>noimageindex：禁止搜索引擎索引页面上的图片。</p>
+<p>nocache：禁止搜索引擎缓存页面（类似于 <code>noarchive</code>）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- index/ follow/ noindex/ nofollow --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;robots&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;index,follow&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>其他元数据</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 设置作者 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;author&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;anan&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 设置版权 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;copyright&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;© 2025 AnCompany&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 页面描述 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;This is a description&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 页面关键字 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;keywords&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;HTML, meta, 标签, 示例&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 设置页面自动刷新 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;refresh&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;5;url=https://www.google.com&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 针对IE浏览器，使用最新的渲染模式 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 内容安全策略 只允许这些特定来源加载相应的资源 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;Content-Security-Policy&quot;</span> </span><br><span class="hljs-tag"><span class="hljs-attr">content</span>=<span class="hljs-string">&quot;default-src &#x27;self&#x27;;</span></span><br><span class="hljs-string"><span class="hljs-tag">script-src &#x27;self&#x27; https://trusted.cdn.com;</span></span><br><span class="hljs-string"><span class="hljs-tag">style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;;</span></span><br><span class="hljs-string"><span class="hljs-tag">img-src &#x27;self&#x27; https://images.example.com;</span></span><br><span class="hljs-string"><span class="hljs-tag">font-src &#x27;self&#x27;;&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="5、HTML5有哪些更新？"><a href="#5、HTML5有哪些更新？" class="headerlink" title="5、HTML5有哪些更新？"></a>5、HTML5有哪些更新？</h2><ul>
+<li><p><strong>新语义化标签</strong></p>
+<p><code>header</code>, <code>main</code>, <code>footer</code>, <code>nav</code>, <code>aside</code>, <code>section</code>, <code>article</code>等。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 新增语义化标签 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>多媒体支持</strong></p>
+<p><code>audio</code>, <code>video</code>, <code>source</code>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 多媒体支持 --&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">controls</span> <span class="hljs-attr">autoplay</span> <span class="hljs-attr">loop</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">controls</span> <span class="hljs-attr">poster</span>=<span class="hljs-string">&quot;../Images/cat.jpg&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">audio</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;audio.mp3&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;audio/mp3&#x27;</span>&gt;</span><br>       您的浏览器不支持音频标签。<br>   <span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">video</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;video.mp4&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;video/mp4&#x27;</span>&gt;</span><br>       您的浏览器不支持视频标签。<br>   <span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>？</strong> label是什么标签？</p>
+<blockquote>
+<p><code>label</code>是为表单控件定义标签的元素，点击<code>label</code>标签浏览器自动转移焦点到相应控件。</p>
+<p>将它与表单控件关联的方式有：</p>
+<p>1、通过for属性的值与控件的id属性值一致。</p>
+<p>2、将表单控件嵌套在<code>label</code>标签内部。</p>
+</blockquote>
+<p><strong>？</strong> name属性的含义？</p>
+<blockquote>
+<p>name属性为表单控件指定名称，这个名称是键，控件输入内容为值，键值对会发送给服务器。</p>
+<p>多个控件可以共享相同的 name，这样服务器会将这些值当作一组数据处理。（比如单选框、多选框）</p>
+</blockquote>
+</li>
+<li><p><strong>表单增强</strong></p>
+<p>新增输入类型 <code>input type</code>：email、url、date、time、detetime-local、number、range、color</p>
+<p>新增属性：required、placeholder、pattern、autofocus。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 表单增强 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;email&quot;</span>&gt;</span>电子邮件<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">required</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;输入电子邮件地址&quot;</span> &gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;birthdate&quot;</span>&gt;</span>出生日期<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;date&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;birthdate&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;birthdate&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span> 时间<br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;time&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;datetime-local&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span> 数字<br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span> <span class="hljs-attr">autofocus</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span> 滑块<br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;range&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span> <br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;color&quot;</span>&gt;</span>颜色<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;color&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;color&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;color&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>选择性别：<br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;gender&quot;</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;male&quot;</span>&gt;</span>男<br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;gender&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;female&quot;</span>&gt;</span>女<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>选择爱好：<br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hobbies[]&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;reading&quot;</span>&gt;</span> 阅读<br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hobbies[]&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;sports&quot;</span>&gt;</span> 运动<br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hobbies[]&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;music&quot;</span>&gt;</span> 音乐<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>图形和绘图支持</strong></p>
+<p>新增<code>canvas</code>标签，允许使用 JavaScript在页面上绘制图形。对 SVG 矢量图的支持进一步增强。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml">  <span class="hljs-comment">&lt;!-- canvas --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myCanvas&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;300&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">       <span class="hljs-keyword">var</span> canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;myCanvas&quot;</span>);</span><br><span class="language-javascript">       <span class="hljs-keyword">var</span> ctx = canvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&quot;2d&quot;</span>);</span><br><span class="language-javascript">       ctx.<span class="hljs-property">fillStyle</span> = <span class="hljs-string">&quot;red&quot;</span>;</span><br><span class="language-javascript">       ctx.<span class="hljs-title function_">fillRect</span>(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);</span><br><span class="language-javascript">   </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>？</strong> canvas的 getContext 方法？</p>
+<blockquote>
+<p> 是 canvas 元素的核心 API，用于获取指定类型的绘图上下文。</p>
+<p> 传入参数”2d”：获取一个二维绘图上下文。</p>
+<p> 传入参数”webgl”或者”experimental-webgl”：进行 3D 绘图和高性能图形渲染。</p>
+</blockquote>
+<p>强化对<code>svg</code>标签的支持：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs abnf">&lt;svg width<span class="hljs-operator">=</span><span class="hljs-string">&quot;200&quot;</span> height<span class="hljs-operator">=</span><span class="hljs-string">&quot;200&quot;</span> xmlns<span class="hljs-operator">=</span><span class="hljs-string">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;<br>     &lt;circle<br>       cx<span class="hljs-operator">=</span><span class="hljs-string">&quot;100&quot;</span><br>       cy<span class="hljs-operator">=</span><span class="hljs-string">&quot;100&quot;</span><br>       r<span class="hljs-operator">=</span><span class="hljs-string">&quot;80&quot;</span><br>       stroke<span class="hljs-operator">=</span><span class="hljs-string">&quot;green&quot;</span><br>       stroke-width<span class="hljs-operator">=</span><span class="hljs-string">&quot;4&quot;</span><br>       fill<span class="hljs-operator">=</span><span class="hljs-string">&quot;yellow&quot;</span><br>     /&gt;<br> &lt;/svg&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>？</strong>xmlns属性是什么？</p>
+<blockquote>
+<p>全称：XML Namespace（XML 命名空间）。</p>
+<p>命名空间的作用是防止在不同 XML 语言中可能存在的标签名称冲突。告诉浏览器，“这里定义的所有元素都属于 SVG 标准（由 W3C 定义的 SVG 规范）”，</p>
+</blockquote>
+<p><strong>？</strong> XML是什么？和HTML的区别？</p>
+<blockquote>
+<p>XML（可扩展标记语言）和 HTML（超文本标记语言）都是基于标记的语言，但它们的设计目的和使用场景有明显的不同。</p>
+<p>XML：主要目标是存储和传输数据，强调数据的结构和内容，而不是数据的显示。语法非常严格。“可扩展”的，意味着可以自定义标签和结构，以适应不同的需求。</p>
+<p>HTML：主要用于在网页上显示和呈现数据。关注页面内容的结构、格式和外观，而不是数据本身的存储。语法较宽松，浏览器具有容错性。</p>
+</blockquote>
+</li>
+<li><p><strong>存储和离线</strong></p>
+<p><strong>1、本地存储：</strong>在用户浏览器中存储数据。</p>
+<p>**<code>localStorage</code>**：持久化存储，键值对形式，存储容量比COOKIE大。</p>
+<p>**<code>sessionStorage</code>**：仅在浏览器会话 session 期间存储，关闭页面后数据会被清除。键值对形式，适合存储临时数据。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 存储和离线支持 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">       <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;name1&quot;</span>, <span class="hljs-string">&quot;anan1&quot;</span>);</span><br><span class="language-javascript">       <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;name1&quot;</span>));</span><br><span class="language-javascript">       <span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;name2&quot;</span>, <span class="hljs-string">&quot;anan2&quot;</span>);</span><br><span class="language-javascript">       <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;name2&quot;</span>));</span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>2、离线支持：</strong>网页或 Web 应用在没有网络连接的情况下，仍能正常运行或展示部分功能。</p>
+<p>AppCache 已被视为过时技术，现代方法是使用 Service Worker 和 Cache API。</p>
+<p>**<code>AppCache</code>**：在 HTML 页面中添加一个 <code>manifest</code> 属性，指定一个清单文件（manifest file）。这个文件列出了应用所需的所有资源，浏览器会将这些资源缓存到本地。当离线时，浏览器会使用缓存的资源加载页面。</p>
+<p>**<code>Service Worker</code>**：是运行在浏览器后台的独立线程，可以拦截网络请求，控制资源缓存和离线加载行为。它允许开发者精确控制哪些文件需要缓存，以及如何在离线时响应请求。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-comment">// 检查浏览器是否支持 Service Worker</span></span><br><span class="language-javascript">    <span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;serviceWorker&#x27;</span> <span class="hljs-keyword">in</span> navigator) &#123;</span><br><span class="language-javascript">      <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        <span class="hljs-comment">// 注册 Service Worker 脚本（sw.js）</span></span><br><span class="language-javascript">        navigator.<span class="hljs-property">serviceWorker</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;../JS/serviceworker.js&#x27;</span>)</span><br><span class="language-javascript">          .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">registration</span>) &#123;</span><br><span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Service Worker 注册成功，范围：&#x27;</span>, registration.<span class="hljs-property">scope</span>);</span><br><span class="language-javascript">          &#125;)</span><br><span class="language-javascript">          .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) &#123;</span><br><span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Service Worker 注册失败：&#x27;</span>, error);</span><br><span class="language-javascript">          &#125;);</span><br><span class="language-javascript">      &#125;);</span><br><span class="language-javascript">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="language-javascript">      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;当前浏览器不支持 Service Worker。&#x27;</span>);</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>？</strong>什么是manifest文件？</p>
+<blockquote>
+<p>用于列出一个 Web 应用中所有需要缓存的资源（例如 CSS、JavaScript、图片、字体等）。根据该文件的内容将指定资源下载并保存到本地缓存中。</p>
+<p>第一行必须是 <code>CACHE MANIFEST</code>，告诉浏览器这是一个应用缓存文件。<code>CACHE</code> 部分列出所有需要缓存的资源 URL，<code>NETWORK</code> 部分指定哪些资源在离线时不缓存，而是始终通过网络请求。如果写 <code>*</code>，表示所有不在 CACHE 部分的资源都需要通过网络获取。</p>
+<p>由于存在更新不灵活、错误处理较差等问题，现在已被 Service Worker 替代。</p>
+</blockquote>
+<p><strong>?</strong> 使用manifest的注意事项：</p>
+<blockquote>
+<p>1、创建 manifest 文件</p>
+<p>2、在 HTML 文件的 <code>&lt;html&gt;</code> 标签中添加 <code>manifest</code> 属性，指定该 manifest 文件的 URL。</p>
+<p>3、当应用中的资源发生变化时，需要更新 <code>.manifest</code> 文件的内容或修改版本号，这样浏览器才会检测到变化并更新缓存。</p>
+<p>4、使用 <code>.manifest</code> 文件时，需要确保服务器正确配置了 MIME 类型（<code>text/cache-manifest</code>），否则浏览器可能无法正确解析文件。— 每个文件都有一个<strong>MIME 类型</strong>（也称为媒体类型）</p>
+</blockquote>
+<p><strong>?</strong> navigator是什么？</p>
+<blockquote>
+<p>在浏览器中，<code>navigator</code> 是 <code>window</code> 对象的一个属性，可以直接通过 <code>navigator</code> 来访问。</p>
+<p><code>navigator</code> 包含了关于浏览器和操作系统的一些基本信息，navigator 对象提供了多种接口，比如：</p>
+<p>navigator.geolocation：用于访问地理位置信息。<br>navigator.serviceWorker：用于注册和管理 Service Worker，从而实现离线支持、后台同步等。<br>navigator.mediaDevices：用于访问摄像头和麦克风等媒体设备。】</p>
+</blockquote>
+</li>
+<li><p><strong>文档声明</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"># 更简洁的文档声明和默认字符编码：<br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设备适配</strong></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Geolocation API（地理定位）</strong></p>
+<p>允许网页或 Web 应用在获得用户授权后，获取用户的地理位置信息。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">if</span> (navigator.<span class="hljs-property">geolocation</span>) &#123;</span><br><span class="language-javascript">        navigator.<span class="hljs-property">geolocation</span>.<span class="hljs-title function_">getCurrentPosition</span>(</span><br><span class="language-javascript">          <span class="hljs-keyword">function</span>(<span class="hljs-params">position</span>) &#123; <span class="hljs-comment">// 成功回调</span></span><br><span class="language-javascript">            <span class="hljs-keyword">const</span> latitude = position.<span class="hljs-property">coords</span>.<span class="hljs-property">latitude</span>;</span><br><span class="language-javascript">            <span class="hljs-keyword">const</span> longitude = position.<span class="hljs-property">coords</span>.<span class="hljs-property">longitude</span>;</span><br><span class="language-javascript">            <span class="hljs-keyword">const</span> accuracy = position.<span class="hljs-property">coords</span>.<span class="hljs-property">accuracy</span>;</span><br><span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;纬度：&#x27;</span> + latitude);</span><br><span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;经度：&#x27;</span> + longitude);</span><br><span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;精度：&#x27;</span> + accuracy + <span class="hljs-string">&#x27; 米&#x27;</span>);</span><br><span class="language-javascript">          &#125;,</span><br><span class="language-javascript">          <span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) &#123; <span class="hljs-comment">// 错误回调</span></span><br><span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;获取位置信息失败：&#x27;</span>, error);</span><br><span class="language-javascript">          &#125;,</span><br><span class="language-javascript">          &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">enableHighAccuracy</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 尽可能获取高精度位置</span></span><br><span class="language-javascript">            <span class="hljs-attr">timeout</span>: <span class="hljs-number">5000</span>,            <span class="hljs-comment">// 5 秒超时</span></span><br><span class="language-javascript">            <span class="hljs-attr">maximumAge</span>: <span class="hljs-number">0</span>             <span class="hljs-comment">// 不使用缓存，获取最新的位置</span></span><br><span class="language-javascript">          &#125;</span><br><span class="language-javascript">        );</span><br><span class="language-javascript">      &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="language-javascript">        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;浏览器不支持 Geolocation API&quot;</span>);</span><br><span class="language-javascript">      &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>拖放 API（Drag and Drop API）</strong></p>
+<p>拖放 API 允许用户在网页上拖动元素，并将它们放置到目标区域。例如，文件上传可以通过拖拽文件实现。</p>
+<p>拖放的实现基于以下事件：</p>
+<ul>
+<li><strong>拖拽开始阶段</strong>：<code>dragstart</code></li>
+<li><strong>拖拽过程中的监控</strong>：<code>drag</code></li>
+<li><strong>进入目标区域时</strong>：<code>dragenter</code></li>
+<li><strong>在目标区域内移动</strong>：<code>dragover</code></li>
+<li><strong>离开目标区域时</strong>：<code>dragleave</code></li>
+<li><strong>放置时</strong>：<code>drop</code></li>
+<li><strong>拖拽结束时</strong>：<code>dragend</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>拖放 API 示例<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-id">#drag-item</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">background-color</span>: blue;</span><br><span class="language-css">      <span class="hljs-attribute">color</span>: white;</span><br><span class="language-css">      <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">      <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="language-css">      <span class="hljs-attribute">align-items</span>: center;</span><br><span class="language-css">      <span class="hljs-attribute">cursor</span>: grab;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-id">#drop-area</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dashed gray;</span><br><span class="language-css">      <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">20px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">      <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="language-css">      <span class="hljs-attribute">align-items</span>: center;</span><br><span class="language-css">      <span class="hljs-attribute">color</span>: gray;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-selector-id">#drop-area</span><span class="hljs-selector-class">.drag-over</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">border-color</span>: green;</span><br><span class="language-css">      <span class="hljs-attribute">color</span>: black;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;drag-item&quot;</span> <span class="hljs-attr">draggable</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>拖我<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;drop-area&quot;</span>&gt;</span>放到这里<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">const</span> dragItem = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;drag-item&#x27;</span>);</span><br><span class="language-javascript">    <span class="hljs-keyword">const</span> dropArea = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;drop-area&#x27;</span>);</span><br><span class="language-javascript"></span><br><span class="language-javascript">    dragItem.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;dragstart&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">      event.<span class="hljs-property">dataTransfer</span>.<span class="hljs-title function_">setData</span>(<span class="hljs-string">&#x27;text/plain&#x27;</span>, <span class="hljs-string">&#x27;我是拖拽的数据&#x27;</span>);</span><br><span class="language-javascript">    &#125;);</span><br><span class="language-javascript"></span><br><span class="language-javascript">    dropArea.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;dragover&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">      event.<span class="hljs-title function_">preventDefault</span>(); <span class="hljs-comment">// 允许放置</span></span><br><span class="language-javascript">      dropArea.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;drag-over&#x27;</span>);</span><br><span class="language-javascript">    &#125;);</span><br><span class="language-javascript"></span><br><span class="language-javascript">    dropArea.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;dragleave&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;</span><br><span class="language-javascript">      dropArea.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&#x27;drag-over&#x27;</span>);</span><br><span class="language-javascript">    &#125;);</span><br><span class="language-javascript"></span><br><span class="language-javascript">    dropArea.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;drop&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">      event.<span class="hljs-title function_">preventDefault</span>();</span><br><span class="language-javascript">      <span class="hljs-keyword">const</span> data = event.<span class="hljs-property">dataTransfer</span>.<span class="hljs-title function_">getData</span>(<span class="hljs-string">&#x27;text/plain&#x27;</span>);</span><br><span class="language-javascript">      dropArea.<span class="hljs-property">textContent</span> = <span class="hljs-string">`接收到的数据：<span class="hljs-subst">$&#123;data&#125;</span>`</span>;</span><br><span class="language-javascript">      dropArea.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&#x27;drag-over&#x27;</span>);</span><br><span class="language-javascript">    &#125;);</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p><strong>？</strong> event.dataTransfer.setData方法</p>
+<blockquote>
+<p>用于在拖拽开始时将数据与拖拽事件关联起来，方便在放置时通过 <code>getData()</code> 获取该数据。</p>
+</blockquote>
+<p><strong>?</strong> event.preventDefault方法</p>
+<blockquote>
+<p>用于取消或阻止浏览器对特定事件的默认处理，确保拖放操作能够按照自定义逻辑执行（例如允许放置、阻止默认文件打开行为）。</p>
+</blockquote>
+</li>
+<li><p><strong>Web Workers</strong></p>
+<p>Web Workers 允许在后台线程运行 JavaScript，不阻塞主线程。适用于耗时操作（如复杂计算、数据处理），提升页面响应速度和用户体验。</p>
+<p>特点：</p>
+<p>1、异步线程：运行在单独的线程中，与主线程通信通过 postMessage 和 onmessage。<br>2、无 DOM 访问权限：Workers 无法直接操作 DOM，需通过主线程间接操作。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> worker = <span class="hljs-keyword">new</span> Worker(<span class="hljs-string">&#x27;worker.js&#x27;</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>WebSocket</strong></p>
+<p>WebSocket 是 HTML5 提供的一种实时双向通信协议，允许浏览器和服务器在单个持久连接上进行数据交换。适用于聊天、实时更新等应用。</p>
+<p>特点：</p>
+<p>1、双向通信：浏览器和服务器都能主动发送和接收数据。<br>2、低延迟：持久连接降低了通信延迟，适合实时场景。<br>3、轻量级：相比 HTTP 长轮询，WebSocket 更高效。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const WebSocket</span> = require(<span class="hljs-string">&#x27;ws&#x27;</span>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/HTML/" class="category-chain-item">HTML</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/src%E5%92%8Chref%E7%9A%84%E5%8C%BA%E5%88%AB/" class="print-no-link">#src和href的区别</a>
+      
+        <a href="/tags/HTML%E8%AF%AD%E4%B9%89%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3/" class="print-no-link">#HTML语义化的理解</a>
+      
+        <a href="/tags/DOCTYPE%E7%9A%84%E4%BD%9C%E7%94%A8/" class="print-no-link">#DOCTYPE的作用</a>
+      
+        <a href="/tags/%E5%B8%B8%E7%94%A8%E7%9A%84meta%E6%A0%87%E7%AD%BE/" class="print-no-link">#常用的meta标签</a>
+      
+        <a href="/tags/HTML5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%9B%B4%E6%96%B0/" class="print-no-link">#HTML5有哪些更新</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/08/CSP01/" title="CSP第35次_01：密码">
+                        <span class="hidden-mobile">CSP第35次_01：密码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://oyoanan.github.io/" target="_blank" rel="nofollow noopener"><span>AN</span></a> <i class="iconfont icon-love"></i> <a href="https://d4n-sec.github.io/#/" target="_blank" rel="nofollow noopener"><span>DM</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
