@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>HTML知识点（二）</title>
+    <link href="/2025/02/05/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <url>/2025/02/05/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h1 id="HTML知识点（二）"><a href="#HTML知识点（二）" class="headerlink" title="HTML知识点（二）"></a>HTML知识点（二）</h1><h2 id="1、img的srcset属性作用？"><a href="#1、img的srcset属性作用？" class="headerlink" title="1、img的srcset属性作用？"></a>1、img的srcset属性作用？</h2><p>srcset：提供实际可用的图片资源。</p><ul><li><p>按图像宽度描述</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;small.jpg&quot;</span> <br>     <span class="hljs-attribute">srcset</span>=<span class="hljs-string">&quot;small.jpg 500w, medium.jpg 1000w, large.jpg 1500w&quot;</span> <br>     <span class="hljs-attribute">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;<br></code></pre></td></tr></table></figure></li><li><p>按图像分辨率描述</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;default.jpg&quot;</span><br>     <span class="hljs-attribute">srcset</span>=<span class="hljs-string">&quot;small.jpg 1x, medium.jpg 2x, large.jpg 3x&quot;</span><br>     <span class="hljs-attribute">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;<br></code></pre></td></tr></table></figure></li></ul><p>sizes：告诉浏览器图片的显示大小。通常，<code>srcset</code> 属性会与 <code>sizes</code> 属性一起使用，后者用来指定在不同视口宽度下图像的显示大小（即图像在页面上实际占据的空间），帮助浏览器更准确地选择最佳图像资源。</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;default.jpg&quot;</span><br>     <span class="hljs-attribute">srcset</span>=<span class="hljs-string">&quot;small.jpg 500w, medium.jpg 1000w, large.jpg 1500w&quot;</span><br>     <span class="hljs-attribute">sizes</span>=<span class="hljs-string">&quot;(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px&quot;</span><br>     <span class="hljs-attribute">alt</span>=<span class="hljs-string">&quot;响应式图片示例&quot;</span>&gt;<br></code></pre></td></tr></table></figure><p>核心目标：减少不必要的带宽浪费，保证图片在不同设备下清晰度适配。</p><ul><li><strong><code>sizes</code> 计算显示宽度</strong>：<br>根据当前视口宽度和 <code>sizes</code> 规则，计算出图片的显示宽度（CSS 像素）。</li><li><strong>计算需要的图片实际宽度</strong>：<br>需要的图片实际宽度 &#x3D; 显示宽度 × 设备像素比。</li><li><strong>从 <code>srcset</code> 中选择图片</strong>：<br>选择一张实际宽度 ≥ 计算值且最接近的图片。</li></ul><h2 id="2、行内元素和块级元素"><a href="#2、行内元素和块级元素" class="headerlink" title="2、行内元素和块级元素"></a>2、行内元素和块级元素</h2><ul><li><p><strong>行内元素</strong></p><p>多个行内元素可以排在一行上，宽度高度内边距外边距通常只对水平方向有效。</p><blockquote><p>1、文字样式：b、strong、i、em、u、mark、small、sub、sup、span</p><p>2、链接交互：a、button</p><p>3、媒体相关：img、video、audio、svg</p><p>4、表单相关：input、label、select、textarea、option</p></blockquote></li><li><p><strong>块级元素</strong></p><p>每个块级元素独占一行，宽度默认是父容器的100%，可以设置宽度高度。</p><blockquote><p>1、布局容器：div、section、article、aside、nav、header、footer、main</p><p>2、文字相关：p、h1-h6、hr</p><p>3、表格相关：tabel、thead、tbody、tfoot、tr、th、td</p><p>4、列表相关：ul、ol、li、dl、dt、dd</p><p>5、媒体相关：figure、figcaption</p></blockquote></li><li><p><strong>空元素</strong></p><p>没有子元素，通常是自闭合标签。</p><blockquote><p>1、文档结构：br、hr</p><p>2、媒体相关：img、track</p><p>3、表单相关：input、textarea</p><p>4、其他：meta、link、base</p></blockquote></li></ul><h2 id="3、title与h1的区别、b与strong的区别、i与em的区别"><a href="#3、title与h1的区别、b与strong的区别、i与em的区别" class="headerlink" title="3、title与h1的区别、b与strong的区别、i与em的区别"></a>3、title与h1的区别、b与strong的区别、i与em的区别</h2><p>1、title定义网页的标题，h1定义网页内容的主标题。h1-h6更具有层次感。</p><p>2、b表示文本加粗，而strong有语义强调加粗，对seo有影响。</p><p>3、i表示文本斜体，em有语义强调斜体，对seo有影响。</p><h2 id="4、iframe-的优点和缺点？"><a href="#4、iframe-的优点和缺点？" class="headerlink" title="4、iframe 的优点和缺点？"></a>4、iframe 的优点和缺点？</h2><p>iframe是HTML 中用于嵌入其他 HTML 文档的标签，允许将一个独立的网页嵌入到当前页面中。</p><ul><li><p><strong>优点</strong></p><p>页面嵌套：可以将其他网页嵌入当前页面，例如外部资源、广告、第三方工具等。实现独立的内容区块，不影响主页面的结构和样式。</p><p>独立性：嵌入的内容是一个独立的文档，有自己的 DOM 和 CSS 范围。主页面与嵌入的文档相互独立，互不干扰。</p><p>安全性：主页面与 iframe 中的内容隔离，某些安全风险（如 XSS 攻击）会被限制。通过 <code>sandbox</code> 属性，可以限制 <code>&lt;iframe&gt;</code> 的行为。</p><p>跨域通信：通过 postMessage API，可以实现 iframe 与父页面之间的跨域通信。</p><p>懒加载：通过 loading&#x3D;”lazy” 属性实现 iframe 的懒加载，优化页面性能。</p></li><li><p><strong>缺点</strong></p><p>性能问题：额外的资源请求，如果嵌入的文档加载慢，会拖慢整体页面性能。每个 iframe&gt;都会创建一个独立的文档上下文，增加内存和 CPU 开销。</p><p>用户体验：iframe大小要手动设置，内容溢出可能出现双滚动条。</p><p>seo优化：可能无法正确索引iframe中的内容。</p><p>跨域限制：虽然可以嵌入跨域内容，但与主页面的通信受到浏览器同源策略的限制（即不能直接访问 iframe 中的 DOM）。</p><p>嵌套复杂性：如果 iframe 中再嵌套 iframe，会导致维护难度增加，同时引发额外的性能问题。</p></li></ul><p><strong>？</strong>什么是懒加载</p><blockquote><p>主要思想是：<strong>仅在需要时才加载内容</strong>。在用户滚动到相应位置或满足特定条件时才加载相应的资源。</p><p>实现方式：</p><p>1、使用HTML属性，loading&#x3D;”lazy”；</p><p>2、使用JS中的IntersectionObserver。</p></blockquote><p><strong>？</strong>什么是沙盒属性</p><blockquote><p><code>sandbox</code> 属性通常用于 <code>&lt;iframe&gt;</code> 标签上，用于对嵌入的内容启用一系列安全限制。简单来说，它为嵌入的文档创建了一个沙盒环境，限制其能执行的操作，以增强安全性。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://example.com&quot;</span> <span class="hljs-attr">sandbox</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></table></figure><p>限制脚本执行、限制表单提交、阻止插件和导航、隔离同源策略。也可以配置allow等。</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;iframe <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;https://example.com&quot;</span> <span class="hljs-attribute">sandbox</span>=<span class="hljs-string">&quot;allow-scripts allow-forms&quot;</span>&gt;&lt;/iframe&gt;<br></code></pre></td></tr></table></figure></blockquote><h2 id="5、HTML5-drag-API"><a href="#5、HTML5-drag-API" class="headerlink" title="5、HTML5 drag API"></a>5、HTML5 drag API</h2><ul><li>dragstart：事件主体是被拖放元素，在开始拖放被拖放元素时触发。 </li><li>darg：事件主体是被拖放元素，在正在拖放被拖放元素时触发。 </li><li>dragenter：事件主体是目标元素，在被拖放元素进入某元素时触发。 </li><li>dragover：事件主体是目标元素，在被拖放在某元素内移动时触发。 </li><li>dragleave：事件主体是目标元素，在被拖放元素移出目标元素是触发。 </li><li>drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。 </li><li>dragend：事件主体是被拖放元素，在整个拖放操作结束时触发。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>HTML</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>drag</tag>
+      
+      <tag>iframe</tag>
+      
+      <tag>srcset</tag>
+      
+      <tag>行内与块级元素</tag>
+      
+      <tag>b与strong</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>HTML知识点（一）</title>
     <link href="/2025/02/04/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <url>/2025/02/04/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%B8%80%EF%BC%89/</url>

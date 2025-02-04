@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202402281732273.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="An">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="HTML知识点（二）1、img的srcset属性作用？srcset：提供实际可用的图片资源。  按图像宽度描述 123&lt;img src&#x3D;&quot;small.jpg&quot;      srcset&#x3D;&quot;small.jpg 500w, medium.jpg 1000w, large.jpg 1500w&quot;      alt&#x3D;&quot;...&quot;&gt;  按图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML知识点（二）">
+<meta property="og:url" content="http://example.com/2025/02/05/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="An&#96;s Blog">
+<meta property="og:description" content="HTML知识点（二）1、img的srcset属性作用？srcset：提供实际可用的图片资源。  按图像宽度描述 123&lt;img src&#x3D;&quot;small.jpg&quot;      srcset&#x3D;&quot;small.jpg 500w, medium.jpg 1000w, large.jpg 1500w&quot;      alt&#x3D;&quot;...&quot;&gt;  按图像">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502041423576.jpeg">
+<meta property="article:published_time" content="2025-02-04T16:23:19.000Z">
+<meta property="article:modified_time" content="2025-02-04T16:25:11.470Z">
+<meta property="article:author" content="An">
+<meta property="article:tag" content="drag">
+<meta property="article:tag" content="iframe">
+<meta property="article:tag" content="srcset">
+<meta property="article:tag" content="行内与块级元素">
+<meta property="article:tag" content="b与strong">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502041423576.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>HTML知识点（二） - An`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>An</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HTML知识点（二）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-05 00:23" pubdate>
+          2025年2月5日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">HTML知识点（二）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="HTML知识点（二）"><a href="#HTML知识点（二）" class="headerlink" title="HTML知识点（二）"></a>HTML知识点（二）</h1><h2 id="1、img的srcset属性作用？"><a href="#1、img的srcset属性作用？" class="headerlink" title="1、img的srcset属性作用？"></a>1、img的srcset属性作用？</h2><p>srcset：提供实际可用的图片资源。</p>
+<ul>
+<li><p>按图像宽度描述</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;small.jpg&quot;</span> <br>     <span class="hljs-attribute">srcset</span>=<span class="hljs-string">&quot;small.jpg 500w, medium.jpg 1000w, large.jpg 1500w&quot;</span> <br>     <span class="hljs-attribute">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>按图像分辨率描述</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;default.jpg&quot;</span><br>     <span class="hljs-attribute">srcset</span>=<span class="hljs-string">&quot;small.jpg 1x, medium.jpg 2x, large.jpg 3x&quot;</span><br>     <span class="hljs-attribute">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>sizes：告诉浏览器图片的显示大小。通常，<code>srcset</code> 属性会与 <code>sizes</code> 属性一起使用，后者用来指定在不同视口宽度下图像的显示大小（即图像在页面上实际占据的空间），帮助浏览器更准确地选择最佳图像资源。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;default.jpg&quot;</span><br>     <span class="hljs-attribute">srcset</span>=<span class="hljs-string">&quot;small.jpg 500w, medium.jpg 1000w, large.jpg 1500w&quot;</span><br>     <span class="hljs-attribute">sizes</span>=<span class="hljs-string">&quot;(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px&quot;</span><br>     <span class="hljs-attribute">alt</span>=<span class="hljs-string">&quot;响应式图片示例&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>核心目标：减少不必要的带宽浪费，保证图片在不同设备下清晰度适配。</p>
+<ul>
+<li><strong><code>sizes</code> 计算显示宽度</strong>：<br>根据当前视口宽度和 <code>sizes</code> 规则，计算出图片的显示宽度（CSS 像素）。</li>
+<li><strong>计算需要的图片实际宽度</strong>：<br>需要的图片实际宽度 &#x3D; 显示宽度 × 设备像素比。</li>
+<li><strong>从 <code>srcset</code> 中选择图片</strong>：<br>选择一张实际宽度 ≥ 计算值且最接近的图片。</li>
+</ul>
+<h2 id="2、行内元素和块级元素"><a href="#2、行内元素和块级元素" class="headerlink" title="2、行内元素和块级元素"></a>2、行内元素和块级元素</h2><ul>
+<li><p><strong>行内元素</strong></p>
+<p>多个行内元素可以排在一行上，宽度高度内边距外边距通常只对水平方向有效。</p>
+<blockquote>
+<p>1、文字样式：b、strong、i、em、u、mark、small、sub、sup、span</p>
+<p>2、链接交互：a、button</p>
+<p>3、媒体相关：img、video、audio、svg</p>
+<p>4、表单相关：input、label、select、textarea、option</p>
+</blockquote>
+</li>
+<li><p><strong>块级元素</strong></p>
+<p>每个块级元素独占一行，宽度默认是父容器的100%，可以设置宽度高度。</p>
+<blockquote>
+<p>1、布局容器：div、section、article、aside、nav、header、footer、main</p>
+<p>2、文字相关：p、h1-h6、hr</p>
+<p>3、表格相关：tabel、thead、tbody、tfoot、tr、th、td</p>
+<p>4、列表相关：ul、ol、li、dl、dt、dd</p>
+<p>5、媒体相关：figure、figcaption</p>
+</blockquote>
+</li>
+<li><p><strong>空元素</strong></p>
+<p>没有子元素，通常是自闭合标签。</p>
+<blockquote>
+<p>1、文档结构：br、hr</p>
+<p>2、媒体相关：img、track</p>
+<p>3、表单相关：input、textarea</p>
+<p>4、其他：meta、link、base</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3、title与h1的区别、b与strong的区别、i与em的区别"><a href="#3、title与h1的区别、b与strong的区别、i与em的区别" class="headerlink" title="3、title与h1的区别、b与strong的区别、i与em的区别"></a>3、title与h1的区别、b与strong的区别、i与em的区别</h2><p>1、title定义网页的标题，h1定义网页内容的主标题。h1-h6更具有层次感。</p>
+<p>2、b表示文本加粗，而strong有语义强调加粗，对seo有影响。</p>
+<p>3、i表示文本斜体，em有语义强调斜体，对seo有影响。</p>
+<h2 id="4、iframe-的优点和缺点？"><a href="#4、iframe-的优点和缺点？" class="headerlink" title="4、iframe 的优点和缺点？"></a>4、iframe 的优点和缺点？</h2><p>iframe是HTML 中用于嵌入其他 HTML 文档的标签，允许将一个独立的网页嵌入到当前页面中。</p>
+<ul>
+<li><p><strong>优点</strong></p>
+<p>页面嵌套：可以将其他网页嵌入当前页面，例如外部资源、广告、第三方工具等。实现独立的内容区块，不影响主页面的结构和样式。</p>
+<p>独立性：嵌入的内容是一个独立的文档，有自己的 DOM 和 CSS 范围。主页面与嵌入的文档相互独立，互不干扰。</p>
+<p>安全性：主页面与 iframe 中的内容隔离，某些安全风险（如 XSS 攻击）会被限制。通过 <code>sandbox</code> 属性，可以限制 <code>&lt;iframe&gt;</code> 的行为。</p>
+<p>跨域通信：通过 postMessage API，可以实现 iframe 与父页面之间的跨域通信。</p>
+<p>懒加载：通过 loading&#x3D;”lazy” 属性实现 iframe 的懒加载，优化页面性能。</p>
+</li>
+<li><p><strong>缺点</strong></p>
+<p>性能问题：额外的资源请求，如果嵌入的文档加载慢，会拖慢整体页面性能。每个 iframe&gt;都会创建一个独立的文档上下文，增加内存和 CPU 开销。</p>
+<p>用户体验：iframe大小要手动设置，内容溢出可能出现双滚动条。</p>
+<p>seo优化：可能无法正确索引iframe中的内容。</p>
+<p>跨域限制：虽然可以嵌入跨域内容，但与主页面的通信受到浏览器同源策略的限制（即不能直接访问 iframe 中的 DOM）。</p>
+<p>嵌套复杂性：如果 iframe 中再嵌套 iframe，会导致维护难度增加，同时引发额外的性能问题。</p>
+</li>
+</ul>
+<p><strong>？</strong>什么是懒加载</p>
+<blockquote>
+<p>主要思想是：<strong>仅在需要时才加载内容</strong>。在用户滚动到相应位置或满足特定条件时才加载相应的资源。</p>
+<p>实现方式：</p>
+<p>1、使用HTML属性，loading&#x3D;”lazy”；</p>
+<p>2、使用JS中的IntersectionObserver。</p>
+</blockquote>
+<p><strong>？</strong>什么是沙盒属性</p>
+<blockquote>
+<p><code>sandbox</code> 属性通常用于 <code>&lt;iframe&gt;</code> 标签上，用于对嵌入的内容启用一系列安全限制。简单来说，它为嵌入的文档创建了一个沙盒环境，限制其能执行的操作，以增强安全性。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://example.com&quot;</span> <span class="hljs-attr">sandbox</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>限制脚本执行、限制表单提交、阻止插件和导航、隔离同源策略。也可以配置allow等。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;iframe <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;https://example.com&quot;</span> <span class="hljs-attribute">sandbox</span>=<span class="hljs-string">&quot;allow-scripts allow-forms&quot;</span>&gt;&lt;/iframe&gt;<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="5、HTML5-drag-API"><a href="#5、HTML5-drag-API" class="headerlink" title="5、HTML5 drag API"></a>5、HTML5 drag API</h2><ul>
+<li>dragstart：事件主体是被拖放元素，在开始拖放被拖放元素时触发。 </li>
+<li>darg：事件主体是被拖放元素，在正在拖放被拖放元素时触发。 </li>
+<li>dragenter：事件主体是目标元素，在被拖放元素进入某元素时触发。 </li>
+<li>dragover：事件主体是目标元素，在被拖放在某元素内移动时触发。 </li>
+<li>dragleave：事件主体是目标元素，在被拖放元素移出目标元素是触发。 </li>
+<li>drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。 </li>
+<li>dragend：事件主体是被拖放元素，在整个拖放操作结束时触发。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/HTML/" class="category-chain-item">HTML</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/drag/" class="print-no-link">#drag</a>
+      
+        <a href="/tags/iframe/" class="print-no-link">#iframe</a>
+      
+        <a href="/tags/srcset/" class="print-no-link">#srcset</a>
+      
+        <a href="/tags/%E8%A1%8C%E5%86%85%E4%B8%8E%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/" class="print-no-link">#行内与块级元素</a>
+      
+        <a href="/tags/b%E4%B8%8Estrong/" class="print-no-link">#b与strong</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/04/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%B8%80%EF%BC%89/" title="HTML知识点（一）">
+                        <span class="hidden-mobile">HTML知识点（一）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://oyoanan.github.io/" target="_blank" rel="nofollow noopener"><span>AN</span></a> <i class="iconfont icon-love"></i> <a href="https://d4n-sec.github.io/#/" target="_blank" rel="nofollow noopener"><span>DM</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
