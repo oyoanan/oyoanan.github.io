@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202402281732273.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="An">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="HTML知识点（三）1、Canvas和SVG的区别 Canvas 使用是基于像素（位图）的绘图方式。当调用绘图API时，实际是在对一个固定分辨率的像素矩阵进行修改，绘制完成后，这个矩阵的状态就保存在Canvas中。后续的每一次绘制都是在当前画布进行重新绘制。 1234567&lt;canvas id&#x3D;&quot;myCanvas&quot; width&#x3D;&quot;300&quot; height">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML知识点（三）">
+<meta property="og:url" content="http://example.com/2025/02/05/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
+<meta property="og:site_name" content="An&#96;s Blog">
+<meta property="og:description" content="HTML知识点（三）1、Canvas和SVG的区别 Canvas 使用是基于像素（位图）的绘图方式。当调用绘图API时，实际是在对一个固定分辨率的像素矩阵进行修改，绘制完成后，这个矩阵的状态就保存在Canvas中。后续的每一次绘制都是在当前画布进行重新绘制。 1234567&lt;canvas id&#x3D;&quot;myCanvas&quot; width&#x3D;&quot;300&quot; height">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502041423576.jpeg">
+<meta property="article:published_time" content="2025-02-05T09:04:02.000Z">
+<meta property="article:modified_time" content="2025-02-05T09:05:06.312Z">
+<meta property="article:author" content="An">
+<meta property="article:tag" content="Canvas和SVG的区别">
+<meta property="article:tag" content="head标签的作用">
+<meta property="article:tag" content="Doctype的作用">
+<meta property="article:tag" content="浏览器乱码">
+<meta property="article:tag" content="渐进增强和优雅降级">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502041423576.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>HTML知识点（三） - An`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>An</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HTML知识点（三）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-05 17:04" pubdate>
+          2025年2月5日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">HTML知识点（三）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="HTML知识点（三）"><a href="#HTML知识点（三）" class="headerlink" title="HTML知识点（三）"></a>HTML知识点（三）</h1><h2 id="1、Canvas和SVG的区别"><a href="#1、Canvas和SVG的区别" class="headerlink" title="1、Canvas和SVG的区别"></a>1、Canvas和SVG的区别</h2><ul>
+<li><p><strong>Canvas</strong></p>
+<p>使用是基于像素（位图）的绘图方式。当调用绘图API时，实际是在对一个固定分辨率的像素矩阵进行修改，绘制完成后，这个矩阵的状态就保存在Canvas中。后续的每一次绘制都是在当前画布进行重新绘制。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myCanvas&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;300&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border:2px aqua solid;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">        <span class="hljs-keyword">const</span>  canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#myCanvas&#x27;</span>)</span><br><span class="language-javascript">        <span class="hljs-keyword">const</span> ctx = canvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&#x27;2d&#x27;</span>)</span><br><span class="language-javascript">        ctx.<span class="hljs-property">fillStyle</span> = <span class="hljs-string">&#x27;green&#x27;</span></span><br><span class="language-javascript">        ctx.<span class="hljs-title function_">fillRect</span>(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">210</span>,<span class="hljs-number">20</span>)</span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>SVG</strong></p>
+<p>使用的是矢量图形，所有的图形都是由数学公式描述的。图形是无分辨率的，可以无限放大缩小而不会失真。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;300&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border:2px aqua solid;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&quot;40&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;green&quot;</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">&quot;4&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;yellow&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>它们的区别</strong></p>
+<p>1、渲染模式：</p>
+<p>canvas：即时渲染。绘图指令会立即影响画布像素，所有元素成为一个整体的像素图，若改变图形，往往需要清空画布然后重新绘制所有元素。</p>
+<p>svg：保留模式。每个图形元素是一个DOM节点，浏览器维护节点信息。需要修改图形只需要更新对应的DOM节点，不必重新绘制整个画面。</p>
+<p>2、交互性：</p>
+<p>canvas：无法对单个图形元素绑定事件，需要手动进行坐标计算，给整个canvas元素绑定事件，然后在事件处理函数中根据鼠标点击、移动的坐标等判断交互，决定操作。</p>
+<p>svg：每个元素是DOM节点，可以直接操作和绑定事件。内置的命中测试使得 SVG 在处理交互时更为便捷和直观。开发者只需将事件直接绑定到具体的 SVG 元素上，而无需手动判断鼠标位置与图形区域的关系。</p>
+<p>3、适用场景：</p>
+<p>Canvas：更适合需要高性能、频繁更新和复杂动画效果的场景，但在交互性和分辨率适应方面需要开发者额外处理。</p>
+<p>SVG：适用于静态图形、矢量图形和需要良好交互体验的场景，但当图形数量巨大时可能会导致性能瓶颈。</p>
+</li>
+</ul>
+<h2 id="2、head标签的作用？"><a href="#2、head标签的作用？" class="headerlink" title="2、head标签的作用？"></a>2、head标签的作用？</h2><p>head标签主要用于包含那些不会直接显示在网页内容区域中的信息（元数据），帮助浏览器、搜索引擎、其他外部工具了解页面信息，如何处理页面资源。</p>
+<ul>
+<li><p><strong>定义文档标题</strong>（必不可少）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>声明字符编码</strong>（必不可少）</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>描述网页信息</strong></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;这是一个示例网页，展示 head 标签的基本用法。&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>引用外部资源</strong></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;link <span class="hljs-attribute">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-string">&quot;styles.css&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>其他用途</strong></p>
+<p>&lt;style&gt;内嵌css样式、&lt;base&gt;基础链接等。</p>
+</li>
+</ul>
+<h2 id="3、Doctype的作用？"><a href="#3、Doctype的作用？" class="headerlink" title="3、Doctype的作用？"></a>3、Doctype的作用？</h2><p>文档声明：告诉浏览器当前页面使用的HTML版本，决定浏览器使用标准模式还是混杂模式进行渲染。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span> #HTML5的简洁声明<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>标准模式&#x2F;严格模式</strong></p>
+<p>只要以<code>!Doctype</code>或其他正确的完整的文档声明开始，浏览器一般是标准模式渲染。</p>
+</li>
+<li><p><strong>怪异模式&#x2F;混杂模式&#x2F;兼容模式</strong></p>
+<p><code>Doctype</code> 声明不完整或者书写错误，就自动切换到混杂模式兼容旧版页面。</p>
+</li>
+</ul>
+<p><strong>？</strong>DTD是什么？</p>
+<blockquote>
+<p><strong>DTD</strong> 是文档类型定义（Document Type Definition）的缩写，用于定义 XML 或早期 HTML 文档的结构和合法内容。早期 HTML 文件可能会包含如下的 DTD 声明：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">HTML</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span></span><br><span class="hljs-meta">   <span class="hljs-string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="4、浏览器乱码问题"><a href="#4、浏览器乱码问题" class="headerlink" title="4、浏览器乱码问题"></a>4、浏览器乱码问题</h2><ul>
+<li><p><strong>编码和解码</strong></p>
+<p>编码：人类文字转换为二进制数据的过程。不同的字符编码(UTF-8、GBK、ISO-8859-1)规定了不同字符与二进制数据之间的对应关系。</p>
+<p>解码：当浏览器或者其他程序打开一个文件时，将文件中的二进制数据转换回人类文字的过程。</p>
+</li>
+<li><p><strong>乱码</strong></p>
+<p>声明的编码（或者没有声明）与文件实际保存时候的编码不一致，浏览器就可能错误地将二进制解析成其他字符，从而乱码。多因字符编码不匹配，包括文件实际编码、HTML 声明和服务器响应头中指定的编码不一致或错误导致乱码。</p>
+</li>
+<li><p><strong>解决乱码</strong></p>
+<p>1、使用统一合适的编码（推荐UTF-8）</p>
+<p>2、在head部分添加字符集声明</p>
+<p>3、配置服务器返回正确的<code>Content-Type</code>响应头</p>
+<p>4、检查引用的外部资源编码是否一致</p>
+</li>
+<li><p><strong>浏览器解析文档时参考优先级</strong></p>
+<p>1、服务器响应头中的编码信息；</p>
+<p>2、HTML 文件内 <code>&lt;meta charset=&quot;...&quot;&gt;</code> 的声明；</p>
+</li>
+</ul>
+<h2 id="5、渐进增强和优雅降级"><a href="#5、渐进增强和优雅降级" class="headerlink" title="5、渐进增强和优雅降级"></a>5、渐进增强和优雅降级</h2><p>它们是两种核心策略，目标是兼容性，确保网站能够在不同浏览器、设备、网络环境下提供最佳的用户体验。</p>
+<ul>
+<li><p><strong>渐进增强</strong>（基础到高级）</p>
+<p>1、核心理念：先确保网站的核心内容和功能在所有环境下（包括老旧浏览器或低性能设备）都能正常工作，再逐步为支持新特性的现代浏览器添加增强效果（如动画、复杂布局、交互功能等）。优先保障内容的可访问性，再考虑视觉和交互的增强。</p>
+<p>2、实现步骤：</p>
+<ul>
+<li><strong>基础层</strong>：使用语义化的 HTML 实现内容和基本功能（如链接、表单提交）。</li>
+<li><strong>表现层</strong>：通过 CSS 增强布局和视觉效果（如响应式设计、动画）。</li>
+<li><strong>行为层</strong>：通过 JavaScript 添加交互功能（如动态加载数据、复杂交互）</li>
+</ul>
+</li>
+<li><p><strong>优雅降级</strong>（高级到基础）</p>
+<p>1、核心理念：先为现代浏览器开发完整的功能和视觉效果，再为老旧浏览器提供“降级”方案，确保基本功能可用。优先实现最新技术，再处理兼容性问题。</p>
+<p>2、实现步骤：</p>
+<ul>
+<li><strong>完整功能层</strong>：使用最新的 HTML5&#x2F;CSS3&#x2F;JavaScript 实现所有功能。</li>
+<li><strong>降级处理</strong>：通过浏览器检测或特性检测（如 CSS Hack、Polyfill），为老旧浏览器提供简化版的功能或界面。</li>
+</ul>
+</li>
+</ul>
+<p><strong>？</strong>什么是浏览器检测</p>
+<blockquote>
+<p>识别用户的浏览器类型（Chrome、Firefox、Safari等）和版本号，来决定如何呈现内容或者加载特定代码。</p>
+<p>1、<strong>User-Agent 检测</strong>：每个浏览器在发送请求时都会包含 <code>User-Agent</code> 字符串，这个字符串描述了浏览器的名称、版本号和运行环境（如操作系统）。前端可以通过 JavaScript 获取并分析 <code>navigator.userAgent</code>，从而判断用户的浏览器类型。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arcade">const isChrome = <span class="hljs-regexp">/Chrome/</span>.test(navigator.userAgent) &amp;&amp; <span class="hljs-regexp">/Google Inc/</span>.test(navigator.vendor);<br><span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(isChrome ? <span class="hljs-string">&quot;这是 Chrome 浏览器&quot;</span> : <span class="hljs-string">&quot;不是 Chrome 浏览器&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>2、<strong>使用特定 API</strong>：有些浏览器支持特定的 API，检测这些 API 的存在可以帮助判断浏览器类型。例如，通过检测 <code>window.chrome</code> 对象可以判断是否为 Chrome 浏览器。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">if</span> (window.chrome) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&quot;这是 Chrome 浏览器 &quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&quot;这不是 Chrome 浏览器&quot;</span>);<br>    &#125;<br></code></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>？</strong>什么是特性检测</p>
+<blockquote>
+<p>检测浏览器是否支持某项特性（例如某种 CSS 属性、HTML 元素或 JavaScript API），从而决定是否启用该特性或使用替代方案。</p>
+<p><strong>1、CSS 特性检测</strong>： <code>CSS.supports</code> 方法</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">if</span> (CSS.supports(<span class="hljs-string">&quot;display&quot;</span>,<span class="hljs-string">&quot;grid&quot;</span>))&#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&quot;支持CSS Grid&quot;</span>)<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>2、JavaScript 特性检测</strong>：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">if</span><span class="hljs-params">(window.fetch)</span></span>&#123;<br>    console<span class="hljs-selector-class">.log</span>(<span class="hljs-string">&quot;支持fetch API&quot;</span>)<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>    console<span class="hljs-selector-class">.log</span>(<span class="hljs-string">&quot;不支持fetch API，使用 XMLHttpRequest 替代&quot;</span>)<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>3、使用Polyfill：</strong>Polyfill可以实现一些现代Web特性，如Promise、fetch API等，即使老旧浏览器不支持这些特性。选择合适的Polyfill库，如polyfill.io、babel-polyfill等。在代码中引入Polyfill库。根据需要，在代码中调用Polyfill库提供的特定函数或API。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/HTML/" class="category-chain-item">HTML</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Canvas%E5%92%8CSVG%E7%9A%84%E5%8C%BA%E5%88%AB/" class="print-no-link">#Canvas和SVG的区别</a>
+      
+        <a href="/tags/head%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%9C%E7%94%A8/" class="print-no-link">#head标签的作用</a>
+      
+        <a href="/tags/Doctype%E7%9A%84%E4%BD%9C%E7%94%A8/" class="print-no-link">#Doctype的作用</a>
+      
+        <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%B1%E7%A0%81/" class="print-no-link">#浏览器乱码</a>
+      
+        <a href="/tags/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E5%92%8C%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/" class="print-no-link">#渐进增强和优雅降级</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/05/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BA%8C%EF%BC%89/" title="HTML知识点（二）">
+                        <span class="hidden-mobile">HTML知识点（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://oyoanan.github.io/" target="_blank" rel="nofollow noopener"><span>AN</span></a> <i class="iconfont icon-love"></i> <a href="https://d4n-sec.github.io/#/" target="_blank" rel="nofollow noopener"><span>DM</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
