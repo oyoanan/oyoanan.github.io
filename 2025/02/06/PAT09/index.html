@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202402281732273.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="An">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="9.数字黑洞题目题目描述12345678910111213给定任一个各位数字不完全相同的4位正整数，如果我们先把4个数字按非递增排序，再按非递减排序，然后用第1个数字减第2个数字，将得到 一个新的数字。一直重复这样做，我们很快会停在有“数字黑洞”之称的6174，这个神奇的数字也叫Kaprekar常数。  例如，我们从6767开始，将得到  7766 - 6677 &#x3D; 1089 9810 - 018">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PAT09：数字黑洞">
+<meta property="og:url" content="http://example.com/2025/02/06/PAT09/index.html">
+<meta property="og:site_name" content="An&#96;s Blog">
+<meta property="og:description" content="9.数字黑洞题目题目描述12345678910111213给定任一个各位数字不完全相同的4位正整数，如果我们先把4个数字按非递增排序，再按非递减排序，然后用第1个数字减第2个数字，将得到 一个新的数字。一直重复这样做，我们很快会停在有“数字黑洞”之称的6174，这个神奇的数字也叫Kaprekar常数。  例如，我们从6767开始，将得到  7766 - 6677 &#x3D; 1089 9810 - 018">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
+<meta property="article:published_time" content="2025-02-06T09:37:35.000Z">
+<meta property="article:modified_time" content="2025-02-06T09:38:59.505Z">
+<meta property="article:author" content="An">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="题库">
+<meta property="article:tag" content="字符串排序">
+<meta property="article:tag" content="字符串填充">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021855958.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>PAT09：数字黑洞 - An`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>An</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PAT09：数字黑洞"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-06 17:37" pubdate>
+          2025年2月6日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          838 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PAT09：数字黑洞</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="9-数字黑洞"><a href="#9-数字黑洞" class="headerlink" title="9.数字黑洞"></a>9.数字黑洞</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><strong>题目描述</strong></h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">给定任一个各位数字不完全相同的4位正整数，如果我们先把4个数字按非递增排序，再按非递减排序，然后用第1个数字减第2个数字，将得到</span><br> <span class="hljs-string">一个新的数字。一直重复这样做，我们很快会停在有“数字黑洞”之称的6174，这个神奇的数字也叫Kaprekar常数。</span><br> <br> <span class="hljs-string">例如，我们从6767开始，将得到</span><br> <br> <span class="hljs-number">7766</span> <span class="hljs-bullet">-</span> <span class="hljs-number">6677</span> <span class="hljs-string">=</span> <span class="hljs-number">1089</span><br> <span class="hljs-number">9810</span> <span class="hljs-bullet">-</span> <span class="hljs-number">0189</span> <span class="hljs-string">=</span> <span class="hljs-number">9621</span><br> <span class="hljs-number">9621</span> <span class="hljs-bullet">-</span> <span class="hljs-number">1269</span> <span class="hljs-string">=</span> <span class="hljs-number">8352</span><br> <span class="hljs-number">8532</span> <span class="hljs-bullet">-</span> <span class="hljs-number">2358</span> <span class="hljs-string">=</span> <span class="hljs-number">6174</span><br> <span class="hljs-number">7641</span> <span class="hljs-bullet">-</span> <span class="hljs-number">1467</span> <span class="hljs-string">=</span> <span class="hljs-number">6174</span><br> <span class="hljs-string">...</span> <span class="hljs-string">...</span><br> <br> <span class="hljs-string">现给定任意4位正整数，请编写程序演示到达黑洞的过程。</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">输入给出一个[<span class="hljs-number">1000</span>, <span class="hljs-number">10000</span>)区间内的正整数<span class="hljs-built_in">N</span>。<br></code></pre></td></tr></table></figure>
+
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs excel">如果<span class="hljs-built_in">N</span>的<span class="hljs-number">4</span>位数字全相等，则在一行内输出“<span class="hljs-built_in">N</span> - <span class="hljs-built_in">N</span> = <span class="hljs-number">0000</span>”；否则将计算的每一步在一行内输出，直到<span class="hljs-number">6174</span>作为差出现，输出格式见样例,每行中间没有空行。注意每个数字按<span class="hljs-number">4</span>位数格<br> 式输出。<br></code></pre></td></tr></table></figure>
+
+<h3 id="输入例子"><a href="#输入例子" class="headerlink" title="输入例子:"></a><strong>输入例子:</strong></h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">6767</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="输出例子"><a href="#输出例子" class="headerlink" title="输出例子:"></a><strong>输出例子:</strong></h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">7766 </span>- <span class="hljs-number">6677</span> = <span class="hljs-number">1089</span><br><span class="hljs-symbol">9810 </span>- <span class="hljs-number">0189</span> = <span class="hljs-number">9621</span><br><span class="hljs-symbol">9621 </span>- <span class="hljs-number">1269</span> = <span class="hljs-number">8352</span><br><span class="hljs-symbol">8532 </span>- <span class="hljs-number">2358</span> = <span class="hljs-number">6174</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
+<li><p><strong>输入与处理</strong></p>
+<p>首先，要考虑输入的读取，使用<code>input</code>方法读取的是字符串类型。如果不满4位，需要使用字符串的<code>zfill</code>方法进行补齐。</p>
+</li>
+<li><p><strong>字符串排序</strong></p>
+<p>使用<code>sort</code>方法对4位字符串进行排序，默认是非递减。使用参数<code>reverse=True</code>，得到非递增。</p>
+</li>
+<li><p><strong>差值计算</strong></p>
+<p>将排序后的字符串使用<code>int</code>转换为整数，相减得到结果。</p>
+</li>
+<li><p><strong>格式化输出</strong></p>
+<p>根据题目的格式进行输出，再利用递归，将输出作为下一步的输入再判断。</p>
+</li>
+<li><p><strong>边界条件</strong></p>
+<p>如果输入字符串的4位数字均相等，则做特殊输出：’N - N &#x3D; 0000’。</p>
+<p>如果输入为目标字符串6147，则终止递归。（特殊情况，如果第一次输入是6147需计算一次）</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">num,count</span>):<br>    num = num.zfill(<span class="hljs-number">4</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(num) == <span class="hljs-number">6174</span>:<br>        <span class="hljs-keyword">if</span> count != <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>    <span class="hljs-keyword">if</span> num[<span class="hljs-number">0</span>]==num[<span class="hljs-number">1</span>]==num[<span class="hljs-number">2</span>]==num[<span class="hljs-number">3</span>]:<br>        <span class="hljs-built_in">print</span>(num+<span class="hljs-string">&#x27; - &#x27;</span>+num+<span class="hljs-string">&#x27; = 0000 &#x27;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>    max_com = <span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">sorted</span>(num,reverse=<span class="hljs-literal">True</span>))<br>    min_com = <span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">sorted</span>(num))<br>    resTmp = <span class="hljs-built_in">int</span>(max_com) - <span class="hljs-built_in">int</span>(min_com)<br>    <span class="hljs-built_in">print</span>(max_com+<span class="hljs-string">&#x27; - &#x27;</span>+min_com+<span class="hljs-string">&#x27; = &#x27;</span>+<span class="hljs-built_in">str</span>(resTmp))<br>    count += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> func(<span class="hljs-built_in">str</span>(resTmp),count)<br>    <br>num = <span class="hljs-built_in">input</span>()<br>count = <span class="hljs-number">0</span><br>func(num,count)<br><span class="hljs-comment"># func(&#x27;6214&#x27;)</span><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p><strong>输入的读取</strong></p>
+<blockquote>
+<p>1、input()方法：读取一行输入，返回的是字符串类型，去掉了换行符。</p>
+<p>2、sys.stdin文件对象（不会自动转换类型、包含换行符）：</p>
+<ul>
+<li>read()方法：读取所有输入</li>
+<li>readline()方法：读取一行输入</li>
+</ul>
+</blockquote>
+<p><strong>字符串补齐</strong></p>
+<blockquote>
+<p>1、zfill()方法（使用0填充）：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile">s = <span class="hljs-string">&quot;42&quot;</span><br>s = s.zfill(4)<br>print(s) <span class="hljs-comment"># 0042</span><br></code></pre></td></tr></table></figure>
+
+<p>2、 rjust()方法（可指定字符填充）:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">s = <span class="hljs-string">&quot;42&quot;</span><br>s = s<span class="hljs-selector-class">.rjust</span>(<span class="hljs-number">4</span>, <span class="hljs-string">&quot;2&quot;</span>)<br><span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(s)</span></span><br></code></pre></td></tr></table></figure>
+
+<p>3、使用 f-string方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">s = <span class="hljs-string">&quot;42&quot;</span><br>s = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;<span class="hljs-built_in">int</span>(s):04d&#125;</span>&quot;</span>  <span class="hljs-comment"># 04d 表示至少 4 位，不足的地方用零填充</span><br><span class="hljs-built_in">print</span>(s)<br></code></pre></td></tr></table></figure>
+
+<p>可以填充的为0和空格。04中的0表示填充字符，4表示填充到哪个宽度。</p>
+<p>还可以选择填充后的对齐：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">f&quot;<span class="hljs-subst">&#123;<span class="hljs-number">5</span>:&lt;4d&#125;</span>&quot;</span>  <span class="hljs-comment"># 左对齐</span><br><span class="hljs-string">f&quot;<span class="hljs-subst">&#123;<span class="hljs-number">5</span>:&gt;4d&#125;</span>&quot;</span>  <span class="hljs-comment"># 右对齐</span><br><span class="hljs-string">f&quot;<span class="hljs-subst">&#123;<span class="hljs-number">5</span>:^4d&#125;</span>&quot;</span>  <span class="hljs-comment"># 居中对齐</span><br></code></pre></td></tr></table></figure>
+
+<p>常见的类型转换符：</p>
+<ul>
+<li>**<code>d</code>**：整数（decimal）</li>
+<li>**<code>f</code>**：浮动小数点数</li>
+<li>**<code>s</code>**：字符串</li>
+<li>**<code>x</code>**：十六进制整数（小写）</li>
+<li>**<code>X</code>**：十六进制整数（大写）</li>
+<li>**<code>e</code>**：科学计数法表示的浮动小数</li>
+</ul>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/PAT/" class="category-chain-item">PAT</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/%E9%A2%98%E5%BA%93/" class="print-no-link">#题库</a>
+      
+        <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/" class="print-no-link">#字符串排序</a>
+      
+        <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A1%AB%E5%85%85/" class="print-no-link">#字符串填充</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/05/HTML%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%B8%89%EF%BC%89/" title="HTML知识点（三）">
+                        <span class="hidden-mobile">HTML知识点（三）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://oyoanan.github.io/" target="_blank" rel="nofollow noopener"><span>AN</span></a> <i class="iconfont icon-love"></i> <a href="https://d4n-sec.github.io/#/" target="_blank" rel="nofollow noopener"><span>DM</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
