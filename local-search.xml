@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>ApplicationCache</title>
+    <link href="/2025/02/07/ApplicationCache/"/>
+    <url>/2025/02/07/ApplicationCache/</url>
+    
+    <content type="html"><![CDATA[<h1 id="应用缓存-Application-Cache"><a href="#应用缓存-Application-Cache" class="headerlink" title="应用缓存(Application Cache)"></a>应用缓存(Application Cache)</h1><p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502071712155.png" alt="image-20250207162900227"></p><h2 id="一、需求来源"><a href="#一、需求来源" class="headerlink" title="一、需求来源"></a>一、需求来源</h2><p>在 HTML5 出现之前，Web 应用主要依赖 Cookie 或服务器端技术来实现部分离线功能，但这两种方式都有明显的局限性（如容量小、同步性差等）。应用缓存旨在解决离线运行问题，使得用户即使在没有网络连接的情况下也能访问预先缓存好的静态资源，提升用户体验。</p><h2 id="二、工作原理"><a href="#二、工作原理" class="headerlink" title="二、工作原理"></a>二、工作原理</h2><ul><li><p><strong>清单文件（manifest file）</strong></p><p>应用缓存的核心在于一个纯文本文件，通常以 <code>.appcache</code> 为后缀。这个文件列出了需要缓存的资源，以及一些额外的配置信息（如哪些资源不缓存、离线页面的替代方案等）。</p></li><li><p><strong>缓存机制</strong></p><p>浏览器在加载带有 manifest 属性的 HTML 页面时，会读取清单文件，并根据其中的配置将相应的资源缓存到本地。后续即使网络断开，浏览器也会从缓存中加载这些资源。</p></li></ul><h2 id="三、使用方法"><a href="#三、使用方法" class="headerlink" title="三、使用方法"></a>三、使用方法</h2><ul><li><p><strong>1、创建Manifest文件</strong></p><p>纯文本文件，通常以 <code>.appcache</code> 为后缀</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">CACHE MANIFEST <br><span class="hljs-comment"># 版本号或注释，用于强制更新缓存</span><br><span class="hljs-comment"># v1.0</span><br><br>CACHE:<br><span class="hljs-comment"># 列出需要缓存的资源</span><br>index.html<br>styles/main.css<br>scripts/app.js<br>images/logo.png<br><br>NETWORK<br><span class="hljs-comment"># 列出必须通过网络加载的资源（如果是*表示其他所有资源）</span><br>*<br><br>FALLBACK<br><span class="hljs-comment"># 当网络请求失败时的替代资源（格式：请求资源路径 空格 替代资源路径）</span><br>/ /offline.html<br></code></pre></td></tr></table></figure></li></ul><p><strong>？</strong>CACHE下罗列的文件路径是</p><blockquote><ul><li>如果路径以 <code>/</code> 开头，则它是 <strong>绝对路径</strong>，表示从网站根目录开始。</li><li>如果路径不以 <code>/</code> 开头，那么它是 <strong>相对路径</strong>，表示相对于 <code>manifest</code> 文件的路径。</li></ul></blockquote><ul><li><p><strong>2、在 HTML 中引用 Manifest</strong></p><p>为了启用应用缓存，需要在 HTML 文件的 <code>&lt;html&gt;</code> 标签上添加 <code>manifest</code> 属性，指向上述 manifest 文件。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">manifest</span>=<span class="hljs-string">&quot;demo.appcache&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure></li></ul><h2 id="四、缓存更新机制"><a href="#四、缓存更新机制" class="headerlink" title="四、缓存更新机制"></a>四、缓存更新机制</h2><ul><li><strong>版本管理</strong>：由于 manifest 文件是纯文本格式，所以通常在文件中添加注释或版本号来控制缓存更新。每次当 manifest 文件内容（包括注释）发生变化时，浏览器都会认为缓存需要更新，并重新下载所有资源。</li><li><strong>更新时机</strong>：更新检测通常在页面加载时自动进行，也可以通过 JavaScript 监听相关事件（如 <code>updateready</code>、<code>cached</code>、<code>noupdate</code> 等）来处理缓存更新逻辑。</li></ul><h2 id="五、优缺点"><a href="#五、优缺点" class="headerlink" title="五、优缺点"></a>五、优缺点</h2><ul><li><p><strong>优点</strong></p><p><strong>离线访问</strong>：用户即使在无网络状态下也能访问 Web 应用的基本功能。</p><p><strong>性能提升</strong>：缓存资源可以加快页面加载速度，减少对服务器的请求。</p></li><li><p><strong>缺点和限制</strong></p><p><strong>更新复杂性</strong>：由于浏览器检测缓存更新的机制相对简单，只要 manifest 文件内容有任何变化，就会触发全部资源的重新下载，可能导致更新不够灵活或出现意外的缓存问题。</p><p><strong>调试困难</strong>：在开发过程中，缓存机制有时会导致调试变得复杂，因为即使修改了资源，浏览器可能仍然使用旧的缓存文件。</p><p><strong>细粒度控制不足</strong>：应用缓存对资源的管理方式较为粗粒度，不能针对单个资源进行灵活的缓存控制。</p><p><strong>替代方案出现</strong>：由于上述缺点，W3C 后来推出了更强大、更灵活的 Service Worker 及其 Cache API，能够更精细地控制缓存行为，取代了应用缓存的许多功能。</p></li></ul><h2 id="六、被弃用"><a href="#六、被弃用" class="headerlink" title="六、被弃用"></a>六、被弃用</h2><p>由于设计缺陷和使用上的诸多问题，应用缓存已经被广泛认为是一个过时的技术。目前大部分现代 Web 应用已经转向使用 Service Worker 来实现离线缓存与离线体验。</p><p><strong>未来方向</strong>：Service Worker 提供了更加灵活和精细的离线缓存控制能力，允许开发者编写脚本来决定缓存哪些资源、如何更新缓存，以及在离线时如何响应网络请求，因此成为构建渐进式 Web 应用（PWA）的核心技术之一。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>HTML</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>manifest file</tag>
+      
+      <tag>离线运行</tag>
+      
+      <tag>缓存更新</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LeetCode10：和为K的数组</title>
     <link href="/2025/02/07/LeetCode10/"/>
     <url>/2025/02/07/LeetCode10/</url>

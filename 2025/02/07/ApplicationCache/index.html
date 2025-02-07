@@ -16,29 +16,28 @@
   <meta name="author" content="An">
   <meta name="keywords" content="">
   
-    <meta name="description" content="10.和为K的数组题目给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。 子数组是数组中元素的连续非空序列。 示例 1： 12输入：nums &#x3D; [1,1,1], k &#x3D; 2输出：2  示例 2： 12输入：nums &#x3D; [1,2,3], k &#x3D; 3输出：2  提示：  1 &lt;&#x3D; nums.length &lt;&#x3D; 2 * 104 -1000">
+    <meta name="description" content="应用缓存(Application Cache) 一、需求来源在 HTML5 出现之前，Web 应用主要依赖 Cookie 或服务器端技术来实现部分离线功能，但这两种方式都有明显的局限性（如容量小、同步性差等）。应用缓存旨在解决离线运行问题，使得用户即使在没有网络连接的情况下也能访问预先缓存好的静态资源，提升用户体验。 二、工作原理 清单文件（manifest file） 应用缓存的核心在于一个纯文">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode10：和为K的数组">
-<meta property="og:url" content="http://example.com/2025/02/07/LeetCode10/index.html">
+<meta property="og:title" content="ApplicationCache">
+<meta property="og:url" content="http://example.com/2025/02/07/ApplicationCache/index.html">
 <meta property="og:site_name" content="An&#96;s Blog">
-<meta property="og:description" content="10.和为K的数组题目给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。 子数组是数组中元素的连续非空序列。 示例 1： 12输入：nums &#x3D; [1,1,1], k &#x3D; 2输出：2  示例 2： 12输入：nums &#x3D; [1,2,3], k &#x3D; 3输出：2  提示：  1 &lt;&#x3D; nums.length &lt;&#x3D; 2 * 104 -1000">
+<meta property="og:description" content="应用缓存(Application Cache) 一、需求来源在 HTML5 出现之前，Web 应用主要依赖 Cookie 或服务器端技术来实现部分离线功能，但这两种方式都有明显的局限性（如容量小、同步性差等）。应用缓存旨在解决离线运行问题，使得用户即使在没有网络连接的情况下也能访问预先缓存好的静态资源，提升用户体验。 二、工作原理 清单文件（manifest file） 应用缓存的核心在于一个纯文">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021502005.jpeg">
-<meta property="article:published_time" content="2025-02-07T07:55:25.000Z">
-<meta property="article:modified_time" content="2025-02-07T07:56:33.135Z">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502071629295.png">
+<meta property="article:published_time" content="2025-02-07T09:11:08.000Z">
+<meta property="article:modified_time" content="2025-02-07T09:12:43.533Z">
 <meta property="article:author" content="An">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="题库">
-<meta property="article:tag" content="哈希表">
-<meta property="article:tag" content="前缀和">
+<meta property="article:tag" content="manifest file">
+<meta property="article:tag" content="离线运行">
+<meta property="article:tag" content="缓存更新">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202403021502005.jpeg">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502071629295.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>LeetCode10：和为K的数组 - An`s Blog</title>
+  <title>ApplicationCache - An`s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="LeetCode10：和为K的数组"></span>
+            <span id="subtitle" data-typed-text="ApplicationCache"></span>
           
         </div>
 
@@ -215,7 +214,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-07 15:55" pubdate>
+        <time datetime="2025-02-07 17:11" pubdate>
           2025年2月7日 下午
         </time>
       </span>
@@ -283,84 +282,56 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">LeetCode10：和为K的数组</h1>
+            <h1 id="seo-header">ApplicationCache</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="10-和为K的数组"><a href="#10-和为K的数组" class="headerlink" title="10.和为K的数组"></a>10.和为K的数组</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你统计并返回 <em>该数组中和为 <code>k</code> 的子数组的个数</em> 。</p>
-<p>子数组是数组中元素的连续非空序列。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：nums </span>=<span class="hljs-string"> [1,1,1], k = 2</span><br><span class="hljs-string">输出：2</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：nums </span>=<span class="hljs-string"> [1,2,3], k = 3</span><br><span class="hljs-string">输出：2</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 2 * 104</code></li>
-<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>
-<li><code>-107 &lt;= k &lt;= 107</code></li>
-</ul>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><ul>
-<li><p><strong>子数组是数组中连续的一段元素。</strong></p>
-<p>例如，对于数组 <code>nums = [a, b, c, d]</code>，以下都是子数组：</p>
-<ul>
-<li><code>[a]</code></li>
-<li><code>[a, b]</code></li>
-<li><code>[b, c, d]</code></li>
-<li><code>[c]</code></li>
-</ul>
-<p>注意：子数组要求连续，因此 <code>[a, c]</code> 不是子数组，因为中间缺了 <code>b</code>。</p>
+                <h1 id="应用缓存-Application-Cache"><a href="#应用缓存-Application-Cache" class="headerlink" title="应用缓存(Application Cache)"></a>应用缓存(Application Cache)</h1><p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502071712155.png" srcset="/img/loading.gif" lazyload alt="image-20250207162900227"></p>
+<h2 id="一、需求来源"><a href="#一、需求来源" class="headerlink" title="一、需求来源"></a>一、需求来源</h2><p>在 HTML5 出现之前，Web 应用主要依赖 Cookie 或服务器端技术来实现部分离线功能，但这两种方式都有明显的局限性（如容量小、同步性差等）。应用缓存旨在解决离线运行问题，使得用户即使在没有网络连接的情况下也能访问预先缓存好的静态资源，提升用户体验。</p>
+<h2 id="二、工作原理"><a href="#二、工作原理" class="headerlink" title="二、工作原理"></a>二、工作原理</h2><ul>
+<li><p><strong>清单文件（manifest file）</strong></p>
+<p>应用缓存的核心在于一个纯文本文件，通常以 <code>.appcache</code> 为后缀。这个文件列出了需要缓存的资源，以及一些额外的配置信息（如哪些资源不缓存、离线页面的替代方案等）。</p>
+</li>
+<li><p><strong>缓存机制</strong></p>
+<p>浏览器在加载带有 manifest 属性的 HTML 页面时，会读取清单文件，并根据其中的配置将相应的资源缓存到本地。后续即使网络断开，浏览器也会从缓存中加载这些资源。</p>
 </li>
 </ul>
-<h3 id="一、暴力枚举"><a href="#一、暴力枚举" class="headerlink" title="一、暴力枚举"></a><strong>一、暴力枚举</strong></h3><p>由于子数组的长度不确定，无法确定是由几个数字求得的K，采用暴力枚举，尝试所有可能。需要确定起点和终点：</p>
-<p><strong>外层循环确定子数组的起点</strong>：假设数组的长度为 n，我们可以让起点 <code>i</code> 从 0 到 n-1 遍历。</p>
-<p><strong>内层循环确定子数组的结束点</strong>：<br>对于固定起点 <code>i</code>，结束点 <code>j</code> 从 <code>i</code> 开始遍历到 n-1。这样可以确保子数组是连续的，即子数组为 <code>nums[i]</code> 到 <code>nums[j]</code>（包含两端）。</p>
-<p><strong>计算子数组的和</strong>：<br>对于每个确定的起点 <code>i</code> 和结束点 <code>j</code>，计算子数组 <code>[nums[i], nums[i+1], ..., nums[j]]</code> 的和，并检查是否等于 k。如果等于 k，则计数器加 1。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">List</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-comment"># 暴力枚举</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">subarraySum</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], k: <span class="hljs-built_in">int</span></span>):<br>        length = <span class="hljs-built_in">len</span>(nums)<br>        count = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(length):<br>            cur_sum = <span class="hljs-number">0</span><br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i,length):<br>                cur_sum += nums[j]  <span class="hljs-comment"># 第一个和是0加上起点</span><br>                <span class="hljs-keyword">if</span> cur_sum == k:<br>                    count += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> count<br></code></pre></td></tr></table></figure>
-
-<h3 id="二、前缀和-哈希表（优化）"><a href="#二、前缀和-哈希表（优化）" class="headerlink" title="二、前缀和+哈希表（优化）"></a>二、前缀和+哈希表（优化）</h3><p>子数组的和可以通过两个前缀和的差来计算。这是一种常见的算法技巧：如果我们维护每个索引的前缀和，那么对于每个索引，可以通过哈希表快速查找之前存在的前缀和（即当前前缀和减去k）。这种方法将时间复杂度从O(n^2)降低到O(n)。</p>
-<ul>
-<li><p><strong>思路概述</strong></p>
-<ol>
-<li><p><strong>前缀和</strong><br>定义 <code>prefix[i]</code> 为从数组开始到第 i 个元素（包含 i）的和。</p>
-<p>对于任意子数组 <code>nums[i..j]</code>，其和为：<code>sum(i,j)=prefix[j]-prefix[i-1]</code>。</p>
-<p>特别地，令 <code>prefix[-1] = 0</code>。</p>
-</li>
-<li><p><strong>转换问题</strong><br>若要求 <code>prefix[j] - prefix[i-1] = k</code>，则可以转换为：<code>prefix(i-1)=prefix[j]-k</code>。</p>
-<p>也就是说，当遍历到第 <code>j</code> 个元素时，如果之前存在某个前缀和等于 <code>prefix[j] - k</code>，则从该位置之后到 <code>j</code> 的子数组之和为 <code>k</code>。</p>
-</li>
-<li><p><strong>使用哈希表记录前缀和出现次数</strong></p>
-<ul>
-<li>初始化哈希表（例如 Python 中的字典），令 <code>prefix_count[0] = 1</code>，表示空前缀和 0 出现一次。</li>
-<li>遍历数组，累计前缀和 <code>prefix_sum</code>，并检查 <code>prefix_sum - k</code> 是否在哈希表中出现过，若出现过，则将对应的次数累加到结果中。</li>
-<li>最后更新哈希表中当前前缀和 <code>prefix_sum</code> 的出现次数。</li>
+<h2 id="三、使用方法"><a href="#三、使用方法" class="headerlink" title="三、使用方法"></a>三、使用方法</h2><ul>
+<li><p><strong>1、创建Manifest文件</strong></p>
+<p>纯文本文件，通常以 <code>.appcache</code> 为后缀</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">CACHE MANIFEST <br><span class="hljs-comment"># 版本号或注释，用于强制更新缓存</span><br><span class="hljs-comment"># v1.0</span><br><br>CACHE:<br><span class="hljs-comment"># 列出需要缓存的资源</span><br>index.html<br>styles/main.css<br>scripts/app.js<br>images/logo.png<br><br>NETWORK<br><span class="hljs-comment"># 列出必须通过网络加载的资源（如果是*表示其他所有资源）</span><br>*<br><br>FALLBACK<br><span class="hljs-comment"># 当网络请求失败时的替代资源（格式：请求资源路径 空格 替代资源路径）</span><br>/ /offline.html<br></code></pre></td></tr></table></figure></li>
 </ul>
-</li>
-</ol>
-<p>这样可以将时间复杂度降低到 O(n)。</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">subarraySum</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], k: <span class="hljs-built_in">int</span></span>):<br>        prefix_sum = <span class="hljs-number">0</span><br>        prefix_count = &#123;<span class="hljs-number">0</span>:<span class="hljs-number">1</span>&#125; <span class="hljs-comment"># 哈希表：键为前缀和，值为出现的次数，初始时 0 出现 1 次</span><br>        count = <span class="hljs-number">0</span><br>        <br>        <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> nums:<br>            prefix_sum += num<br>            <span class="hljs-keyword">if</span> prefix_sum - k <span class="hljs-keyword">in</span> prefix_count:<br>                count += prefix_count[prefix_sum-k]<br>            prefix_count[prefix_sum] = prefix_count.get(prefix_sum,<span class="hljs-number">0</span>) + <span class="hljs-number">1</span><br>            <br>        <span class="hljs-keyword">return</span> count<br></code></pre></td></tr></table></figure>
-
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
-<li><p>子数组是否考虑去重？</p>
+<p><strong>？</strong>CACHE下罗列的文件路径是</p>
 <blockquote>
-<p>由题目给的示例，不需要。只要和为k都计入。</p>
-<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：nums </span>=<span class="hljs-string"> [1,1,1], k = 2</span><br><span class="hljs-string">输出：2</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>如果路径以 <code>/</code> 开头，则它是 <strong>绝对路径</strong>，表示从网站根目录开始。</li>
+<li>如果路径不以 <code>/</code> 开头，那么它是 <strong>相对路径</strong>，表示相对于 <code>manifest</code> 文件的路径。</li>
+</ul>
 </blockquote>
+<ul>
+<li><p><strong>2、在 HTML 中引用 Manifest</strong></p>
+<p>为了启用应用缓存，需要在 HTML 文件的 <code>&lt;html&gt;</code> 标签上添加 <code>manifest</code> 属性，指向上述 manifest 文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">manifest</span>=<span class="hljs-string">&quot;demo.appcache&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="四、缓存更新机制"><a href="#四、缓存更新机制" class="headerlink" title="四、缓存更新机制"></a>四、缓存更新机制</h2><ul>
+<li><strong>版本管理</strong>：由于 manifest 文件是纯文本格式，所以通常在文件中添加注释或版本号来控制缓存更新。每次当 manifest 文件内容（包括注释）发生变化时，浏览器都会认为缓存需要更新，并重新下载所有资源。</li>
+<li><strong>更新时机</strong>：更新检测通常在页面加载时自动进行，也可以通过 JavaScript 监听相关事件（如 <code>updateready</code>、<code>cached</code>、<code>noupdate</code> 等）来处理缓存更新逻辑。</li>
+</ul>
+<h2 id="五、优缺点"><a href="#五、优缺点" class="headerlink" title="五、优缺点"></a>五、优缺点</h2><ul>
+<li><p><strong>优点</strong></p>
+<p><strong>离线访问</strong>：用户即使在无网络状态下也能访问 Web 应用的基本功能。</p>
+<p><strong>性能提升</strong>：缓存资源可以加快页面加载速度，减少对服务器的请求。</p>
 </li>
-<li><p>prefix_count字典的作用？</p>
-<blockquote>
-<p>用于记录遍历数组过程中，每个前缀和出现的次数。</p>
-<p>因为在遍历到索引<code>j</code>时，计算当前的前缀和<code>prefix_sum</code>，再从字典查找是否存在<code>prefix_sum - k</code>，字典中存储了该前缀和出现的次数，就可以直接累加到最终的计数中。</p>
-</blockquote>
-</li>
-<li><p>初始化{0:1}的作用</p>
-<p>相当于一个虚拟的起点。因为在开始累加前，前缀和必定是 0。只有在累加过程中，当前缀和等于 k 时，通过 <code>prefix_sum - k = 0</code> 查找，才能正确计数那些从数组起始开始的满足条件的子数组。</p>
+<li><p><strong>缺点和限制</strong></p>
+<p><strong>更新复杂性</strong>：由于浏览器检测缓存更新的机制相对简单，只要 manifest 文件内容有任何变化，就会触发全部资源的重新下载，可能导致更新不够灵活或出现意外的缓存问题。</p>
+<p><strong>调试困难</strong>：在开发过程中，缓存机制有时会导致调试变得复杂，因为即使修改了资源，浏览器可能仍然使用旧的缓存文件。</p>
+<p><strong>细粒度控制不足</strong>：应用缓存对资源的管理方式较为粗粒度，不能针对单个资源进行灵活的缓存控制。</p>
+<p><strong>替代方案出现</strong>：由于上述缺点，W3C 后来推出了更强大、更灵活的 Service Worker 及其 Cache API，能够更精细地控制缓存行为，取代了应用缓存的许多功能。</p>
 </li>
 </ul>
+<h2 id="六、被弃用"><a href="#六、被弃用" class="headerlink" title="六、被弃用"></a>六、被弃用</h2><p>由于设计缺陷和使用上的诸多问题，应用缓存已经被广泛认为是一个过时的技术。目前大部分现代 Web 应用已经转向使用 Service Worker 来实现离线缓存与离线体验。</p>
+<p><strong>未来方向</strong>：Service Worker 提供了更加灵活和精细的离线缓存控制能力，允许开发者编写脚本来决定缓存哪些资源、如何更新缓存，以及在离线时如何响应网络请求，因此成为构建渐进式 Web 应用（PWA）的核心技术之一。</p>
 
                 
               </div>
@@ -379,7 +350,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/LeetCode/" class="category-chain-item">LeetCode</a>
+  <a href="/categories/HTML/" class="category-chain-item">HTML</a>
   
   
 
@@ -394,13 +365,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Python/" class="print-no-link">#Python</a>
+        <a href="/tags/manifest-file/" class="print-no-link">#manifest file</a>
       
-        <a href="/tags/%E9%A2%98%E5%BA%93/" class="print-no-link">#题库</a>
+        <a href="/tags/%E7%A6%BB%E7%BA%BF%E8%BF%90%E8%A1%8C/" class="print-no-link">#离线运行</a>
       
-        <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" class="print-no-link">#哈希表</a>
-      
-        <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/" class="print-no-link">#前缀和</a>
+        <a href="/tags/%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0/" class="print-no-link">#缓存更新</a>
       
     </div>
   
@@ -414,18 +383,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/07/ApplicationCache/" title="ApplicationCache">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ApplicationCache</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/06/WebWorker/" title="WebWorker">
-                        <span class="hidden-mobile">WebWorker</span>
+                      <a href="/2025/02/07/LeetCode10/" title="LeetCode10：和为K的数组">
+                        <span class="hidden-mobile">LeetCode10：和为K的数组</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
