@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202402281732273.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="An">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Service Worker 一、概述Service Worker 是一种在浏览器后台运行的脚本，与网页（主线程）完全分离。运行在独立线程中，不直接操作 DOM，而是通过事件机制与页面进行通信。它要求在 HTTPS 环境下运行（或 localhost 环境下开发）。 其主要作用包括： 拦截网络请求：通过监听 fetch 事件，Service Worker 能够捕获页面的网络请求，返回缓存内容或自定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ServiceWorker">
+<meta property="og:url" content="http://example.com/2025/02/07/ServiceWorker/index.html">
+<meta property="og:site_name" content="An&#96;s Blog">
+<meta property="og:description" content="Service Worker 一、概述Service Worker 是一种在浏览器后台运行的脚本，与网页（主线程）完全分离。运行在独立线程中，不直接操作 DOM，而是通过事件机制与页面进行通信。它要求在 HTTPS 环境下运行（或 localhost 环境下开发）。 其主要作用包括： 拦截网络请求：通过监听 fetch 事件，Service Worker 能够捕获页面的网络请求，返回缓存内容或自定">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502071740522.png">
+<meta property="article:published_time" content="2025-02-07T14:18:41.000Z">
+<meta property="article:modified_time" content="2025-02-07T14:26:07.050Z">
+<meta property="article:author" content="An">
+<meta property="article:tag" content="资源缓存">
+<meta property="article:tag" content="安装事件">
+<meta property="article:tag" content="激活事件">
+<meta property="article:tag" content="拦截网络请求">
+<meta property="article:tag" content="后台同步">
+<meta property="article:tag" content="推送通知">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502071740522.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ServiceWorker - An`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>An</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ServiceWorker"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-07 22:18" pubdate>
+          2025年2月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ServiceWorker</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h1><p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502072222038.png" srcset="/img/loading.gif" lazyload alt="image-20250207174059456"></p>
+<h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>Service Worker 是一种在浏览器后台运行的脚本，与网页（主线程）完全分离。运行在独立线程中，不直接操作 DOM，而是通过事件机制与页面进行通信。它要求在 HTTPS 环境下运行（或 localhost 环境下开发）。</p>
+<p>其主要作用包括：</p>
+<p><strong>拦截网络请求</strong>：通过监听 <code>fetch</code> 事件，Service Worker 能够捕获页面的网络请求，返回缓存内容或自定义响应。</p>
+<p><strong>离线支持</strong>：通过缓存静态资源，实现网络断线时依然可用的离线体验。</p>
+<p><strong>后台任务</strong>：支持后台同步（Background Sync）和推送通知（Push Notifications），即使页面关闭也可处理一些任务。</p>
+<h2 id="二、Service-Worker-注册"><a href="#二、Service-Worker-注册" class="headerlink" title="二、Service Worker 注册"></a>二、Service Worker 注册</h2><p>在使用 Service Worker 之前，需要在网页的主线程中注册它。</p>
+<p>通常的注册代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;serviceWorker&#x27;</span> <span class="hljs-keyword">in</span> navigator)&#123;<br>    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;load&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>        navigator.<span class="hljs-property">serviceWorker</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;../JS/16_sw.js&#x27;</span>)<br>            .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">registration</span>)&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Service Worker 注册成功，作用域：&#x27;</span>,registration.<span class="hljs-property">scope</span>);<br>        &#125;)<br>            .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>)&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Service Worker 注册失败：&#x27;</span>,error);<br>        &#125;)<br><br>    &#125;)<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;当前浏览器不支持 Service Worker。&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>说明：</strong></p>
+<ul>
+<li><p>检查 <code>serviceWorker</code> 是否存在于 <code>navigator</code> 对象中，确保浏览器支持该特性。</p>
+</li>
+<li><p>监听 <code>load</code> 事件确保页面资源加载完毕后再注册。</p>
+</li>
+<li><p><code>registration.scope</code> 表示 Service Worker 控制的范围。</p>
+</li>
+</ul>
+<p><strong>?</strong> navigator是什么</p>
+<blockquote>
+<p> 是 <strong>JavaScript</strong> 中的一个全局对象，提供了关于浏览器和操作系统的有用信息。它通常用于访问浏览器的状态、用户的设备信息以及其他与浏览器相关的功能。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pf">navigator.<span class="hljs-keyword">user</span>Agent  <span class="hljs-comment"># 返回一个字符串，包含了浏览器的信息，如浏览器类型、版本、操作系统等</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">navigator.platform <span class="hljs-meta">#  返回浏览器所在操作系统的名称。常见的返回值包括 <span class="hljs-string">&quot;Win32&quot;</span>, <span class="hljs-string">&quot;Linux x86_64&quot;</span>, <span class="hljs-string">&quot;MacIntel&quot;</span> 等。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pf">navigator.<span class="hljs-keyword">on</span>Line <span class="hljs-comment"># 返回一个布尔值，表示浏览器是否处于在线状态（即是否连接到互联网）</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">navigator.language # 返回浏览器的首选语言设置。通常返回类似 <span class="hljs-keyword">en</span>-<span class="hljs-keyword">US</span>、zh-CN 这样的语言标识符。<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">navigator.geolocation <span class="hljs-meta"># 是一个对象，提供定位服务。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">navigator.connection <span class="hljs-meta"># 提供网络连接的详细信息，如网络类型（Wi-Fi、4G等）和带宽。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">navigator.vendor <span class="hljs-meta"># 返回浏览器的供应商名，如 <span class="hljs-string">&quot;Google Inc.&quot;</span>、<span class="hljs-string">&quot;Apple Computer, Inc.&quot;</span> 等。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">navigator<span class="hljs-selector-class">.cookieEnabled</span> / navigator<span class="hljs-selector-class">.plugins</span> / navigator<span class="hljs-selector-class">.deviceMemory</span>...<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="三、Service-Worker-文件（sw-js）的代码示例"><a href="#三、Service-Worker-文件（sw-js）的代码示例" class="headerlink" title="三、Service Worker 文件（sw.js）的代码示例"></a>三、Service Worker 文件（sw.js）的代码示例</h2><h3 id="①-定义缓存名称和缓存资源列表"><a href="#①-定义缓存名称和缓存资源列表" class="headerlink" title="① 定义缓存名称和缓存资源列表"></a>① 定义缓存名称和缓存资源列表</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk">const CACHE_NAME = <span class="hljs-string">&#x27;cache-v1&#x27;</span>;<br>const urlsToCache = [<br>    <span class="hljs-string">&#x27;/&#x27;</span>,<br>    <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;/index.html&#x27;</span>,<br>    <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;/styles/main.css&#x27;</span>,<br>    <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;/scripts/main.js&#x27;</span>,<br>    <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;/images/logo.png&#x27;</span><br>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="②-安装事件-install"><a href="#②-安装事件-install" class="headerlink" title="② 安装事件 install"></a>② 安装事件 install</h3><p>安装阶段，会预缓存一些必要的资源。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript">self.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;install&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;service worker installing&#x27;</span>);<br>    event.<span class="hljs-title function_">waitUntil</span>(<br>        caches.<span class="hljs-title function_">open</span>(<span class="hljs-variable constant_">CACHE_NAME</span>)<br>        .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">cache</span>)&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;打开缓存，准备缓存资源&#x27;</span>);<br>            <span class="hljs-keyword">return</span> cache.<span class="hljs-title function_">addAll</span>(urlsToCache) <span class="hljs-comment">// 将资源添加到缓存中</span><br>        &#125;)<br>    )<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>**?**为什么要加上event.waitUntil</p>
+<blockquote>
+<p>默认情况下，Service Worker 的事件处理函数是 <strong>同步执行</strong> 的。如果直接把异步操作（比如缓存文件）放在事件处理函数中，事件处理器会继续执行，并且很快结束，而异步操作可能还没有完成。so，为了确保事件处理函数等待异步操作完成后才结束，保证了操作的完整性。</p>
+</blockquote>
+<p><strong>？</strong>caches是什么</p>
+<blockquote>
+<p> 是 <strong>Service Worker API</strong> 中的一个全局对象，<code>caches</code> 对象提供了几种常用的操作方法，比如：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">caches.<span class="hljs-built_in">open</span>(cacheName) <span class="hljs-comment"># 打开一个缓存，如果缓存不存在，则会创建一个新的缓存。返回一个 Promise，该 Promise 成功时会返回一个 Cache 对象。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vbscript">caches.match(<span class="hljs-built_in">request</span>) # 查找缓存中是否已经有与给定请求（<span class="hljs-built_in">request</span>）匹配的响应。如果找到，会返回一个 <span class="hljs-built_in">Response</span> 对象。<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">caches.<span class="hljs-keyword">delete</span>(cacheName) <span class="hljs-comment"># 删除指定名称的缓存。返回一个 Promise，表示删除操作的结果。</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">caches.has(cacheName) # 检查指定的缓存是否存在。返回一个 Promise，如果存在，Promise 会返回 <span class="hljs-literal">true</span>，否则返回 <span class="hljs-literal">false</span>。<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="③-激活事件-activate"><a href="#③-激活事件-activate" class="headerlink" title="③ 激活事件 activate"></a>③ 激活事件 activate</h3><p>激活阶段通常用于清理旧版本缓存，确保客户端使用最新的资源。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript">self.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;activate&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;service worker activating&#x27;</span>);<br>    event.<span class="hljs-title function_">waitUntil</span>(<br>        caches.<span class="hljs-title function_">keys</span>().<span class="hljs-title function_">then</span>(<br>           <span class="hljs-keyword">function</span>(<span class="hljs-params">cacheNames</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(<br>                cacheNames.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">cacheName</span>)&#123;<br>                    <span class="hljs-keyword">if</span>(cacheName !== <span class="hljs-variable constant_">CACHE_NAME</span>)&#123;<br>                        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;删除旧缓存：&#x27;</span>,cacheName);<br>                        <span class="hljs-keyword">return</span> caches.<span class="hljs-title function_">delete</span>(cacheName); <br>                    &#125;<br>                &#125;)<br>            )<br>           &#125;<br>        )<br>    )<br>    <br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="④-拦截网络请求事件-fetch"><a href="#④-拦截网络请求事件-fetch" class="headerlink" title="④ 拦截网络请求事件 fetch"></a>④ 拦截网络请求事件 fetch</h3><p>通过监听 <code>fetch</code> 事件，Service Worker 可以拦截所有网络请求，并根据缓存情况返回相应资源，从而实现离线支持。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript">self.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;fetch&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;拦截请求：&quot;</span>, event.<span class="hljs-property">request</span>.<span class="hljs-property">url</span>);<br>  event.<span class="hljs-title function_">respondWith</span>( <span class="hljs-comment">//让 Service Worker 对拦截的请求做出响应。</span><br>    caches<br>      .<span class="hljs-title function_">match</span>(event.<span class="hljs-property">request</span>) <span class="hljs-comment">// 检查请求是否已在缓存中。</span><br>      .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;<br>        <span class="hljs-keyword">if</span> (response) &#123;<br>          <span class="hljs-keyword">return</span> response;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_">fetch</span>(event.<span class="hljs-property">request</span>).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">netResponse</span>) &#123;<br>          <span class="hljs-comment">// 可选：动态缓存新的资源</span><br>          <span class="hljs-keyword">return</span> caches.<span class="hljs-title function_">open</span>(<span class="hljs-variable constant_">CACHE_NAME</span>).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">cache</span>) &#123;<br>            <span class="hljs-comment">// 克隆响应后缓存，注意 response 只能使用一次</span><br>            cache.<span class="hljs-title function_">put</span>(event.<span class="hljs-property">request</span>, netResponse.<span class="hljs-title function_">clone</span>());<br>            <span class="hljs-keyword">return</span> netResponse;<br>          &#125;);<br>        &#125;);<br>      &#125;)<br>      .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err)<br>      &#125;)<br>  );<br>&#125;);<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>?</strong> response 只能使用一次什么意思</p>
+<blockquote>
+<p>在处理 HTTP 请求时，服务器的响应是一次性的。例如，收到一个 HTTP 响应后，你可以读取响应体、状态码等信息，但是如果你已经读取过响应体内容（比如通过 <code>.json()</code> 或 <code>.text()</code> 方法），这个响应体内容就不能再读取一次。第二次访问会抛出错误或返回 <code>null</code>，因为响应体已经被消耗了。这是因为大多数响应对象（比如 HTTP 响应）是 <strong>流式的</strong>，即数据是在网络传输过程中逐步到达的。读取数据时就会把它“消耗”掉，后续就无法再访问这些已经消耗的数据。为了避免重复读取，可以在获取数据时尽早存储一份副本。</p>
+</blockquote>
+<h3 id="⑤-后台同步-sync"><a href="#⑤-后台同步-sync" class="headerlink" title="⑤ 后台同步 sync"></a>⑤ 后台同步 sync</h3><p>后台同步允许在网络恢复时执行延迟的任务。使用示例如下（需浏览器支持 Sync API）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript">self.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;sync&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">tag</span> === <span class="hljs-string">&quot;sync-tag&quot;</span>) &#123;<br>    event.<span class="hljs-title function_">waitUntil</span>(<br>      <span class="hljs-comment">// 这里放置需要在后台同步的任务，例如把离线保存的数据发送到服务器</span><br>      <span class="hljs-title function_">sendDataToServer</span>()<br>    );<br>  &#125;<br>&#125;);<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sendDataToServer</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 模拟异步任务，如 fetch 请求</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/sync&#x27;</span>, &#123; <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(&#123; <span class="hljs-comment">/* data */</span> &#125;) &#125;);<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>？</strong> event.tag 是什么</p>
+<blockquote>
+<p>用来识别事件的类型或者标识某个特定的同步任务。后台同步允许在用户的网络连接恢复时，浏览器通过 Service Worker 自动发送请求来同步未完成的操作。例如，用户在离线时提交了一个表单，Service Worker 会将此请求保存并在恢复连接后进行同步。sync 事件会带有一个 tag，可以用它来区分不同的同步任务。</p>
+</blockquote>
+<h3 id="⑥-推送通知-push"><a href="#⑥-推送通知-push" class="headerlink" title="⑥ 推送通知 push"></a>⑥ 推送通知 push</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript">self.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;push&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;接收到推送消息&#x27;</span>);<br>    <span class="hljs-keyword">const</span> data = event.<span class="hljs-property">data</span> ? event.<span class="hljs-property">data</span>.<span class="hljs-title function_">json</span>() : &#123;&#125;<br>    <span class="hljs-keyword">const</span> title = data.<span class="hljs-property">title</span> || <span class="hljs-string">&#x27;默认标题：安安第一棒！&#x27;</span><br>    <span class="hljs-keyword">const</span> options = &#123;<br>        <span class="hljs-attr">body</span>: data.<span class="hljs-property">body</span> || <span class="hljs-string">&#x27;默认消息&#x27;</span>,<br>        <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;../Images/cat.jpg&#x27;</span><br>    &#125;<br><br>    event.<span class="hljs-title function_">waitUntil</span>(<br>        self.<span class="hljs-property">registration</span>.<span class="hljs-title function_">showNotification</span>(title,options)<br>    )<br>    <br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="四、调试与注意事项"><a href="#四、调试与注意事项" class="headerlink" title="四、调试与注意事项"></a>四、调试与注意事项</h2><p><strong>调试</strong>：<br>现代浏览器（如 Chrome 和 Firefox）在开发者工具中提供了专门的 Service Worker 调试面板，可以查看注册情况、日志和缓存内容。</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202502072222956.png" srcset="/img/loading.gif" lazyload alt="image-20250207221719935"></p>
+<p><strong>HTTPS 环境</strong>：<br>Service Worker 仅在 HTTPS 环境下工作（或在 localhost 开发环境中），以确保安全性。</p>
+<p><strong>注册</strong>：在主页面通过 <code>navigator.serviceWorker.register()</code> 注册 Service Worker 文件。</p>
+<p><strong>生命周期</strong>：包括 <code>install</code>（安装、预缓存资源）、<code>activate</code>（激活、清理旧缓存）以及 <code>fetch</code>（拦截网络请求）等事件。Service Worker 的安装和激活可能需要一些时间，更新机制（如 <code>skipWaiting()</code> 和 <code>clients.claim()</code>）可以帮助加速新版本的激活，但也需要谨慎使用。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/HTML/" class="category-chain-item">HTML</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%B5%84%E6%BA%90%E7%BC%93%E5%AD%98/" class="print-no-link">#资源缓存</a>
+      
+        <a href="/tags/%E5%AE%89%E8%A3%85%E4%BA%8B%E4%BB%B6/" class="print-no-link">#安装事件</a>
+      
+        <a href="/tags/%E6%BF%80%E6%B4%BB%E4%BA%8B%E4%BB%B6/" class="print-no-link">#激活事件</a>
+      
+        <a href="/tags/%E6%8B%A6%E6%88%AA%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" class="print-no-link">#拦截网络请求</a>
+      
+        <a href="/tags/%E5%90%8E%E5%8F%B0%E5%90%8C%E6%AD%A5/" class="print-no-link">#后台同步</a>
+      
+        <a href="/tags/%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/" class="print-no-link">#推送通知</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/07/ApplicationCache/" title="ApplicationCache">
+                        <span class="hidden-mobile">ApplicationCache</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://oyoanan.github.io/" target="_blank" rel="nofollow noopener"><span>AN</span></a> <i class="iconfont icon-love"></i> <a href="https://d4n-sec.github.io/#/" target="_blank" rel="nofollow noopener"><span>DM</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
