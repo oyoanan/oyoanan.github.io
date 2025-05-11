@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>JavaScript算法-最长连续序列</title>
+    <link href="/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/"/>
+    <url>/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505112328896.jpg" alt="img"></p><h1 id="3-最长连续序列"><a href="#3-最长连续序列" class="headerlink" title="3.最长连续序列"></a>3.最长连续序列</h1><blockquote><p>给定一个未排序的整数数组 <code>nums</code> ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。请你设计并实现时间复杂度为 <code>O(n)</code> 的算法解决此问题。</p></blockquote><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>它是ES6引入的新数据结构，用于存储一组唯一的值。</p><p>本质是用哈希表实现的，用于去重和快速查找。</p><p><strong>？和Map的区别</strong></p><ul><li>键的类型：没有区别，都是任意类型的值</li><li>是否有序：没有区别，都有插入顺序</li><li>是否唯一：<ul><li>Set自动去重</li><li>Map允许相同值不同键</li></ul></li></ul><p><strong>？解题思路</strong></p><p>因为要找出最长的连续子序列，首先需要<strong>去重</strong>，因此使用Set对原数组进行处理。</p><p>遍历Set集合中的整数，这里很关键的是需要<strong>确认子序列的起点整数</strong>（即上一个整数不存在Set里，那么它就是起点整数），如果是起点，则开始使用while遍历是否存在下一个整数，更新当前最大整数和最大子序列长度。</p><blockquote><p>判断整数是否存在于set：使用<code>set.has(num)</code></p></blockquote><p>如此遍历Set集合，根据起点找到最长的子序列，并更新最大子序列长度，就能得到最后的答案！</p><h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">number[]</span>&#125; <span class="hljs-variable">nums</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> &#123;<span class="hljs-type">number</span>&#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> longestConsecutive = <span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) &#123;<br>    <span class="hljs-keyword">const</span> mySet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(nums)<br>    <span class="hljs-keyword">let</span> maxLen = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">of</span> mySet) &#123;<br>        <span class="hljs-keyword">if</span> (!mySet.<span class="hljs-title function_">has</span>(num-<span class="hljs-number">1</span>))&#123;<br>            <span class="hljs-keyword">let</span> curNum = num<br>            <span class="hljs-keyword">let</span> length = <span class="hljs-number">1</span><br>            <span class="hljs-keyword">while</span> (mySet.<span class="hljs-title function_">has</span>(curNum+<span class="hljs-number">1</span>)) &#123;<br>                curNum += <span class="hljs-number">1</span><br>                length += <span class="hljs-number">1</span><br>            &#125;<br>            maxLen = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(maxLen,length)<br>        &#125;<br>        <br>    &#125;<br>    <span class="hljs-keyword">return</span> maxLen<br><br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>哈希表</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaScript算法-字母异位词分组</title>
     <link href="/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/"/>
     <url>/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/</url>
@@ -177,9 +202,9 @@
     
     <tags>
       
-      <tag>生命周期</tag>
-      
       <tag>组件通信</tag>
+      
+      <tag>生命周期</tag>
       
       <tag>Router路由</tag>
       
@@ -210,13 +235,13 @@
     
     <tags>
       
-      <tag>组件通信</tag>
-      
       <tag>MVVM</tag>
       
       <tag>响应式数据</tag>
       
       <tag>模版编译</tag>
+      
+      <tag>组件通信</tag>
       
       <tag>computed</tag>
       
