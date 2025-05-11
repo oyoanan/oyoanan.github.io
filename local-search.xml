@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>JavaScript算法-字母异位词分组</title>
+    <link href="/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/"/>
+    <url>/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505112239248.png" alt="image-20250511223901954"></p><h1 id="2-字母异位词分组"><a href="#2-字母异位词分组" class="headerlink" title="2.字母异位词分组"></a>2.字母异位词分组</h1><blockquote><p>给你一个字符串数组，请你将 <strong>字母异位词</strong> 组合在一起。可以按任意顺序返回结果列表。</p><p><strong>字母异位词</strong> 是由重新排列源单词的所有字母得到的一个新单词。</p></blockquote><h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>字母异位词的共同点是它包括的字母是相同的，将字母进行排序后得到的字符串是相同的。</p><p>因此，考虑<strong>将排序后的字符串作为键</strong>，值就是所有对应的异位词。</p><p>使用for循环遍历每一个字符串，对其字母进行排序，如果键已存在，则将字符串加入键对应的值数组。否则，新建一个键，保存该字符串。</p><h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @param &#123;string[]&#125; strs</span><br><span class="hljs-comment"> * @return &#123;string[][]&#125;</span><br><span class="hljs-comment"> */</span><br>var groupAnagrams = <span class="hljs-title function_">function</span>(strs) &#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-built_in">map</span> = &#123;&#125; <span class="hljs-comment">// 存放分组结果</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-built_in">str</span> of strs)&#123;<br>        <span class="hljs-keyword">const</span> <span class="hljs-built_in">key</span> = <span class="hljs-built_in">str</span>.<span class="hljs-property">trim</span>().<span class="hljs-property">split</span>(<span class="hljs-string">&#x27;&#x27;</span>).<span class="hljs-property">sort</span>().<span class="hljs-property">join</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">map</span>[<span class="hljs-built_in">key</span>])&#123;<br>            <span class="hljs-built_in">map</span>[<span class="hljs-built_in">key</span>] = []<br>        &#125;<br>        <span class="hljs-built_in">map</span>[<span class="hljs-built_in">key</span>].<span class="hljs-property">push</span>(<span class="hljs-built_in">str</span>)<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.<span class="hljs-property">values</span>(<span class="hljs-built_in">map</span>)<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>哈希表</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaScript算法-两数之和</title>
     <link href="/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
     <url>/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
@@ -152,9 +177,9 @@
     
     <tags>
       
-      <tag>组件通信</tag>
-      
       <tag>生命周期</tag>
+      
+      <tag>组件通信</tag>
       
       <tag>Router路由</tag>
       
@@ -185,13 +210,13 @@
     
     <tags>
       
+      <tag>组件通信</tag>
+      
       <tag>MVVM</tag>
       
       <tag>响应式数据</tag>
       
       <tag>模版编译</tag>
-      
-      <tag>组件通信</tag>
       
       <tag>computed</tag>
       
