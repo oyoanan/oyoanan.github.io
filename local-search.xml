@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>JavaScript算法-两数之和</title>
+    <link href="/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <url>/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505112134048.jpg" alt="img"></p><h1 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1.两数之和"></a>1.两数之和</h1><blockquote><p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p><p>你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。</p><p>你可以按任意顺序返回答案。</p></blockquote><h2 id="哈希表（对象）"><a href="#哈希表（对象）" class="headerlink" title="哈希表（对象）"></a>哈希表（对象）</h2><p>哈希表，英文名Hash Table，也叫做散列表。</p><p>它是以<strong>键值对形式</strong>存储数据的数据结构。是数组的扩展，利用了<strong>数组</strong>根据下标访问数据的特性。</p><p>核心原理是使用<strong>哈希函数</strong>(Hash Function)，将键转为数组的索引，从而快速定位置值。</p><p>JS中的对象{ }就相当于一个哈希表，不过更推荐使用Map类型处理哈希表需求：</p><p><strong>？ Object与Map的区别</strong></p><p>Map是ES6引入的数据结构，为了高效存取键值对优化的哈希表！没有原型链污染问题。</p><blockquote><p>原型链污染：通过修改对象的原型，影响到所有基于这个原型创建的对象，造成安全漏洞。</p><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs abnf">const obj <span class="hljs-operator">=</span> &#123;&#125;<span class="hljs-comment">;</span><br>console.log(obj.toString)<span class="hljs-comment">; // 正常输出 [Function: toString]</span><br><br>obj.__proto__.hacked <span class="hljs-operator">=</span> true<span class="hljs-comment">; // bj.__proto__ 实际上是 Object.prototype；</span><br><br>const another <span class="hljs-operator">=</span> &#123;&#125;<span class="hljs-comment">;</span><br>console.log(another.hacked)<span class="hljs-comment">; // 输出 true！它居然也被污染了</span><br><br></code></pre></td></tr></table></figure></blockquote><ul><li><p>键的类型</p><ul><li>Object的键只能是字符串 或者 Symbol</li><li>Map的键可以是任何类型</li></ul></li><li><p>键的顺序</p><ul><li>Object没有明确顺序</li><li>Map根据插入顺序迭代</li></ul></li><li><p>性能</p><ul><li>Object有原型链影响，比较慢</li><li>Map转为哈希映射优化，更快</li></ul></li></ul><h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight golo"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs golo">/**<br> * <span class="hljs-meta">@param</span> &#123;number[]&#125; nums<br> * <span class="hljs-meta">@param</span> &#123;number&#125; target<br> * <span class="hljs-meta">@return</span> &#123;number[]&#125;<br> */<br><span class="hljs-keyword">var</span> twoSum = <span class="hljs-keyword">function</span>(nums, target) &#123;<br>    const <span class="hljs-keyword">map</span> = &#123;&#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;nums.length;i++)&#123;<br>        const matched = target - nums[i]<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">map</span>.hasOwnProperty(matched))&#123;<br>            <span class="hljs-keyword">return</span> [i,<span class="hljs-keyword">map</span>[matched]]<br>        &#125;<br>        <span class="hljs-keyword">map</span>[nums[i]] = i<br>    &#125;<br>    <span class="hljs-keyword">return</span> []<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>哈希表</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JS今日份练习题3</title>
     <link href="/2025/03/09/JS%E4%BB%8A%E6%97%A5%E4%BB%BD%E7%BB%83%E4%B9%A0%E9%A2%983/"/>
     <url>/2025/03/09/JS%E4%BB%8A%E6%97%A5%E4%BB%BD%E7%BB%83%E4%B9%A0%E9%A2%983/</url>
