@@ -16,26 +16,26 @@
   <meta name="author" content="An">
   <meta name="keywords" content="">
   
-    <meta name="description" content="4.移动零 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。 请注意 ，必须在不复制数组的情况下原地对数组进行操作。  双指针属于一种算法技巧，使用两个变量（指针）来同时在一个数组或者字符串上操作，达到高效解决问题的目的。 在这道题，使用快指针去遍历数组，慢指针负责做非零区域的边界，也就是指向最后一个非零数的下一个位置，准备存放新的非零数。这样的话，">
+    <meta name="description" content="5.盛最多水的容器 给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。 找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。 返回容器可以储存的最大水量。 说明：你不能倾斜容器。  贪心算法总是在当前条件下做出最优选择！ 首先，要知道水的容量由长宽高决定，这里的宽固定了，因此取决于长（木板间">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript算法-移动零">
-<meta property="og:url" content="http://example.com/2025/05/12/JavaScript%E7%AE%97%E6%B3%95-%E7%A7%BB%E5%8A%A8%E9%9B%B6/index.html">
+<meta property="og:title" content="JavaScript算法-盛最多水的容器">
+<meta property="og:url" content="http://example.com/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/index.html">
 <meta property="og:site_name" content="An&#96;s Blog">
-<meta property="og:description" content="4.移动零 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。 请注意 ，必须在不复制数组的情况下原地对数组进行操作。  双指针属于一种算法技巧，使用两个变量（指针）来同时在一个数组或者字符串上操作，达到高效解决问题的目的。 在这道题，使用快指针去遍历数组，慢指针负责做非零区域的边界，也就是指向最后一个非零数的下一个位置，准备存放新的非零数。这样的话，">
+<meta property="og:description" content="5.盛最多水的容器 给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。 找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。 返回容器可以储存的最大水量。 说明：你不能倾斜容器。  贪心算法总是在当前条件下做出最优选择！ 首先，要知道水的容量由长宽高决定，这里的宽固定了，因此取决于长（木板间">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505122340112.png">
-<meta property="article:published_time" content="2025-05-12T15:36:09.000Z">
-<meta property="article:modified_time" content="2025-05-12T15:40:40.782Z">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505132219893.jpg">
+<meta property="article:published_time" content="2025-05-13T14:18:55.000Z">
+<meta property="article:modified_time" content="2025-05-13T14:20:00.396Z">
 <meta property="article:author" content="An">
 <meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505122340112.png">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505132219893.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>JavaScript算法-移动零 - An`s Blog</title>
+  <title>JavaScript算法-盛最多水的容器 - An`s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaScript算法-移动零"></span>
+            <span id="subtitle" data-typed-text="JavaScript算法-盛最多水的容器"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-12 23:36" pubdate>
-          2025年5月12日 晚上
+        <time datetime="2025-05-13 22:18" pubdate>
+          2025年5月13日 晚上
         </time>
       </span>
     
@@ -280,22 +280,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">JavaScript算法-移动零</h1>
+            <h1 id="seo-header">JavaScript算法-盛最多水的容器</h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505122340112.png" srcset="/img/loading.gif" lazyload alt="image-20250512234008685"></p>
-<h1 id="4-移动零"><a href="#4-移动零" class="headerlink" title="4.移动零"></a>4.移动零</h1><blockquote>
-<p>给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
-<p><strong>请注意</strong> ，必须在不复制数组的情况下原地对数组进行操作。</p>
+                <p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505132219893.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h1 id="5-盛最多水的容器"><a href="#5-盛最多水的容器" class="headerlink" title="5.盛最多水的容器"></a>5.盛最多水的容器</h1><blockquote>
+<p>给定一个长度为 <code>n</code> 的整数数组 <code>height</code> 。有 <code>n</code> 条垂线，第 <code>i</code> 条线的两个端点是 <code>(i, 0)</code> 和 <code>(i, height[i])</code> 。</p>
+<p>找出其中的两条线，使得它们与 <code>x</code> 轴共同构成的容器可以容纳最多的水。</p>
+<p>返回容器可以储存的最大水量。</p>
+<p><strong>说明：</strong>你不能倾斜容器。</p>
 </blockquote>
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p>属于一种算法技巧，使用两个变量（指针）来同时在一个数组或者字符串上操作，达到高效解决问题的目的。</p>
-<p>在这道题，使用快指针去遍历数组，慢指针负责做非零区域的边界，也就是指向最后一个非零数的下一个位置，准备存放新的非零数。这样的话，快指针找到了非零的数，就可以直接与慢指针交换数据。还可以使用复制，将快指针找到的非零数据复制给慢指针，最后把慢指针后面的数字都置为0就可以了。</p>
-<p><strong>？ 为什么不能遍历分开存放非零和零的数组</strong></p>
-<p>题目要求不能复制数组！</p>
-<p>双指针在原地操作，不额外申请空间，而且每个元素最多处理一次，效率高！</p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @param &#123;number[]&#125; nums</span><br><span class="hljs-comment"> * @return &#123;void&#125; Do not return anything, modify nums in-place instead.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> <span class="hljs-variable">moveZeroes</span> = <span class="hljs-keyword">function</span>![image-<span class="hljs-number">20250512233957716</span>](C:/Users/An/AppData/Roaming/Typora/typora-<span class="hljs-literal">user</span>-images/image-<span class="hljs-number">20250512233957716</span>.png)(nums) &#123;<br>    let <span class="hljs-literal">left</span> = <span class="hljs-number">0</span><br>    let <span class="hljs-literal">right</span> = <span class="hljs-number">0</span><br>    while(<span class="hljs-literal">right</span> &lt; nums.length)&#123;<br>        if(nums[<span class="hljs-literal">right</span>] !== <span class="hljs-number">0</span>)&#123;<br>            [nums[<span class="hljs-literal">left</span>],nums[<span class="hljs-literal">right</span>]] = [nums[<span class="hljs-literal">right</span>],nums[<span class="hljs-literal">left</span>]]<br>            <span class="hljs-literal">left</span>++<br>        &#125;<br>        <span class="hljs-literal">right</span>++<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums<br>&#125;<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><p>总是在当前条件下做出最优选择！</p>
+<p>首先，要知道水的容量由长宽高决定，这里的宽固定了，因此取决于长（木板间的距离）和高（最短木板的高度)。我们从两端分别设置指针开始，此时的长是最长的！更新当前的水容量，尝试移动短木板所在指针，如此更新水容量，直到双指针相遇。</p>
+<p><strong>？ 为什么是移动短木板的指针呢</strong></p>
+<blockquote>
+<p>水的容量由短木板决定，假设移动长木板的指针，可能下一次的木板更短或者更长，但两种情况导致的水容量只会更少。而移动短木板所在的指针，下一次的水容量会有增加的机会。</p>
+</blockquote>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @param &#123;number[]&#125; height</span><br><span class="hljs-comment"> * @return &#123;number&#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-built_in">var</span> maxArea = function(<span class="hljs-built_in">height</span>) &#123;<br>    <span class="hljs-built_in">let</span> left = <span class="hljs-number">0</span><br>    <span class="hljs-built_in">let</span> right = <span class="hljs-built_in">height</span>.<span class="hljs-built_in">length</span>-<span class="hljs-number">1</span><br>    <span class="hljs-built_in">let</span> <span class="hljs-built_in">max</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> (left &lt; right)&#123;<br>        <span class="hljs-built_in">let</span> x_len = right - left<br>        <span class="hljs-built_in">let</span> y_len = Math.<span class="hljs-built_in">min</span>(<span class="hljs-built_in">height</span>[left],<span class="hljs-built_in">height</span>[right])<br>        <span class="hljs-built_in">let</span> v_water = x_len * y_len<br>        <span class="hljs-built_in">max</span> = Math.<span class="hljs-built_in">max</span>(<span class="hljs-built_in">max</span>,v_water)<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">height</span>[left]&lt;<span class="hljs-built_in">height</span>[right])&#123;<br>            left ++<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            right --<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">return</span> <span class="hljs-built_in">max</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -344,18 +347,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" title="JavaScript算法-盛最多水的容器">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaScript算法-盛最多水的容器</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/" title="JavaScript算法-最长连续序列">
-                        <span class="hidden-mobile">JavaScript算法-最长连续序列</span>
+                      <a href="/2025/05/12/JavaScript%E7%AE%97%E6%B3%95-%E7%A7%BB%E5%8A%A8%E9%9B%B6/" title="JavaScript算法-移动零">
+                        <span class="hidden-mobile">JavaScript算法-移动零</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

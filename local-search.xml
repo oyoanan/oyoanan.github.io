@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>JavaScript算法-盛最多水的容器</title>
+    <link href="/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"/>
+    <url>/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505132219893.jpg" alt="img"></p><h1 id="5-盛最多水的容器"><a href="#5-盛最多水的容器" class="headerlink" title="5.盛最多水的容器"></a>5.盛最多水的容器</h1><blockquote><p>给定一个长度为 <code>n</code> 的整数数组 <code>height</code> 。有 <code>n</code> 条垂线，第 <code>i</code> 条线的两个端点是 <code>(i, 0)</code> 和 <code>(i, height[i])</code> 。</p><p>找出其中的两条线，使得它们与 <code>x</code> 轴共同构成的容器可以容纳最多的水。</p><p>返回容器可以储存的最大水量。</p><p><strong>说明：</strong>你不能倾斜容器。</p></blockquote><h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><p>总是在当前条件下做出最优选择！</p><p>首先，要知道水的容量由长宽高决定，这里的宽固定了，因此取决于长（木板间的距离）和高（最短木板的高度)。我们从两端分别设置指针开始，此时的长是最长的！更新当前的水容量，尝试移动短木板所在指针，如此更新水容量，直到双指针相遇。</p><p><strong>？ 为什么是移动短木板的指针呢</strong></p><blockquote><p>水的容量由短木板决定，假设移动长木板的指针，可能下一次的木板更短或者更长，但两种情况导致的水容量只会更少。而移动短木板所在的指针，下一次的水容量会有增加的机会。</p></blockquote><h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @param &#123;number[]&#125; height</span><br><span class="hljs-comment"> * @return &#123;number&#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-built_in">var</span> maxArea = function(<span class="hljs-built_in">height</span>) &#123;<br>    <span class="hljs-built_in">let</span> left = <span class="hljs-number">0</span><br>    <span class="hljs-built_in">let</span> right = <span class="hljs-built_in">height</span>.<span class="hljs-built_in">length</span>-<span class="hljs-number">1</span><br>    <span class="hljs-built_in">let</span> <span class="hljs-built_in">max</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> (left &lt; right)&#123;<br>        <span class="hljs-built_in">let</span> x_len = right - left<br>        <span class="hljs-built_in">let</span> y_len = Math.<span class="hljs-built_in">min</span>(<span class="hljs-built_in">height</span>[left],<span class="hljs-built_in">height</span>[right])<br>        <span class="hljs-built_in">let</span> v_water = x_len * y_len<br>        <span class="hljs-built_in">max</span> = Math.<span class="hljs-built_in">max</span>(<span class="hljs-built_in">max</span>,v_water)<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">height</span>[left]&lt;<span class="hljs-built_in">height</span>[right])&#123;<br>            left ++<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            right --<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">return</span> <span class="hljs-built_in">max</span><br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>双指针</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaScript算法-移动零</title>
     <link href="/2025/05/12/JavaScript%E7%AE%97%E6%B3%95-%E7%A7%BB%E5%8A%A8%E9%9B%B6/"/>
     <url>/2025/05/12/JavaScript%E7%AE%97%E6%B3%95-%E7%A7%BB%E5%8A%A8%E9%9B%B6/</url>
@@ -227,9 +252,9 @@
     
     <tags>
       
-      <tag>组件通信</tag>
-      
       <tag>生命周期</tag>
+      
+      <tag>组件通信</tag>
       
       <tag>Router路由</tag>
       
@@ -260,13 +285,15 @@
     
     <tags>
       
+      <tag>性能优化</tag>
+      
+      <tag>组件通信</tag>
+      
       <tag>MVVM</tag>
       
       <tag>响应式数据</tag>
       
       <tag>模版编译</tag>
-      
-      <tag>组件通信</tag>
       
       <tag>computed</tag>
       
@@ -293,8 +320,6 @@
       <tag>自定义指令</tag>
       
       <tag>依赖收集</tag>
-      
-      <tag>性能优化</tag>
       
     </tags>
     
@@ -855,11 +880,11 @@
     
     <tags>
       
-      <tag>性能优化</tag>
-      
       <tag>WebWorker</tag>
       
       <tag>消息传递</tag>
+      
+      <tag>性能优化</tag>
       
       <tag>独立线程</tag>
       
