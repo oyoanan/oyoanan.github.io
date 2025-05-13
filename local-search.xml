@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>JavaScript算法-三数之和</title>
+    <link href="/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <url>/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505132248189.png" alt="image-20250513224811928"></p><h1 id="6-三数之和"><a href="#6-三数之和" class="headerlink" title="6.三数之和"></a>6.三数之和</h1><blockquote><p>给你一个整数数组 <code>nums</code> ，判断是否存在三元组 <code>[nums[i], nums[j], nums[k]]</code> 满足 <code>i != j</code>、<code>i != k</code> 且 <code>j != k</code> ，同时还满足 <code>nums[i] + nums[j] + nums[k] == 0</code> 。请你返回所有和为 <code>0</code> 且不重复的三元组。</p><p><strong>注意：</strong>答案中不可以包含重复的三元组。</p></blockquote><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>这道题呢，首先三个数的求和为0，将问题简化为遍历每个数<code>num</code>，找到另外两个数的求和等于<code>num</code>的相反数。</p><p>找两个数，因此可以利用双指针，但是双指针移动的策略怎么决定呢？没有头绪呀！</p><p>因此！考虑到数的大小关系！可以先对数组进行排序！（反正题目没有要求顺序，只要求找到这三个数）</p><p>而且！题目要求三元组不要重复，排序之后相同的数字会连成一片，更容易跳过它们！</p><p>排序的方法是<strong>对数组使用<code>sort</code>，注意加条件</strong><code>nums.sort((a,b)=&gt;a-b)</code>，不加条件排序的话是按照unicode字符编码顺序进行排序的（适用于字符串，不适用于数字！默认是把数字转为字符串后按字典顺序排序，比如10、2、5）</p><p>所以我们要传入比较函数！</p><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">nums.<span class="hljs-built_in">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b); <span class="hljs-comment">//从小到大</span><br></code></pre></td></tr></table></figure><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">nums.<span class="hljs-built_in">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b - a); <span class="hljs-comment">//从大到小</span><br></code></pre></td></tr></table></figure><p>最重要的是排序和去重，在移动指针的时候判断是不是重复了，要跳过。</p><h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs inform7">/**<br> * @param &#123;number<span class="hljs-comment">[]</span>&#125; nums<br> * @return &#123;number<span class="hljs-comment">[]</span><span class="hljs-comment">[]</span>&#125;<br> */<br>var threeSum = function(nums) &#123;<br>  let res = <span class="hljs-comment">[]</span>  <br>  let nums_ = nums.sort((a, b) =&gt; a - b)<br>  for (let i=0;i&lt;nums_.length;i++)&#123;<br>    if(i&gt;0 &amp;&amp; nums_<span class="hljs-comment">[i]</span>===nums_<span class="hljs-comment">[i-1]</span>) continue<br>    let left = i+1<br>    let right = nums_.length-1<br>    const target = 0 - nums_<span class="hljs-comment">[i]</span><br>    while (left &lt; right)&#123;<br>        if(nums_<span class="hljs-comment">[left]</span>+nums_<span class="hljs-comment">[right]</span>==target)&#123;<br>            res.push(<span class="hljs-comment">[nums_<span class="hljs-comment">[i]</span>,nums_<span class="hljs-comment">[left]</span>,nums_<span class="hljs-comment">[right]</span>]</span>)<br>            while(nums_<span class="hljs-comment">[left]</span>===nums_<span class="hljs-comment">[left+1]</span>&amp;&amp;left&lt;right)&#123;<br>                left ++<br>            &#125;<br>            while(nums_<span class="hljs-comment">[right]</span>===nums_<span class="hljs-comment">[right-1]</span>&amp;&amp;left&lt;right)&#123;<br>                right --<br>            &#125;<br>            left ++<br>            right --<br>        &#125;else if(nums_<span class="hljs-comment">[left]</span>+nums_<span class="hljs-comment">[right]</span> &gt; target)&#123;<br>            while(nums_<span class="hljs-comment">[right]</span>===nums_<span class="hljs-comment">[right-1]</span>&amp;&amp;left&lt;right)&#123;right --&#125;<br>            right--<br>        &#125;else if(nums_<span class="hljs-comment">[left]</span>+nums_<span class="hljs-comment">[right]</span> &lt; target)&#123;<br>            while(nums_<span class="hljs-comment">[left]</span>===nums_<span class="hljs-comment">[left+1]</span>&amp;&amp;left&lt;right)&#123;left ++&#125;<br>            left ++<br>        &#125;<br>    &#125;<br>  &#125;<br>  return res<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>双指针</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaScript算法-盛最多水的容器</title>
     <link href="/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"/>
     <url>/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/</url>
@@ -252,9 +277,9 @@
     
     <tags>
       
-      <tag>生命周期</tag>
-      
       <tag>组件通信</tag>
+      
+      <tag>生命周期</tag>
       
       <tag>Router路由</tag>
       
@@ -285,15 +310,13 @@
     
     <tags>
       
-      <tag>性能优化</tag>
-      
-      <tag>组件通信</tag>
-      
       <tag>MVVM</tag>
       
       <tag>响应式数据</tag>
       
       <tag>模版编译</tag>
+      
+      <tag>组件通信</tag>
       
       <tag>computed</tag>
       
@@ -320,6 +343,8 @@
       <tag>自定义指令</tag>
       
       <tag>依赖收集</tag>
+      
+      <tag>性能优化</tag>
       
     </tags>
     
@@ -880,11 +905,11 @@
     
     <tags>
       
+      <tag>性能优化</tag>
+      
       <tag>WebWorker</tag>
       
       <tag>消息传递</tag>
-      
-      <tag>性能优化</tag>
       
       <tag>独立线程</tag>
       
@@ -1138,9 +1163,9 @@
       
       <tag>题库</tag>
       
-      <tag>哈希表</tag>
-      
       <tag>双指针</tag>
+      
+      <tag>哈希表</tag>
       
       <tag>滑动窗口</tag>
       
