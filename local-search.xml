@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>JavaScript算法-接雨水</title>
+    <link href="/2025/05/15/JavaScript%E7%AE%97%E6%B3%95-%E6%8E%A5%E9%9B%A8%E6%B0%B4/"/>
+    <url>/2025/05/15/JavaScript%E7%AE%97%E6%B3%95-%E6%8E%A5%E9%9B%A8%E6%B0%B4/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150037926.png" alt="image-20250515003745597"></p><h1 id="7-接雨水"><a href="#7-接雨水" class="headerlink" title="7.接雨水"></a>7.接雨水</h1><blockquote><p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p></blockquote><h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p>好难，想了好久。T T</p><p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150036950.png" alt="image-20250515001511472"></p><p>首先，接雨水问题细化为每一个单位能存放的雨水，而每个单位的雨水容量取决于：</p><p><strong>左方向最高的柱子高度、右方向最高的柱子高度、自身柱子高度</strong></p><p>这个很关键！如果左方向和右方向的最高柱子高度比自身柱子高，能够蓄水，并且蓄水的容量为左右方向的最高柱子中的较矮柱子高度减去自身柱子高度；否则，不能够蓄水。</p><p>那我们就想，遍历每一个单位，去寻找它的左右方向的最高柱子。这很暴力。</p><p>直接在两端设置指针，它们的指向代表准备计算的单位容量。关注其中较矮的柱子，因为另外一边的柱子已经比它高了，那么另外一边挡住了水，能不能装得下就取决于这一边的最高柱子和自身高度。如果自身高度比这一边的最高柱子高，就不能蓄水，并且更新这一边的最高柱子，否则，可以蓄水，计算水容量。最后移动这一边的指针继续向中间前进。直到双指针相遇。</p><p>整个过程需要关注短柱子在哪一边！是更新最大高度还是蓄水！移动指针！</p><h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs coq">/**<br> * @param &#123;number[]&#125; height<br> * @<span class="hljs-keyword">return</span> &#123;number&#125;<br> */<br>var trap = function(height) &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-built_in">left</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-built_in">right</span> = height.length  - <span class="hljs-number">1</span><br>    sum_water = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> leftMax = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> rightMax = <span class="hljs-number">0</span><br>    while (<span class="hljs-built_in">left</span> &lt; <span class="hljs-built_in">right</span>)&#123;<br>      <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">left</span>] &lt; height[<span class="hljs-built_in">right</span>])&#123;<br>        <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">left</span>] &lt; leftMax) &#123;<br>            sum_water += leftMax - height[<span class="hljs-built_in">left</span>]<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            leftMax = height[<span class="hljs-built_in">left</span>]<br>        &#125;<br>        <span class="hljs-built_in">left</span> ++<br>      &#125;<span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">right</span>] &lt; rightMax) &#123;<br>            sum_water += rightMax - height[<span class="hljs-built_in">right</span>]<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            rightMax = height[<span class="hljs-built_in">right</span>]<br>        &#125;<br>        <span class="hljs-built_in">right</span> --<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum_water<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Javascript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>双指针</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaScript算法-三数之和</title>
     <link href="/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
     <url>/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
