@@ -16,26 +16,26 @@
   <meta name="author" content="An">
   <meta name="keywords" content="">
   
-    <meta name="description" content="7.接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。  双指针好难，想了好久。T T  首先，接雨水问题细化为每一个单位能存放的雨水，而每个单位的雨水容量取决于： 左方向最高的柱子高度、右方向最高的柱子高度、自身柱子高度 这个很关键！如果左方向和右方向的最高柱子高度比自身柱子高，能够蓄水，并且蓄水的容量为左右方向的最高柱子中的较矮柱子高度">
+    <meta name="description" content="8.无重复字符的最长子串 给定一个字符串 s ，请你找出其中不含有重复字符的 最长 子串 的长度。  滑动窗口本质上也是双指针，它们俩维护了一个窗口，并且窗口可以滑动，也可以伸缩。 它是动态维护子区间的一种算法技巧。 这道题怎么思考呢？ 首先left和right指针放在字符串的起始位置，准备出发！谁出发？right指针负责探索！去将满足条件的字符收入窗口，所以right开始出发。但是，我们要怎么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript算法-接雨水">
-<meta property="og:url" content="http://example.com/2025/05/15/JavaScript%E7%AE%97%E6%B3%95-%E6%8E%A5%E9%9B%A8%E6%B0%B4/index.html">
+<meta property="og:title" content="JavaScript算法-无重复字符的最长子串">
+<meta property="og:url" content="http://example.com/2025/05/15/JavaScript%E7%AE%97%E6%B3%95-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/index.html">
 <meta property="og:site_name" content="An&#96;s Blog">
-<meta property="og:description" content="7.接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。  双指针好难，想了好久。T T  首先，接雨水问题细化为每一个单位能存放的雨水，而每个单位的雨水容量取决于： 左方向最高的柱子高度、右方向最高的柱子高度、自身柱子高度 这个很关键！如果左方向和右方向的最高柱子高度比自身柱子高，能够蓄水，并且蓄水的容量为左右方向的最高柱子中的较矮柱子高度">
+<meta property="og:description" content="8.无重复字符的最长子串 给定一个字符串 s ，请你找出其中不含有重复字符的 最长 子串 的长度。  滑动窗口本质上也是双指针，它们俩维护了一个窗口，并且窗口可以滑动，也可以伸缩。 它是动态维护子区间的一种算法技巧。 这道题怎么思考呢？ 首先left和right指针放在字符串的起始位置，准备出发！谁出发？right指针负责探索！去将满足条件的字符收入窗口，所以right开始出发。但是，我们要怎么">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150037926.png">
-<meta property="article:published_time" content="2025-05-14T16:36:22.000Z">
-<meta property="article:modified_time" content="2025-05-14T16:37:50.612Z">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505152211896.png">
+<meta property="article:published_time" content="2025-05-15T14:09:49.000Z">
+<meta property="article:modified_time" content="2025-05-15T14:11:52.217Z">
 <meta property="article:author" content="An">
-<meta property="article:tag" content="双指针">
+<meta property="article:tag" content="滑动窗口">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150037926.png">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505152211896.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>JavaScript算法-接雨水 - An`s Blog</title>
+  <title>JavaScript算法-无重复字符的最长子串 - An`s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaScript算法-接雨水"></span>
+            <span id="subtitle" data-typed-text="JavaScript算法-无重复字符的最长子串"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-15 00:36" pubdate>
-          2025年5月15日 凌晨
+        <time datetime="2025-05-15 22:09" pubdate>
+          2025年5月15日 晚上
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          474 字
+          629 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -280,24 +280,41 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">JavaScript算法-接雨水</h1>
+            <h1 id="seo-header">JavaScript算法-无重复字符的最长子串</h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150037926.png" srcset="/img/loading.gif" lazyload alt="image-20250515003745597"></p>
-<h1 id="7-接雨水"><a href="#7-接雨水" class="headerlink" title="7.接雨水"></a>7.接雨水</h1><blockquote>
-<p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+                <p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505152211896.png" srcset="/img/loading.gif" lazyload alt="image-20250515221146792"></p>
+<h1 id="8-无重复字符的最长子串"><a href="#8-无重复字符的最长子串" class="headerlink" title="8.无重复字符的最长子串"></a>8.无重复字符的最长子串</h1><blockquote>
+<p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长 子串</strong> 的长度。</p>
 </blockquote>
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p>好难，想了好久。T T</p>
-<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150036950.png" srcset="/img/loading.gif" lazyload alt="image-20250515001511472"></p>
-<p>首先，接雨水问题细化为每一个单位能存放的雨水，而每个单位的雨水容量取决于：</p>
-<p><strong>左方向最高的柱子高度、右方向最高的柱子高度、自身柱子高度</strong></p>
-<p>这个很关键！如果左方向和右方向的最高柱子高度比自身柱子高，能够蓄水，并且蓄水的容量为左右方向的最高柱子中的较矮柱子高度减去自身柱子高度；否则，不能够蓄水。</p>
-<p>那我们就想，遍历每一个单位，去寻找它的左右方向的最高柱子。这很暴力。</p>
-<p>直接在两端设置指针，它们的指向代表准备计算的单位容量。关注其中较矮的柱子，因为另外一边的柱子已经比它高了，那么另外一边挡住了水，能不能装得下就取决于这一边的最高柱子和自身高度。如果自身高度比这一边的最高柱子高，就不能蓄水，并且更新这一边的最高柱子，否则，可以蓄水，计算水容量。最后移动这一边的指针继续向中间前进。直到双指针相遇。</p>
-<p>整个过程需要关注短柱子在哪一边！是更新最大高度还是蓄水！移动指针！</p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs coq">/**<br> * @param &#123;number[]&#125; height<br> * @<span class="hljs-keyword">return</span> &#123;number&#125;<br> */<br>var trap = function(height) &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-built_in">left</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-built_in">right</span> = height.length  - <span class="hljs-number">1</span><br>    sum_water = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> leftMax = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> rightMax = <span class="hljs-number">0</span><br>    while (<span class="hljs-built_in">left</span> &lt; <span class="hljs-built_in">right</span>)&#123;<br>      <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">left</span>] &lt; height[<span class="hljs-built_in">right</span>])&#123;<br>        <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">left</span>] &lt; leftMax) &#123;<br>            sum_water += leftMax - height[<span class="hljs-built_in">left</span>]<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            leftMax = height[<span class="hljs-built_in">left</span>]<br>        &#125;<br>        <span class="hljs-built_in">left</span> ++<br>      &#125;<span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">right</span>] &lt; rightMax) &#123;<br>            sum_water += rightMax - height[<span class="hljs-built_in">right</span>]<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            rightMax = height[<span class="hljs-built_in">right</span>]<br>        &#125;<br>        <span class="hljs-built_in">right</span> --<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum_water<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>本质上也是双指针，它们俩维护了一个窗口，并且窗口可以滑动，也可以伸缩。</p>
+<p>它是动态维护子区间的一种算法技巧。</p>
+<p>这道题怎么思考呢？</p>
+<p>首先left和right指针放在字符串的起始位置，准备出发！谁出发？right指针负责探索！去将满足条件的字符收入窗口，所以right开始出发。但是，我们要怎么判断right遇到的字符是否满足条件呢？利用哈希表记录！</p>
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>JS里面的Set和Map的底层都是哈希表，插入元素、删除元素或判断元素是否存在的时间复杂度都是O(1)。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">const <span class="hljs-keyword">set</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">Set</span>()<br><span class="hljs-keyword">set</span>.<span class="hljs-keyword">add</span>(<span class="hljs-number">1</span>)<br><span class="hljs-keyword">set</span>.<span class="hljs-keyword">delete</span>(<span class="hljs-number">1</span>)<br><span class="hljs-keyword">set</span>.has(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">map</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>()<br><span class="hljs-keyword">map</span>.set(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-string">&#x27;anan&#x27;</span>)<br><span class="hljs-keyword">map</span>.<span class="hljs-keyword">delete</span>(<span class="hljs-string">&#x27;name&#x27;</span>)<br><span class="hljs-keyword">map</span>.has(<span class="hljs-string">&#x27;name&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>如果你用数组去记录的话，查找是线性的，性能不行。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus">consr arr = <span class="hljs-selector-attr">[1,2,3]</span><br>arr<span class="hljs-selector-class">.push</span>(<span class="hljs-number">4</span>)<br>arr<span class="hljs-selector-class">.pop</span>()<br>arr<span class="hljs-selector-class">.includes</span>(<span class="hljs-number">4</span>)<br></code></pre></td></tr></table></figure>
+
+<p>ok，哈希表记录遇到的字符，键是字符，值是字符所在的索引。每次right去判断当前字符是否已经在map中了。</p>
+<p>这时候就分为两种情况：</p>
+<ul>
+<li><p><strong>在map中</strong></p>
+<p>代表该字符重复了。此时，left指针发挥作用！left要维护窗口的纯洁性呀！于是left去查map里面的该元素的索引，跳到索引的下一位！</p>
+<p>是这样吗？陷阱！小心！首先map记录的字符肯定是right来时的路，但不一定是left来时的路，可能是left前面的，也可能是left后面的。那影响滑动窗口纯洁性的只能是left前面的字符。所以需要判断查到的索引和left自身的索引，取它们中更大的一个作为滑动窗口的新起点。</p>
+</li>
+<li><p><strong>不在map中</strong></p>
+<p>right指针辛苦一下，记录字符到map，Thanks♪(･ω･)ﾉ并且继续前进！</p>
+</li>
+</ul>
+<p>对了！我们需要知道最长不重复子串的长度对吧？所以窗口的长度要保持更新！</p>
+<p>什么时候结束呢？right指针走到了字符串的尽头。探险结束！</p>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs coq">/**<br> * @param &#123;string&#125; s<br> * @<span class="hljs-keyword">return</span> &#123;number&#125;<br> */<br>var lengthOfLongestSubstring = function(s) &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-built_in">left</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-built_in">right</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> map = &#123;&#125;<br>    <span class="hljs-keyword">let</span> maxLen = <span class="hljs-number">0</span><br>    while (<span class="hljs-built_in">right</span> &lt; s.length)&#123;<br>        <span class="hljs-keyword">if</span> (s[<span class="hljs-built_in">right</span>] <span class="hljs-built_in">in</span> map)&#123;<br>            <span class="hljs-built_in">left</span> = Math.max(map[s[<span class="hljs-built_in">right</span>]] + <span class="hljs-number">1</span>,<span class="hljs-built_in">left</span>)<br>        &#125;<br>        map[s[<span class="hljs-built_in">right</span>]] = <span class="hljs-built_in">right</span><br>        maxLen = Math.max(maxLen,<span class="hljs-built_in">right</span>-<span class="hljs-built_in">left</span>+<span class="hljs-number">1</span>)<br>        <span class="hljs-built_in">right</span> ++<br>    &#125;<br>    <span class="hljs-keyword">return</span> maxLen<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -317,7 +334,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Javascript/" class="category-chain-item">Javascript</a>
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
   
   
 
@@ -332,7 +349,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" class="print-no-link">#双指针</a>
+        <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" class="print-no-link">#滑动窗口</a>
       
     </div>
   
@@ -346,18 +363,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/15/JavaScript%E7%AE%97%E6%B3%95-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" title="JavaScript算法-无重复字符的最长子串">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaScript算法-无重复字符的最长子串</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" title="JavaScript算法-三数之和">
-                        <span class="hidden-mobile">JavaScript算法-三数之和</span>
+                      <a href="/2025/05/15/JavaScript%E7%AE%97%E6%B3%95-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" title="JavaScript算法-接雨水">
+                        <span class="hidden-mobile">JavaScript算法-接雨水</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
