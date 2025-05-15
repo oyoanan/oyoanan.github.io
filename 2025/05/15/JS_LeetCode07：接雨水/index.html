@@ -16,26 +16,26 @@
   <meta name="author" content="An">
   <meta name="keywords" content="">
   
-    <meta name="description" content="4.移动零 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。 请注意 ，必须在不复制数组的情况下原地对数组进行操作。  双指针属于一种算法技巧，使用两个变量（指针）来同时在一个数组或者字符串上操作，达到高效解决问题的目的。 在这道题，使用快指针去遍历数组，慢指针负责做非零区域的边界，也就是指向最后一个非零数的下一个位置，准备存放新的非零数。这样的话，">
+    <meta name="description" content="7.接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。  双指针好难，想了好久。T T  首先，接雨水问题细化为每一个单位能存放的雨水，而每个单位的雨水容量取决于： 左方向最高的柱子高度、右方向最高的柱子高度、自身柱子高度 这个很关键！如果左方向和右方向的最高柱子高度比自身柱子高，能够蓄水，并且蓄水的容量为左右方向的最高柱子中的较矮柱子高度">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript算法-移动零">
-<meta property="og:url" content="http://example.com/2025/05/12/JavaScript%E7%AE%97%E6%B3%95-%E7%A7%BB%E5%8A%A8%E9%9B%B6/index.html">
+<meta property="og:title" content="JS_LeetCode07：接雨水">
+<meta property="og:url" content="http://example.com/2025/05/15/JS_LeetCode07%EF%BC%9A%E6%8E%A5%E9%9B%A8%E6%B0%B4/index.html">
 <meta property="og:site_name" content="An&#96;s Blog">
-<meta property="og:description" content="4.移动零 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。 请注意 ，必须在不复制数组的情况下原地对数组进行操作。  双指针属于一种算法技巧，使用两个变量（指针）来同时在一个数组或者字符串上操作，达到高效解决问题的目的。 在这道题，使用快指针去遍历数组，慢指针负责做非零区域的边界，也就是指向最后一个非零数的下一个位置，准备存放新的非零数。这样的话，">
+<meta property="og:description" content="7.接雨水 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。  双指针好难，想了好久。T T  首先，接雨水问题细化为每一个单位能存放的雨水，而每个单位的雨水容量取决于： 左方向最高的柱子高度、右方向最高的柱子高度、自身柱子高度 这个很关键！如果左方向和右方向的最高柱子高度比自身柱子高，能够蓄水，并且蓄水的容量为左右方向的最高柱子中的较矮柱子高度">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505122340112.png">
-<meta property="article:published_time" content="2025-05-12T15:36:09.000Z">
-<meta property="article:modified_time" content="2025-05-15T14:21:12.935Z">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150037926.png">
+<meta property="article:published_time" content="2025-05-14T16:36:22.000Z">
+<meta property="article:modified_time" content="2025-05-15T14:31:42.676Z">
 <meta property="article:author" content="An">
 <meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505122340112.png">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150037926.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>JavaScript算法-移动零 - An`s Blog</title>
+  <title>JS_LeetCode07：接雨水 - An`s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaScript算法-移动零"></span>
+            <span id="subtitle" data-typed-text="JS_LeetCode07：接雨水"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-12 23:36" pubdate>
-          2025年5月12日 晚上
+        <time datetime="2025-05-15 00:36" pubdate>
+          2025年5月15日 凌晨
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          354 字
+          474 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -280,22 +280,24 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">JavaScript算法-移动零</h1>
+            <h1 id="seo-header">JS_LeetCode07：接雨水</h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505122340112.png" srcset="/img/loading.gif" lazyload alt="image-20250512234008685"></p>
-<h1 id="4-移动零"><a href="#4-移动零" class="headerlink" title="4.移动零"></a>4.移动零</h1><blockquote>
-<p>给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
-<p><strong>请注意</strong> ，必须在不复制数组的情况下原地对数组进行操作。</p>
+                <p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150037926.png" srcset="/img/loading.gif" lazyload alt="image-20250515003745597"></p>
+<h1 id="7-接雨水"><a href="#7-接雨水" class="headerlink" title="7.接雨水"></a>7.接雨水</h1><blockquote>
+<p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
 </blockquote>
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p>属于一种算法技巧，使用两个变量（指针）来同时在一个数组或者字符串上操作，达到高效解决问题的目的。</p>
-<p>在这道题，使用快指针去遍历数组，慢指针负责做非零区域的边界，也就是指向最后一个非零数的下一个位置，准备存放新的非零数。这样的话，快指针找到了非零的数，就可以直接与慢指针交换数据。还可以使用复制，将快指针找到的非零数据复制给慢指针，最后把慢指针后面的数字都置为0就可以了。</p>
-<p><strong>？ 为什么不能遍历分开存放非零和零的数组</strong></p>
-<p>题目要求不能复制数组！</p>
-<p>双指针在原地操作，不额外申请空间，而且每个元素最多处理一次，效率高！</p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @param &#123;number[]&#125; nums</span><br><span class="hljs-comment"> * @return &#123;void&#125; Do not return anything, modify nums in-place instead.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> <span class="hljs-variable">moveZeroes</span> = <span class="hljs-keyword">function</span>![image-<span class="hljs-number">20250512233957716</span>](C:/Users/An/AppData/Roaming/Typora/typora-<span class="hljs-literal">user</span>-images/image-<span class="hljs-number">20250512233957716</span>.png)(nums) &#123;<br>    let <span class="hljs-literal">left</span> = <span class="hljs-number">0</span><br>    let <span class="hljs-literal">right</span> = <span class="hljs-number">0</span><br>    while(<span class="hljs-literal">right</span> &lt; nums.length)&#123;<br>        if(nums[<span class="hljs-literal">right</span>] !== <span class="hljs-number">0</span>)&#123;<br>            [nums[<span class="hljs-literal">left</span>],nums[<span class="hljs-literal">right</span>]] = [nums[<span class="hljs-literal">right</span>],nums[<span class="hljs-literal">left</span>]]<br>            <span class="hljs-literal">left</span>++<br>        &#125;<br>        <span class="hljs-literal">right</span>++<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums<br>&#125;<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p>好难，想了好久。T T</p>
+<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202505150036950.png" srcset="/img/loading.gif" lazyload alt="image-20250515001511472"></p>
+<p>首先，接雨水问题细化为每一个单位能存放的雨水，而每个单位的雨水容量取决于：</p>
+<p><strong>左方向最高的柱子高度、右方向最高的柱子高度、自身柱子高度</strong></p>
+<p>这个很关键！如果左方向和右方向的最高柱子高度比自身柱子高，能够蓄水，并且蓄水的容量为左右方向的最高柱子中的较矮柱子高度减去自身柱子高度；否则，不能够蓄水。</p>
+<p>那我们就想，遍历每一个单位，去寻找它的左右方向的最高柱子。这很暴力。</p>
+<p>直接在两端设置指针，它们的指向代表准备计算的单位容量。关注其中较矮的柱子，因为另外一边的柱子已经比它高了，那么另外一边挡住了水，能不能装得下就取决于这一边的最高柱子和自身高度。如果自身高度比这一边的最高柱子高，就不能蓄水，并且更新这一边的最高柱子，否则，可以蓄水，计算水容量。最后移动这一边的指针继续向中间前进。直到双指针相遇。</p>
+<p>整个过程需要关注短柱子在哪一边！是更新最大高度还是蓄水！移动指针！</p>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs coq">/**<br> * @param &#123;number[]&#125; height<br> * @<span class="hljs-keyword">return</span> &#123;number&#125;<br> */<br>var trap = function(height) &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-built_in">left</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-built_in">right</span> = height.length  - <span class="hljs-number">1</span><br>    sum_water = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> leftMax = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">let</span> rightMax = <span class="hljs-number">0</span><br>    while (<span class="hljs-built_in">left</span> &lt; <span class="hljs-built_in">right</span>)&#123;<br>      <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">left</span>] &lt; height[<span class="hljs-built_in">right</span>])&#123;<br>        <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">left</span>] &lt; leftMax) &#123;<br>            sum_water += leftMax - height[<span class="hljs-built_in">left</span>]<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            leftMax = height[<span class="hljs-built_in">left</span>]<br>        &#125;<br>        <span class="hljs-built_in">left</span> ++<br>      &#125;<span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (height[<span class="hljs-built_in">right</span>] &lt; rightMax) &#123;<br>            sum_water += rightMax - height[<span class="hljs-built_in">right</span>]<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            rightMax = height[<span class="hljs-built_in">right</span>]<br>        &#125;<br>        <span class="hljs-built_in">right</span> --<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum_water<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -315,15 +317,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  <a href="/categories/LeetCode/" class="category-chain-item">LeetCode</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/JavaScript/LeetCode/" class="category-chain-item">LeetCode</a>
-  
-  
-
   
 
       </span>
@@ -351,9 +346,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/13/JavaScript%E7%AE%97%E6%B3%95-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" title="JavaScript算法-盛最多水的容器">
+                      <a href="/2025/05/15/JS_LeetCode08%EF%BC%9A%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" title="JS_LeetCode08：无重复字符的最长子串">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaScript算法-盛最多水的容器</span>
+                        <span class="hidden-mobile">JS_LeetCode08：无重复字符的最长子串</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -361,8 +356,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/11/JavaScript%E7%AE%97%E6%B3%95-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/" title="JavaScript算法-最长连续序列">
-                        <span class="hidden-mobile">JavaScript算法-最长连续序列</span>
+                      <a href="/2025/05/13/JS_LeetCode06%EF%BC%9A%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" title="JS_LeetCode06：三数之和">
+                        <span class="hidden-mobile">JS_LeetCode06：三数之和</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
