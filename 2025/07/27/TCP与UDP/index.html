@@ -1,0 +1,883 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202402281732273.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="An">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、TCP1、概述🍉关键词：【面向连接的】【可靠的】【传输层协议】 123TCP是一个面向连接的，可靠的传输层协议。它通过三次握手建立连接，四次挥手断开连接。具有流量控制和拥塞控制，能保证数据按序、完整、无重复的传输。应用层的HTTP、HTTPS都是基于TCP的。  2、TCP报文段123TCP报文段是TCP协议在传输数据时的数据单元，由两部分组成：【TCP头部】携带控制信息，包括源端口、目的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP与UDP">
+<meta property="og:url" content="http://example.com/2025/07/27/TCP%E4%B8%8EUDP/index.html">
+<meta property="og:site_name" content="An&#96;s Blog">
+<meta property="og:description" content="一、TCP1、概述🍉关键词：【面向连接的】【可靠的】【传输层协议】 123TCP是一个面向连接的，可靠的传输层协议。它通过三次握手建立连接，四次挥手断开连接。具有流量控制和拥塞控制，能保证数据按序、完整、无重复的传输。应用层的HTTP、HTTPS都是基于TCP的。  2、TCP报文段123TCP报文段是TCP协议在传输数据时的数据单元，由两部分组成：【TCP头部】携带控制信息，包括源端口、目的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202507271135519.jpeg">
+<meta property="article:published_time" content="2025-07-27T03:34:58.000Z">
+<meta property="article:modified_time" content="2025-07-27T03:36:09.956Z">
+<meta property="article:author" content="An">
+<meta property="article:tag" content="TCP">
+<meta property="article:tag" content="UDP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202507271135519.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>TCP与UDP - An`s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>An</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="TCP与UDP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-27 11:34" pubdate>
+          2025年7月27日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">TCP与UDP</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202507271135519.jpeg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h1 id="一、TCP"><a href="#一、TCP" class="headerlink" title="一、TCP"></a>一、TCP</h1><h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><p>🍉关键词：【面向连接的】【可靠的】【传输层协议】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">TCP是一个面向连接的，可靠的传输层协议。它通过三次握手建立连接，四次挥手断开连接。<br>具有流量控制和拥塞控制，能保证数据按序、完整、无重复的传输。<br>应用层的HTTP、HTTPS都是基于TCP的。<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、TCP报文段"><a href="#2、TCP报文段" class="headerlink" title="2、TCP报文段"></a>2、TCP报文段</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">TCP报文段是TCP协议在传输数据时的数据单元，由两部分组成：<br>【TCP头部】携带控制信息，包括源端口、目的端口、序列号、确认号以及SYN、ACK、FIN 等标志位。<br>【TCP数据部分】携带应用要传输的实际数据，<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>源端口、目的端口：应用程序的唯一标识</p>
+</li>
+<li><p>序列号：用于标记数据的顺序，标识当前发送的数据段中第一个字节的编号</p>
+</li>
+<li><p>确认号：用于确认已成功接收的数据，标识接收端期望收到的下一个字节的编号</p>
+</li>
+<li><p>SYN标志位：标识连接请求，表示这是一个连接请求或响应报文</p>
+</li>
+<li><p>ACK标志位：用于确认收到报文段</p>
+</li>
+<li><p>FIN标志位：表示已经完成数据发送，希望关闭连接</p>
+</li>
+<li><p><code>Window Size</code>（窗口大小）：（接收方）当前最多还能接收多少个字节的数据</p>
+</li>
+</ul>
+<h2 id="3、面向连接"><a href="#3、面向连接" class="headerlink" title="3、面向连接"></a>3、面向连接</h2><p>面向连接是网络通信中的一种模式，指的就是在数据传输之前，通信双方需要先建立明确的连接，并且在传输的过程中，维护连接状态，传输完成后释放连接。最典型的例子就是TCP。</p>
+<h3 id="🍖三次握手"><a href="#🍖三次握手" class="headerlink" title="🍖三次握手"></a><strong>🍖三次握手</strong></h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">1️⃣ 客户端 → 发送 <span class="hljs-attribute">SYN</span>=1，随机生成序列号 seq = x<br>2️⃣ 服务器 → 发送 <span class="hljs-attribute">SYN</span>=1  + <span class="hljs-attribute">ACK</span>=1，随机生成初始序列号 seq = y，发送确认号<span class="hljs-attribute">ack</span>=x+1<br>3️⃣ 客户端 → 发送 <span class="hljs-attribute">ACK</span>=1，发送确认号 <span class="hljs-attribute">ack</span>=y+1，序列号变为 <span class="hljs-attribute">seq</span>=x+1，连接建立！<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">步骤</th>
+<th align="left">方向</th>
+<th align="left">标志位</th>
+<th align="left">seq</th>
+<th align="left">ack</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">Client→Server</td>
+<td align="left"><code>SYN=1</code></td>
+<td align="left">x</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">Server→Client</td>
+<td align="left"><code>SYN=1, ACK=1</code></td>
+<td align="left">y</td>
+<td align="left">x+1</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">Client→Server</td>
+<td align="left"><code>ACK=1</code></td>
+<td align="left">x+1</td>
+<td align="left">y+1</td>
+</tr>
+</tbody></table>
+<p><strong>为什么需要三次握手</strong></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ada">》 确认双方的收发能力！<br><span class="hljs-number">1</span>️⃣ 服务器确认客户端能发，服务器能收<br><span class="hljs-number">2</span>️⃣ 客户端确认服务端能收，能发<br><span class="hljs-number">3</span>️⃣ 服务器确认客户端能收 <span class="hljs-comment">--- 如果是两次握手，服务器就不知道客户端能不能收了</span><br>》 交换seq序列号，确保数据按序传输<br>》 通过客户端的最终确认过滤掉无效请求，防止旧连接造成误判<br></code></pre></td></tr></table></figure>
+
+<h3 id="🍖四次挥手"><a href="#🍖四次挥手" class="headerlink" title="🍖四次挥手"></a><strong>🍖四次挥手</strong></h3><p>因为 TCP 是<strong>全双工通信</strong>（双方可以独立发送和接收数据），需要分别关闭两个方向的连接。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">1️⃣ 客户端：发送 FIN 请求关闭，发送序列号 <span class="hljs-attribute">seq</span>=u（即已发送数据的最后一个字节序号 +1）<br>2️⃣ 服务端：<span class="hljs-attribute">ACK</span>=1 确认，确认收到了断开请求，发送确认号 <span class="hljs-attribute">ack</span>=u+1<br>3️⃣ 服务端：再发送 FIN（也要关闭），发送序列号 <span class="hljs-attribute">seq</span>=v（服务器最后发送的数据序号 +1）<br>4️⃣ 客户端：<span class="hljs-attribute">ACK</span>=1 确认，发送确认号 <span class="hljs-attribute">ack</span>=v+1，等待一段时间后彻底关闭<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">步骤</th>
+<th align="left">方向</th>
+<th align="left">标志位</th>
+<th align="left">seq</th>
+<th align="left">ack</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">Client→Server</td>
+<td align="left"><code>FIN=1</code></td>
+<td align="left">u</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">Server→Client</td>
+<td align="left"><code>ACK=1</code></td>
+<td align="left">-</td>
+<td align="left">u+1</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">Server→Client</td>
+<td align="left"><code>FIN=1</code></td>
+<td align="left">v</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">Client→Server</td>
+<td align="left"><code>ACK=1</code></td>
+<td align="left">-</td>
+<td align="left">v+1</td>
+</tr>
+</tbody></table>
+<p><strong>为什么不是三次</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">因为服务器可能在收到 FIN 后仍有数据要发送，不能立即关闭，所以必须分开 ACK 和 FIN。<br></code></pre></td></tr></table></figure>
+
+<p><strong>TIME_WAIT 是什么</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs">客户端发送最后一个 ACK 后，会进入 TIME_WAIT 并保持该状态2MSL之后才会彻底关闭连接。<br>MSL：TCP 报文在网络中的最大存活时间<br>》 确保最后一个 ACK 到达服务器<br>》 确保旧连接的数据包在网络中失效<br></code></pre></td></tr></table></figure>
+
+<h2 id="4、可靠"><a href="#4、可靠" class="headerlink" title="4、可靠"></a>4、可靠</h2><p> 🍔<strong>发送速率受两个窗口控制</strong></p>
+<blockquote>
+<p><strong>实际能发送的数据量 &#x3D; min(接收窗口, 拥塞窗口)</strong></p>
+<p>取接收方能力和网络状况的较小值</p>
+</blockquote>
+<ul>
+<li><strong><code>rwnd</code><strong>：解决</strong>接收方缓冲区不足</strong>（流量控制）。<ul>
+<li>例如：接收方处理慢 → <code>rwnd</code> 变小 → 发送方降速。</li>
+</ul>
+</li>
+<li><strong><code>cwnd</code><strong>：解决</strong>网络拥塞</strong>（拥塞控制）。<ul>
+<li>例如：网络丢包 → <code>cwnd</code> 减半 → 发送方降速。</li>
+</ul>
+</li>
+</ul>
+<h3 id="🍖-流量控制"><a href="#🍖-流量控制" class="headerlink" title="🍖 流量控制"></a><strong>🍖</strong> 流量控制</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">用于确保发送方的数据【发送速率】不会超过接受方的处理能力，避免接收方的缓冲区溢出，数据丢失<br></code></pre></td></tr></table></figure>
+
+<p><strong>为什么需要流量控制</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">接收方缓冲区有限，发的太快缓冲区满了就会丢弃数据<br></code></pre></td></tr></table></figure>
+
+<p><strong>实现方式：滑动窗口协议</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">动态调整发送方和接收方之间的数据传输窗口大小<br></code></pre></td></tr></table></figure>
+
+<p><strong>接收窗口：</strong></p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">Receiving <span class="hljs-built_in">Window</span>, rwnd：接收方缓冲区剩余空间，通过 ACK 通告给发送方<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>左边界：已发送且已确认的数据的末尾（不可再发送）。</li>
+<li>右边界：左边界 + 窗口大小（超出右边界的数据暂不可发送）。</li>
+<li>窗口内：左边界到右边界之间的字节，是【可发送但未确认】的数据范围。</li>
+</ul>
+<p><strong>滑动：</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">随着接收方确认（ACK）已收到的数据，窗口会“向前滑动”，允许新的数据继续发送。<br></code></pre></td></tr></table></figure>
+
+<h3 id="🍖-拥塞控制"><a href="#🍖-拥塞控制" class="headerlink" title="🍖 拥塞控制"></a><strong>🍖</strong> 拥塞控制</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">用于避免网络中转节点（如路由器）过载或丢包，通过动态调节【发送速率】，保持网络畅通<br></code></pre></td></tr></table></figure>
+
+<p><strong>为什么需要拥塞控制</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">链路带宽、路由器缓存等有限承载数据，需要避免网络过载<br></code></pre></td></tr></table></figure>
+
+<p><strong>拥塞窗口：</strong></p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">Congestion <span class="hljs-built_in">Window</span>, cwnd：发送方维护的内部变量，表示在当前网络状态下允许发送的未确认数据量上限<br></code></pre></td></tr></table></figure>
+
+<p><strong>调控机制</strong></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ada">（<span class="hljs-number">1</span>）慢启动——每收到一次 ACK，cwnd 翻倍（指数增长）<br>（<span class="hljs-number">2</span>）拥塞避免<span class="hljs-comment">--接近网络容量时，cwnd 不再指数增长，而是线性增长</span><br>（<span class="hljs-number">3</span>）快重传与快恢复<span class="hljs-comment">--收到 3 个重复 ACK，立即重传丢失的数据包</span><br>（<span class="hljs-number">4</span>）超时重传（最严重拥塞）<span class="hljs-comment">--超时未收到ACK，丢包发生，把 cwnd 减半后再进入拥塞避免</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="🍖-序号与确认应答"><a href="#🍖-序号与确认应答" class="headerlink" title="🍖 序号与确认应答"></a><strong>🍖</strong> 序号与确认应答</h3><p>保证数据 <strong>有序、无重复</strong></p>
+<p><strong>序号：</strong></p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs fortran">每个 TCP 报文段都有一个序号（<span class="hljs-keyword">Sequence</span> <span class="hljs-keyword">Number</span>）<br>表示“这个包的数据在整个字节流中的起始位置”<br></code></pre></td></tr></table></figure>
+
+<p><strong>确认应答ACK</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">“我已经收到到第几号字节，你可以继续发第几个字节开始”<br></code></pre></td></tr></table></figure>
+
+<h3 id="🍖-超时重传"><a href="#🍖-超时重传" class="headerlink" title="🍖 超时重传"></a><strong>🍖</strong> 超时重传</h3><p>保证数据 <strong>不会永久丢失</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">如果发送方在合理时间内没有收到 ACK，就会触发超时重传机制<br>TCP 会动态计算超时时间叫做【RTO】 RTO ≈ RTT（往返时延） + 安全裕度<br>RTT 表示从发送方发出数据到收到接收方 ACK 的总时间（单位：毫秒）<br></code></pre></td></tr></table></figure>
+
+<h3 id="🍖-校验和"><a href="#🍖-校验和" class="headerlink" title="🍖 校验和"></a><strong>🍖</strong> 校验和</h3><p>保证数据 <strong>没有被篡改或损坏</strong></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">TCP</span> 报文段会带一个校验和字段<br><br>发送方发送前，对数据做一次校验和计算，填入报文头<br>接收方收到数据后也计算一次校验和<br>如果校验和对不上，说明数据在传输过程中发生了损坏，会被直接丢弃，不回复 ACK，发送方超时后重传<br></code></pre></td></tr></table></figure>
+
+<h2 id="5、应用场景"><a href="#5、应用场景" class="headerlink" title="5、应用场景"></a>5、应用场景</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">HTTP/HTTPS、文件传输FTP、电子邮件SMTP、远程登录SSH、数据库连接MySQL <br></code></pre></td></tr></table></figure>
+
+<h1 id="二、UDP"><a href="#二、UDP" class="headerlink" title="二、UDP"></a>二、UDP</h1><h2 id="1、概述-1"><a href="#1、概述-1" class="headerlink" title="1、概述"></a>1、概述</h2><p>🍉关键词：【无连接】【不可靠】【高效】【传输层协议】</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">UDP</span> 是一种无连接、不可靠但高效的传输层协议，它不进行握手，不保证顺序和可靠性，适合对时效性要求高、可以容忍丢包的应用场景，如视频、语音、DNS 查询等。相比 TCP更轻量，需要应用层自行处理错误与丢包问题<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、UDP报文段"><a href="#2、UDP报文段" class="headerlink" title="2、UDP报文段"></a>2、UDP报文段</h2><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>源端口号</td>
+<td>发起端口</td>
+</tr>
+<tr>
+<td>目标端口号</td>
+<td>目标端口</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>整个 UDP 包长度</td>
+</tr>
+<tr>
+<td>校验和</td>
+<td>简单错误检测</td>
+</tr>
+</tbody></table>
+<h2 id="3、应用场景"><a href="#3、应用场景" class="headerlink" title="3、应用场景"></a>3、应用场景</h2><table>
+<thead>
+<tr>
+<th>应用场景</th>
+<th>原因说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>视频直播、语音通话</td>
+<td>容忍丢包，低延迟优先</td>
+</tr>
+<tr>
+<td>DNS 查询</td>
+<td>查询包小，丢了就重发</td>
+</tr>
+<tr>
+<td>在线游戏</td>
+<td>要求快速同步状态，宁可偶尔丢帧</td>
+</tr>
+<tr>
+<td>QUIC 协议（HTTP&#x2F;3）</td>
+<td>基于 UDP 实现自己的可靠机制，绕过 TCP 层限制</td>
+</tr>
+</tbody></table>
+<p> <strong>为什么 UDP 没有粘包问题？</strong></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">UDP 是面向数据报的协议：每个 <span class="hljs-built_in">send</span>() 对应一个完整的报文，接收方每次 <span class="hljs-built_in">recv</span>() 读取一个完整包<br></code></pre></td></tr></table></figure>
+
+<h1 id="三、TCP-UDP常考"><a href="#三、TCP-UDP常考" class="headerlink" title="三、TCP&#x2F;UDP常考"></a>三、TCP&#x2F;UDP常考</h1><p><strong>TCP 和 UDP 有什么区别？</strong></p>
+<table>
+<thead>
+<tr>
+<th>对比点</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否连接</td>
+<td>面向连接（三次握手）</td>
+<td>无连接（不建立连接）</td>
+</tr>
+<tr>
+<td>是否可靠</td>
+<td><strong>可靠传输</strong>（确认应答、重传、序号）</td>
+<td>不可靠（无确认、无重传）</td>
+</tr>
+<tr>
+<td>有序性</td>
+<td>有序，按序号排列</td>
+<td>无序，收到就处理</td>
+</tr>
+<tr>
+<td>传输效率</td>
+<td>相对较慢（连接、确认）</td>
+<td>高效，适合实时场景</td>
+</tr>
+<tr>
+<td>头部开销</td>
+<td>大（20字节以上）</td>
+<td>小（8字节）</td>
+</tr>
+<tr>
+<td>应用场景</td>
+<td>网页、文件、邮件、SSH、数据库</td>
+<td>视频、语音、直播、DNS、游戏</td>
+</tr>
+</tbody></table>
+<p> <strong>TCP 为什么比 UDP 更可靠？</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">流量控制 + 拥塞控制：保证网络不崩溃，避免丢包<br>序号机制：保证数据有序<br>确认应答（ACK）机制：收到就回传确认<br>超时重传机制：丢包自动重发<br>校验和：保证数据未被损坏<br></code></pre></td></tr></table></figure>
+
+<p><strong>UDP 是否可靠？能否通过上层协议实现可靠性？</strong></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">UDP 本身不可靠：无序、无确认、无重传<br>但可以通过应用层封装实现可靠性（如 QUIC<span class="hljs-comment">--Google 推出的 UDP + TLS + TCP 混合协议）</span><br></code></pre></td></tr></table></figure>
+
+<p> <strong>什么场景适合用 TCP，什么场景用 UDP？为什么？</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">TCP：网页、文件传输、数据库、邮件等 → 可靠为主<br>UDP：视频通话、在线游戏、实时直播 → 低延迟为主<br></code></pre></td></tr></table></figure>
+
+<p> <strong>为什么视频通话使用 UDP 而不是 TCP？</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">视频对延迟要求高，UDP 无连接开销、无需重传，速度快<br>TCP 会因丢包重传、拥塞控制导致延迟，体验差<br></code></pre></td></tr></table></figure>
+
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/TCP/" class="print-no-link">#TCP</a>
+      
+        <a href="/tags/UDP/" class="print-no-link">#UDP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/17/JS-LeetCode10%EF%BC%9A%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" title="JS_LeetCode10：和为K的子数组">
+                        <span class="hidden-mobile">JS_LeetCode10：和为K的子数组</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://oyoanan.github.io/" target="_blank" rel="nofollow noopener"><span>AN</span></a> <i class="iconfont icon-love"></i> <a href="https://d4n-sec.github.io/#/" target="_blank" rel="nofollow noopener"><span>DM</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
