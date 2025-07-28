@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>DNS</title>
+    <link href="/2025/07/28/DNS/"/>
+    <url>/2025/07/28/DNS/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://an-hexo-blog.oss-cn-beijing.aliyuncs.com/img/202507282115264.jpg" alt="img"></p><h1 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h1><h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><p><strong>Domain Name System</strong></p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">DNS，域名系统，作用是把域名转换为IP地址。例如www<span class="hljs-selector-class">.baidu</span><span class="hljs-selector-class">.com</span> 转换为<span class="hljs-number">220.181</span>.<span class="hljs-number">38.251</span><br></code></pre></td></tr></table></figure><p><strong>为什么需要DNS</strong></p><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm">因为<span class="hljs-built_in">IP</span>地址难以记忆，而且可能会变化，但域名可以保持不变。<br></code></pre></td></tr></table></figure><h2 id="2、查询流程"><a href="#2、查询流程" class="headerlink" title="2、查询流程"></a>2、查询流程</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs stylus">🥖 用户输入网址 www<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.com</span><br>🥖 操作系统检查【本地DNS缓存】（如没有过期，直接返回结果）<br>（之前解析过的域名和对应的 IP 地址临时保存在本地，有效期TTL）<br>🥖 查询【本地 Hosts文件】，检查是否有手动配置的域名映射<br>🥖 向递归解析器发起请求（只需发一次请求，等递归解析器完成所有中间查询，返回结果即可）<br>本机的递归解析器 - 根服务器 - <span class="hljs-selector-class">.com</span> 顶级域名服务器 - example<span class="hljs-selector-class">.com</span> 权威域名服务器<br>🥖 结果返回与缓存<br>递归解析器将结果返回给客户端，递归解析器会缓存各级查询结果<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>计算机网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>DNS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数组</title>
     <link href="/2025/07/28/%E6%95%B0%E7%BB%84/"/>
     <url>/2025/07/28/%E6%95%B0%E7%BB%84/</url>
@@ -560,6 +585,8 @@
       
       <tag>正则表达式</tag>
       
+      <tag>数组</tag>
+      
       <tag>new操作符</tag>
       
       <tag>map和Object</tag>
@@ -573,8 +600,6 @@
       <tag>脚本延迟加载</tag>
       
       <tag>类数组对象</tag>
-      
-      <tag>数组</tag>
       
       <tag>Unicode</tag>
       
@@ -693,9 +718,9 @@
     
     <tags>
       
-      <tag>数组</tag>
-      
       <tag>七大原始数据类型</tag>
+      
+      <tag>数组</tag>
       
       <tag>函数</tag>
       
